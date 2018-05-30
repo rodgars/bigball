@@ -11,12 +11,12 @@ class Header extends Component{
                 return <li><a href="auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a></li>;
             default:
                 return [
-                    <li key="1"><a href="/ranking"><i class="material-icons left">view_list</i>Ranking Geral</a></li>,
-                    <li key="2"><a href="/game"><i class="material-icons left">create</i>Meu jogo</a></li>,
-                    <li key="2"><a href="/rule">Regras</a></li>,
-                    <li key="2"><a href="/payment">Como pagar</a></li>,
-                    <li key="2"><a href="/admin">Admin</a></li>,
-                    <li key="3"><a href="/api/logout">Logout</a></li>
+                    <Link key="1" to="/ranking"><i class="material-icons left">view_list</i>Ranking Geral</Link>,
+                    <Link key="2" to="/game"><i class="material-icons left">create</i>Meu jogo</Link>,
+                    <Link key="3" to="/rule">Regras</Link>,
+                    <Link key="4" to="/payment">Como Pagar</Link>,
+                    <Link key="5" to="/admin">Admin</Link>,
+                    <Link key="6" to="/api/logout">Logout</Link>
                 ];
         }
     }
