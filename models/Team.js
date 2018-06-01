@@ -10,6 +10,4 @@ teamSchema.statics.findByName = function(name, cb) {
 	return this.find({ name: new RegExp(name, 'i') }, cb);
 };
 
-mongoose.model('team', teamSchema);
-
-
+module.exports = mongoose.model('Team', teamSchema);
