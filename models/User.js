@@ -8,7 +8,8 @@ const userSchema = new Schema({
     isAdmin: {type:Boolean, default:false},
     urlImg: String,
     name: String,
-    email: String
+    email: String,
+    isPaid: {type:Boolean, default:false}
 });
 autoIncrement.initialize(mongoose.connection);
 userSchema.plugin(autoIncrement.plugin, {model: 'user', field: 'userId'});
