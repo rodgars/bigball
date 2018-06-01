@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const autoIncrement = require("mongoose-auto-increment");
 //const Schema = mongoose.Schema; essa instrucao é igual a debaixo
 const { Schema } = mongoose;
 
@@ -9,5 +10,6 @@ const userSchema = new Schema({
     name: String,
     email: String
 });
-
+autoIncrement.initialize(mongoose.connection);
+userSchema.plugin(autoIncrement.plugin, {model: 'user', field: 'userId'});
 mongoose.model('user', userSchema);
