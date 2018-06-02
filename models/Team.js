@@ -1,9 +1,10 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+var mongoose = require("mongoose");
+var { Schema } = mongoose;
 
-const teamSchema = new Schema({
+var teamSchema = new Schema({
+	_id: Schema.Types.ObjectId,
 	name:  String,
-	flagLink: String
+	flagCode: String
 });
 
 teamSchema.statics.findByName = function(name, cb) {
