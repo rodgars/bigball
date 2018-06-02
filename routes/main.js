@@ -1,6 +1,7 @@
 var express = require('express');
 var teamRoutes = require('./team');
 var matchRoutes = require('./match');
+var stageRoutes = require('./stage');
 
 module.exports = function(app) {
 
@@ -8,8 +9,10 @@ module.exports = function(app) {
 		res.json({teste: 1});
 	});
 
-	app.use('/api/teams', teamRoutes);
+	app.use('/api/team', teamRoutes);
 
 	app.use('/api/match', matchRoutes);
+
+	app.use('/api/stage', stageRoutes);
 
 }

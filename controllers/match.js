@@ -3,19 +3,35 @@ var Team = require('../models/Team');
 
 module.exports = function(){
 
+	this.getAll = function(callback){
+
+		Match.find(function(err, matches){
+			if(err) console.log(err);
+
+			callback(matches);
+
+		}).populate('homeTeam').populate('visitorTeam');
+	};
+
+	this.deleteAll = function(callback){
+		Match.collection.drop(function(err){
+			if(err) console.log(err);
+
+			callback(true);
+			
+		});
+		
+	};
+
 	this.saveAll = function(matchesJson, callback) {
 
-		Team.find(function(err, teams){
+		Team.loadDictionary(function(teamDictionary){
 
-			var teamDictionary = {};
-
-			for(var index in teams){
-				teamDictionary[teams[index].name] = teams[index];
-			}
+			
 
 			var matches = matchesJson.map(function(m){
 				return new Match({
-					number: m.number,
+					_id: m._id,
 					group: m.group,
 					date: m.date,
 					homeTeam: teamDictionary[m.homeTeam],

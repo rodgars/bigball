@@ -35,7 +35,7 @@ module.exports = function(){
 	};
 
 	this.saveAll = function(teamsJson, callback) {
-		console.log(teamsJson);
+
 		var teams = teamsJson.map(function(team){
 			return new Team(team);
 		});
@@ -45,6 +45,16 @@ module.exports = function(){
 
 			callback(docs);
 		});
+	};
+
+	this.deleteAll = function(callback){
+		Team.collection.drop(function(err){
+			if(err) console.log(err);
+
+			callback(true);
+			
+		});
+		
 	};
 
 
