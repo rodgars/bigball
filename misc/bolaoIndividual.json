@@ -1,0 +1,100 @@
+{
+	"nome": "Jogador01",
+	"googleID": "jogador01@gmail",
+	"campeoes": {"pick": {"1": "Brasil", "2": "Brasil", "3": "Brasil"}, "result": {"1": "Brasil", "2": "Brasil", "3": "Brasil"}, "locked": false, "points": 0},
+	"artilheiro": {"pick": "Neymar", "result": "Neymar", "locked": false, "points": 0},
+	"selecaoGP": {"pick": "Neymar", "result": "Neymar", "locked": false, "points": 0},
+	"selecaoGC": {"pick": "Neymar", "result": "Neymar", "locked": false, "points": 0},
+	"selecaoSG": {"pick": "Neymar", "result": "Neymar", "locked": false, "points": 0},
+	"pontuacaoTotal": 0,
+	"fases": [{
+		"nome": "Grupos",
+		"dataLimite": "2018-06-13",
+		"horaLimite": "23:59:59",
+		"locked": false,
+		"jogos": [
+			{ "numero":  1, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  2, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  3, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  4, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  5, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  6, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  7, "grupo": "B", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  8, "grupo": "B", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero":  9, "grupo": "B", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 10, "grupo": "B", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 21, "grupo": "B", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 22, "grupo": "B", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 23, "grupo": "C", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 24, "grupo": "C", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 25, "grupo": "C", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 26, "grupo": "C", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 27, "grupo": "C", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 28, "grupo": "C", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 29, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 30, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 31, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 32, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 33, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 34, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 35, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 36, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 37, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 38, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 39, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 40, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 41, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 42, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 43, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 44, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 45, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 46, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 47, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 48, "grupo": "A", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 }
+		]
+	},{
+		"nome": "Oitavas",
+		"dataLimite": "2018-06-13",
+		"horaLimite": "23:59:59",
+		"locked": false,
+		"jogos": [
+			{ "numero": 49, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 50, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 51, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 52, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 53, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 54, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 55, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 56, "grupo": "OF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 }
+		]
+	},{
+		"nome": "Quartas",
+		"dataLimite": "2018-06-13",
+		"horaLimite": "23:59:59",
+		"locked": false,
+		"jogos": [
+			{ "numero": 57, "grupo": "QF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 58, "grupo": "QF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 59, "grupo": "QF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 60, "grupo": "QF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 }
+		]
+	},{
+		"nome": "Semis",
+		"dataLimite": "2018-06-13",
+		"horaLimite": "23:59:59",
+		"locked": false,
+		"jogos": [
+			{ "numero": 61, "grupo": "SF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 62, "grupo": "SF", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 }
+		]
+	},{
+		"nome": "Finais",
+		"dataLimite": "2018-06-13",
+		"horaLimite": "23:59:59",
+		"locked": false,
+		"jogos": [
+			{ "numero": 63, "grupo": "FI", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 },
+			{ "numero": 64, "grupo": "FI", "selecaoCasa": "Russia", "selecaoVisitante": "Arabia Saudita", "pick": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "result": {"golsTimeCasa": 0, "golsTimeVisitante": 0, "selecaoVencedora": "Russia"}, "points": 0 }
+		]
+	}]
+}

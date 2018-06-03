@@ -1,0 +1,55 @@
+[{
+	"nome": "Jogador01",
+	"googleID": "jogador01@gmail",
+	"foto": "linkDaFoto.com.br/foto/jogador01.png",
+	"posicao": 1,
+	"pontuacao": {
+		"grupos": 0,
+		"oitavas": 0,
+		"quartas": 0,
+		"semis": 0,
+		"finais": 0,
+		"selecaoGP": 0,
+		"selecaoGC": 0,
+		"selecaoSG": 0,
+		"artilheiro": 0,
+		"campeoes": 0,
+		"total": 0
+	}
+},{
+	"nome": "Jogador02",
+	"googleID": "jogador02@gmail",
+	"foto": "linkDaFoto.com.br/foto/jogador01.png",
+	"posicao": 2,
+	"pontuacao": {
+		"grupos": 0,
+		"oitavas": 0,
+		"quartas": 0,
+		"semis": 0,
+		"finais": 0,
+		"selecaoGP": 0,
+		"selecaoGC": 0,
+		"selecaoSG": 0,
+		"artilheiro": 0,
+		"campeoes": 0,
+		"total": 0
+	}
+},{
+	"nome": "Jogador03",
+	"googleID": "jogador03@gmail",
+	"foto": "linkDaFoto.com.br/foto/jogador01.png",
+	"posicao": 3,
+	"pontuacao": {
+		"grupos": 0,
+		"oitavas": 0,
+		"quartas": 0,
+		"semis": 0,
+		"finais": 0,
+		"selecaoGP": 0,
+		"selecaoGC": 0,
+		"selecaoSG": 0,
+		"artilheiro": 0,
+		"campeoes": 0,
+		"total": 0
+	}
+}]
