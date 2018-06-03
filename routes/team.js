@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 	});
 });
 
+
 router.delete('/', (req, res) => {
 	
 	teamsController.deleteAll(function(message){

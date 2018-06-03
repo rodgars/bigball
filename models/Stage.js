@@ -8,6 +8,5 @@ var stageSchema = new Schema({
 	matches: [matchSchema]
 }, { versionKey: false });
 
-//module.exports = mongoose.model('Stage', stageSchema);
-
 module.exports = stageSchema;
+
