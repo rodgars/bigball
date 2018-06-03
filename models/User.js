@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-auto-increment");
-//const Schema = mongoose.Schema; essa instrucao é igual a debaixo
+var Guess = require('./Guess');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -11,6 +11,22 @@ const userSchema = new Schema({
     email: String,
     isPaid: {type:Boolean, default:false}
 });
+
 autoIncrement.initialize(mongoose.connection);
+
 userSchema.plugin(autoIncrement.plugin, {model: 'user', field: 'userId'});
+
+userSchema.pre('save', function (next) {
+	this.wasNew = this.isNew;
+	next();
+});
+
+userSchema.post('save', function () {
+	if (this.wasNew) {
+		var guess = new Guess({user: this});
+		guess.save(function(err, doc){
+			if(err) console.log(err);
+		});
+	}
+});
 mongoose.model('user', userSchema);

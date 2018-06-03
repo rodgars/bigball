@@ -1,20 +1,19 @@
 var express = require('express');
-var TeamsController = require('../controllers/team');
+var PlayersController = require('../controllers/player');
 
 var router = express.Router();
-var teamsController = new TeamsController();
+var playersController = new PlayersController();
 
 router.get('/', (req, res) => {
-	teamsController.getAll(function(docs){
+	playersController.getAll(function(docs){
 		
 		res.json(docs);
 	});
 });
 
-
 router.delete('/', (req, res) => {
 	
-	teamsController.deleteAll(function(message){
+	playersController.deleteAll(function(message){
 
 		res.json(message);
 
@@ -26,9 +25,9 @@ router.put('/', (req, res) => {
 
 	var teams = req.body;
 
-	teamsController.deleteAll(function(docs){
+	playersController.deleteAll(function(docs){
 		
-		teamsController.save(teams, function(docs){
+		playersController.save(teams, function(docs){
 		
 			res.json(docs);
 		});
@@ -36,6 +35,5 @@ router.put('/', (req, res) => {
 
 	
 });
-
 
 module.exports = router;
