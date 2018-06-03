@@ -1,8 +1,9 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+var mongoose = require("mongoose");
+var { Schema } = mongoose;
 
-const goalSchema = new Schema({
-	name: String,
-});
+var goalSchema = new Schema({
+	player: { type: Schema.Types.ObjectId, ref: 'Player'},
+	team: { type: String, ref: 'Team'}
+},{ _id : false });
 
-module.exports = mongoose.model('goal', playerSchema);
+module.exports = goalSchema;

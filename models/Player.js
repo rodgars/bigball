@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const playerSchema = new Schema({
 	_id: Schema.Types.ObjectId,
 	name: String,
-	goals: []
-});
+	team: { type: String, ref: 'Team' }
+}, { versionKey: false });
 
-module.exports = mongoose.model('player', playerSchema);
+module.exports = mongoose.model('Player', playerSchema);

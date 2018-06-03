@@ -1,16 +1,20 @@
 var mongoose = require("mongoose");
+var matchSchema = require('./Match');
 var { Schema } = mongoose;
 
 var stageSchema = new Schema({
 	_id: String,
 	deadline:  Date,
-	matches: [{type: Number, ref: 'Match'}]
+	matches: [matchSchema]
 }, { versionKey: false });
 
 stageSchema.statics.findById = function(id, cb) {
 	return this.find({ _id: new RegExp(name, 'i') }, cb);
 };
 
+module.exports = mongoose.model('Stage', stageSchema);
+
+/*
 stageSchema.statics.loadDictionary = function(cb) {
 
 	var stageDictionary = {};
@@ -26,5 +30,4 @@ stageSchema.statics.loadDictionary = function(cb) {
 		cb(stageDictionary);
 	});
 };
-
-module.exports = mongoose.model('Stage', stageSchema);
+*/

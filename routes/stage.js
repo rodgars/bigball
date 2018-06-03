@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.get('/delete', (req, res) => {
+router.delete('/', (req, res) => {
 	
 	stagesController.deleteAll(function(message){
 
@@ -22,18 +22,27 @@ router.get('/delete', (req, res) => {
 
 });
 
-router.get('/reset', (req, res) => {
+router.put('/:stageId', (req, res) => {
 
-	stagesController.deleteAll(function(msg){
+	var stageJson = req.body;
+	var stageId = req.params.stageId;
 
-		stagesController.saveAll(stages, function(docs){
-		
-			res.json(docs);
-		});
+	console.log(stageId);
 
-	});
-
+	stagesController.update(stageId, stageJson, function(docs){
 	
+		res.json(docs);
+	});
+});
+
+router.post('/', (req, res) => {
+	
+	var stageJson = req.body;
+
+	stagesController.create(stageJson, function(docs){
+	
+		res.json(docs);
+	});
 });
 
 module.exports = router;
