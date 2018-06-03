@@ -13,32 +13,19 @@ module.exports = function(){
 		});
 	};
 
-	this.getByName = function(name, callback){
+	this.save = function(teamsJson, callback) {	
 
-		Team.findByName(name, function(err, team){
-
-			if(err) console.log(err);
-
-			callback(team);
-
-		});
-	};
-
-
-	this.getById = function(id, callback){
-
-		Team.findById(id, function(err, team){
-			if(err) console.log(err);
-
-			callback(team);
-		});
-	};
-
-	this.saveAll = function(teamsJson, callback) {
+		if(!Array.isArray(teamsJson)) {
+			var temp = [];
+			temp.push(teamsJson);
+			teamsJson = temp;
+		}
 
 		var teams = teamsJson.map(function(team){
 			return new Team(team);
 		});
+
+		console.log(teams);
 
 		Team.insertMany(teams, function(err, docs){
 			if(err) console.log(err);
@@ -55,20 +42,6 @@ module.exports = function(){
 			
 		});
 		
-	};
-
-
-	this.save = function(teamJson, callback){
-
-		var team = teamJson;
-
-		if(!team._id) team = new Team(team);
-
-		Team.findByIdAndUpdate(team._id, team, {upsert: true, new: true}, function(err, doc){
-			if(err) console.log(err);
-
-			callback(doc);
-		});
 	};
 
 };

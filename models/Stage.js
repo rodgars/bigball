@@ -8,8 +8,6 @@ var stageSchema = new Schema({
 	matches: [matchSchema]
 }, { versionKey: false });
 
-stageSchema.statics.findById = function(id, cb) {
-	return this.find({ _id: new RegExp(name, 'i') }, cb);
-};
+//module.exports = mongoose.model('Stage', stageSchema);
 
-module.exports = mongoose.model('Stage', stageSchema);
+module.exports = stageSchema;

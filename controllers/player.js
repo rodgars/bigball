@@ -13,33 +13,31 @@ module.exports = function(){
 		}).populate('team');
 	};
 
-	this.deleteAll = function(callback){
+	this.save = function(playersJson, callback) {	
 
+		if(!Array.isArray(playersJson)) {
+			var temp = [];
+			temp.push(playersJson);
+			playersJson = temp;
+		}
+
+		var players = playersJson.map(function(player){
+			return new Player(player);
+		});
+
+		Player.insertMany(players, function(err, docs){
+			if(err) console.log(err);
+
+			callback(docs);
+		});
+	};
+
+	this.deleteAll = function(callback){
 		Player.collection.drop(function(err){
 			if(err) console.log(err);
 
 			callback(true);
 			
-		});
-	};
-
-	this.saveAll = function(playersJson, callback) {
-
-		Team.loadDictionary(function(teamDictionary){			
-
-			var players = playersJson.map(function(p){
-				return new Player({
-					name: p.name,
-					team: teamDictionary[p.team]
-				});
-			});
-
-			Player.insertMany(players, function(err, docs){
-				if(err) console.log(err);
-
-				callback(docs);
-			});
-
 		});
 		
 	};

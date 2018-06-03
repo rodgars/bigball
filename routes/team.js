@@ -1,6 +1,5 @@
 var express = require('express');
 var TeamsController = require('../controllers/team');
-var teams = require('../misc/teams');
 
 var router = express.Router();
 var teamsController = new TeamsController();
@@ -12,7 +11,7 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.delete('', (req, res) => {
+router.delete('/', (req, res) => {
 	
 	teamsController.deleteAll(function(message){
 
@@ -20,6 +19,21 @@ router.delete('', (req, res) => {
 
 	});
 
+});
+
+router.put('/', (req, res) => {
+
+	var teams = req.body;
+
+	teamsController.deleteAll(function(docs){
+		
+		teamsController.save(teams, function(docs){
+		
+			res.json(docs);
+		});
+	});
+
+	
 });
 
 

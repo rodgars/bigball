@@ -1,6 +1,5 @@
 var express = require('express');
 var PlayersController = require('../controllers/player');
-var teams = require('../misc/players');
 
 var router = express.Router();
 var playersController = new PlayersController();
@@ -20,6 +19,21 @@ router.delete('/', (req, res) => {
 
 	});
 
+});
+
+router.put('/', (req, res) => {
+
+	var teams = req.body;
+
+	playersController.deleteAll(function(docs){
+		
+		playersController.save(teams, function(docs){
+		
+			res.json(docs);
+		});
+	});
+
+	
 });
 
 module.exports = router;
