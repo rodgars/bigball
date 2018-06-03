@@ -1,4 +1,5 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
+var goalSchema = require('./Goal');
 var { Schema } = mongoose;
 
 var matchSchema = new Schema({
@@ -7,24 +8,8 @@ var matchSchema = new Schema({
 	date: Date,
 	homeTeam: { type: String, ref: 'Team' },
 	visitorTeam: { type: String, ref: 'Team' },
-	goals: [{type: Schema.Types.ObjectId, ref: 'Goal'}],
-	winner: { type: Schema.Types.ObjectId, ref: 'Team' }
-}, { versionKey: false });
+	winner: { type: String, ref: 'Team' },
+	goals: [goalSchema]
+});
 
-matchSchema.statics.loadDictionary = function(cb) {
-
-	var matchDictionary = {};
-
-	this.find(function(err, matches){
-
-		if(err) console.log(err);
-
-		for(var index in matches){
-			matchDictionary[matches[index]._id] = matches[index];
-		}
-
-		cb(matchDictionary);
-	});
-};
-
-module.exports = mongoose.model('Match', matchSchema);
+module.exports = matchSchema;

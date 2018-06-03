@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.get('/delete', (req, res) => {
+router.delete('', (req, res) => {
 	
 	teamsController.deleteAll(function(message){
 
@@ -22,17 +22,5 @@ router.get('/delete', (req, res) => {
 
 });
 
-router.get('/reset', (req, res) => {
-	
-	teamsController.deleteAll(function(message){
-
-		teamsController.saveAll(teams, function(docs){
-		
-			res.json(docs);
-		});
-
-	});
-
-});
 
 module.exports = router;
