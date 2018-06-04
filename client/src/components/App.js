@@ -18,6 +18,9 @@ class App extends Component {
 
     componentDidMount(){
         this.props.fetchUser();
+        this.props.fetchTeam();
+        this.props.fetchPlayer();
+        this.props.fetchWorldCup();
     }
 
     render(){
