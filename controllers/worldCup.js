@@ -10,11 +10,11 @@ module.exports = function(){
 			callback(worldCups);
 
 		}).
-		populate('stages.matches.homeTeam').
-		populate('stages.matches.visitorTeam').
+		populate('stages.matches');
+		/*populate('stages.matches.visitorTeam').
 		populate('stages.matches.winner').
 		populate('stages.matches.goals.player').
-		populate('stages.matches.goals.team');
+		populate('stages.matches.goals.team');*/
 
 	};
 

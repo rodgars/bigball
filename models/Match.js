@@ -13,4 +13,4 @@ var matchSchema = new Schema({
 	visitorScore: Number
 });
 
-module.exports = matchSchema;
+module.exports = mongoose.model('Match', matchSchema);

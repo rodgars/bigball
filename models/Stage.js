@@ -1,11 +1,11 @@
 var mongoose = require("mongoose");
-var matchSchema = require('./Match');
+//var Match = require('./Match');
 var { Schema } = mongoose;
 
 var stageSchema = new Schema({
 	_id: String,
 	deadline:  Date,
-	matches: [matchSchema]
+	matches: [{type: Number, ref: 'Match'}]
 }, { versionKey: false });
 
 module.exports = stageSchema;
