@@ -9,7 +9,8 @@ var matchSchema = new Schema({
 	homeTeam: { type: String, ref: 'Team' },
 	visitorTeam: { type: String, ref: 'Team' },
 	winner: { type: String, ref: 'Team' },
-	goals: [goalSchema]
+	homeScore: Number,
+	visitorScore: Number
 });
 
 module.exports = matchSchema;

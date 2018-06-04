@@ -1,0 +1,410 @@
+/*!
+ * Generated with CSS Flag Sprite generator (https://www.flag-sprites.com/)
+ */
+ .flag-24 {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('flags_24.png') no-repeat;
+}
+
+
+.flag-24.flag-ru {
+    background-position: -48px -96px;
+}
+
+.flag-24.flag-br {
+    background-position: -72px 0;
+}
+
+.flag-24.flag-ma {
+    background-position: 0 -72px;
+}
+
+.flag-24.flag-ar {
+    background-position: 0 0;
+}
+
+.flag-24.flag-pe {
+    background-position: -96px -72px;
+}
+
+.flag-24.flag-es {
+    background-position: -96px -24px;
+}
+
+.flag-24.flag-uy {
+    background-position: -24px -120px;
+}
+
+.flag-24.flag-pa {
+    background-position: -72px -72px;
+}
+
+.flag-24.flag-ir {
+    background-position: -48px -48px;
+}
+
+.flag-24.flag-dk {
+    background-position: -48px -24px;
+}
+
+.flag-24.flag-is {
+    background-position: -72px -48px;
+}
+
+.flag-24.flag-hr {
+    background-position: -24px -48px;
+}
+
+.flag-24.flag-gb {
+    background-position: 0 -48px;
+}
+
+.flag-24.flag-kr {
+    background-position: -120px -48px;
+}
+
+.flag-24.flag-tn {
+    background-position: 0 -120px;
+}
+
+.flag-24.flag-pl {
+    background-position: -120px -72px;
+}
+
+.flag-24.flag-ng {
+    background-position: -48px -72px;
+}
+
+.flag-24.flag-se {
+    background-position: -96px -96px;
+}
+
+.flag-24.flag-fr {
+    background-position: -120px -24px;
+}
+
+.flag-24.flag-be {
+    background-position: -48px 0;
+}
+
+.flag-24.flag-de {
+    background-position: -24px -24px;
+}
+
+.flag-24.flag-cr {
+    background-position: 0 -24px;
+}
+
+.flag-24.flag-mx {
+    background-position: -24px -72px;
+}
+
+.flag-24.flag-co {
+    background-position: -120px 0;
+}
+
+.flag-24.flag-rs {
+    background-position: -24px -96px;
+}
+
+.flag-24.flag-sn {
+    background-position: -120px -96px;
+}
+
+.flag-24.flag-ch {
+    background-position: -96px 0;
+}
+
+.flag-24.flag-jp {
+    background-position: -96px -48px;
+}
+
+.flag-24.flag-eg {
+    background-position: -72px -24px;
+}
+
+.flag-24.flag-sa {
+    background-position: -72px -96px;
+}
+
+.flag-24.flag-pt {
+    background-position: 0 -96px;
+}
+
+.flag-24.flag-au {
+    background-position: -24px 0;
+}
+
+ .flag-32 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url('flags_32.png') no-repeat;
+}
+
+
+.flag-32.flag-ru {
+    background-position: -64px -128px;
+}
+
+.flag-32.flag-br {
+    background-position: -96px 0;
+}
+
+.flag-32.flag-ma {
+    background-position: 0 -96px;
+}
+
+.flag-32.flag-ar {
+    background-position: 0 0;
+}
+
+.flag-32.flag-pe {
+    background-position: -128px -96px;
+}
+
+.flag-32.flag-es {
+    background-position: -128px -32px;
+}
+
+.flag-32.flag-uy {
+    background-position: -32px -160px;
+}
+
+.flag-32.flag-pa {
+    background-position: -96px -96px;
+}
+
+.flag-32.flag-ir {
+    background-position: -64px -64px;
+}
+
+.flag-32.flag-dk {
+    background-position: -64px -32px;
+}
+
+.flag-32.flag-is {
+    background-position: -96px -64px;
+}
+
+.flag-32.flag-hr {
+    background-position: -32px -64px;
+}
+
+.flag-32.flag-gb {
+    background-position: 0 -64px;
+}
+
+.flag-32.flag-kr {
+    background-position: -160px -64px;
+}
+
+.flag-32.flag-tn {
+    background-position: 0 -160px;
+}
+
+.flag-32.flag-pl {
+    background-position: -160px -96px;
+}
+
+.flag-32.flag-ng {
+    background-position: -64px -96px;
+}
+
+.flag-32.flag-se {
+    background-position: -128px -128px;
+}
+
+.flag-32.flag-fr {
+    background-position: -160px -32px;
+}
+
+.flag-32.flag-be {
+    background-position: -64px 0;
+}
+
+.flag-32.flag-de {
+    background-position: -32px -32px;
+}
+
+.flag-32.flag-cr {
+    background-position: 0 -32px;
+}
+
+.flag-32.flag-mx {
+    background-position: -32px -96px;
+}
+
+.flag-32.flag-co {
+    background-position: -160px 0;
+}
+
+.flag-32.flag-rs {
+    background-position: -32px -128px;
+}
+
+.flag-32.flag-sn {
+    background-position: -160px -128px;
+}
+
+.flag-32.flag-ch {
+    background-position: -128px 0;
+}
+
+.flag-32.flag-jp {
+    background-position: -128px -64px;
+}
+
+.flag-32.flag-eg {
+    background-position: -96px -32px;
+}
+
+.flag-32.flag-sa {
+    background-position: -96px -128px;
+}
+
+.flag-32.flag-pt {
+    background-position: 0 -128px;
+}
+
+.flag-32.flag-au {
+    background-position: -32px 0;
+}
+
+.flag-48 {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background: url('flags_48.png') no-repeat;
+}
+
+
+.flag-48.flag-ru {
+    background-position: -96px -192px;
+}
+
+.flag-48.flag-br {
+    background-position: -144px 0;
+}
+
+.flag-48.flag-ma {
+    background-position: 0 -144px;
+}
+
+.flag-48.flag-ar {
+    background-position: 0 0;
+}
+
+.flag-48.flag-pe {
+    background-position: -192px -144px;
+}
+
+.flag-48.flag-es {
+    background-position: -192px -48px;
+}
+
+.flag-48.flag-uy {
+    background-position: -48px -240px;
+}
+
+.flag-48.flag-pa {
+    background-position: -144px -144px;
+}
+
+.flag-48.flag-ir {
+    background-position: -96px -96px;
+}
+
+.flag-48.flag-dk {
+    background-position: -96px -48px;
+}
+
+.flag-48.flag-is {
+    background-position: -144px -96px;
+}
+
+.flag-48.flag-hr {
+    background-position: -48px -96px;
+}
+
+.flag-48.flag-gb {
+    background-position: 0 -96px;
+}
+
+.flag-48.flag-kr {
+    background-position: -240px -96px;
+}
+
+.flag-48.flag-tn {
+    background-position: 0 -240px;
+}
+
+.flag-48.flag-pl {
+    background-position: -240px -144px;
+}
+
+.flag-48.flag-ng {
+    background-position: -96px -144px;
+}
+
+.flag-48.flag-se {
+    background-position: -192px -192px;
+}
+
+.flag-48.flag-fr {
+    background-position: -240px -48px;
+}
+
+.flag-48.flag-be {
+    background-position: -96px 0;
+}
+
+.flag-48.flag-de {
+    background-position: -48px -48px;
+}
+
+.flag-48.flag-cr {
+    background-position: 0 -48px;
+}
+
+.flag-48.flag-mx {
+    background-position: -48px -144px;
+}
+
+.flag-48.flag-co {
+    background-position: -240px 0;
+}
+
+.flag-48.flag-rs {
+    background-position: -48px -192px;
+}
+
+.flag-48.flag-sn {
+    background-position: -240px -192px;
+}
+
+.flag-48.flag-ch {
+    background-position: -192px 0;
+}
+
+.flag-48.flag-jp {
+    background-position: -192px -96px;
+}
+
+.flag-48.flag-eg {
+    background-position: -144px -48px;
+}
+
+.flag-48.flag-sa {
+    background-position: -144px -192px;
+}
+
+.flag-48.flag-pt {
+    background-position: 0 -192px;
+}
+
+.flag-48.flag-au {
+    background-position: -48px 0;
+}

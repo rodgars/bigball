@@ -1,0 +1,39 @@
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 0px 0px;
+}
+.navbar {
+  background-color: #e27d2a;
+}
+.nav {
+  padding: 0px 12px;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #FFF;
+}
+
+h4 {
+  padding: 10px 10px 10px 10px;
+}
+.footer {
+  padding: 20px 0 20px 0;
+  background-color: #090c14;
+  color: #878c94;
+}
+button{
+  padding-right: 10px;
+  margin-right: 10px;
+}
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+thead th {
+  background-color: #333;
+  color: white;
+}
+.center-block {
+  float: none !important
+}

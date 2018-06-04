@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import {BrowserRouter,Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {Grid, Row, Col} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 
-import Header from './Header';
-import Ranking from './Ranking';
-import Payment from './Payment';
-import GameRule from './GameRule';
-import Landing from './Landing';
-import Admin from './Admin';
-import Mygame from './Mygame';
+import Header from './_Layout/Header';
+import Footer from './_Layout/Footer';
+import Ranking from './Ranking/Ranking';
+import Payment from './Payment/Payment';
+import GameRule from './Rules/GameRule';
+import Landing from './_Layout/Landing';
+import Admin from './Admin/Admin';
+import Mygame from './MyGame/Mygame';
 
 
 class App extends Component {
@@ -20,17 +22,26 @@ class App extends Component {
 
     render(){
         return (
-                <BrowserRouter>
-                    <div className="container">
+                <Router>
+                    <div>
                         <Header />
-                        <Route exact path="/" component={Landing} />
-                        <Route exact path="/ranking" component={Ranking} />
-                        <Route exact path="/payment" component={Payment} />
-                        <Route exact path="/rule" component={GameRule} />
-                        <Route exact path="/admin" component={Admin} />
-                        <Route exact path="/game" component={Mygame} />
+                        <Grid>
+                            <Row className="showGrid">
+                                <Col xs={12}>
+                                    <Switch>
+                                        <Route path="/ranking" component={Ranking} />
+                                        <Route path="/payment" component={Payment} />
+                                        <Route path="/rule" component={GameRule} />
+                                        <Route path="/admin" component={Admin} />
+                                        <Route path="/game/:id" component={Mygame} />
+                                        <Route path="/" component={Landing} />
+                                    </Switch>
+                                </Col>
+                            </Row>
+                        </Grid>
+                        <Footer />
                     </div>
-                </BrowserRouter>
+                </Router>
         );
     }
 };
