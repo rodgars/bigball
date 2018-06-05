@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var goalSchema = require('./Goal');
 var { Schema } = mongoose;
 
 var matchSchema = new Schema({
@@ -13,4 +12,4 @@ var matchSchema = new Schema({
 	visitorScore: Number
 });
 
-module.exports = matchSchema;
+module.exports = mongoose.model('Match', matchSchema);

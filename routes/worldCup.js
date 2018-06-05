@@ -4,43 +4,19 @@ var WorldCupController = require('../controllers/worldCup');
 var router = express.Router();
 var worldCupController = new WorldCupController();
 
-router.get('/', (req, res) => {
-
-	worldCupController.getAll(function(docs){
-		
-		res.json(docs);
-	});
-
-});
-
-router.delete('/:wcId', (req, res) => {
+router.post('/clear', (req, res) => {
 	
-	var wcId = req.params.wcId;
+	worldCupController.clear(function(doc){
 
-	worldCupController.delete(wcId, function(message){
-
-		res.json(message);
+		res.json(doc);
 
 	});
 
 });
 
-router.put('/:wcId', (req, res) => {
+router.post('/seed', (req, res) => {
 
-	var wcJson = req.body;
-	var wcId = req.params.wcId;
-
-	worldCupController.update(wcId, wcJson, function(docs){
-	
-		res.json(docs);
-	});
-});
-
-router.post('/', (req, res) => {
-	
-	var stageJson = req.body;
-
-	worldCupController.create(stageJson, function(docs){
+	worldCupController.seed(function(docs){
 	
 		res.json(docs);
 	});

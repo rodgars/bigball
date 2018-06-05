@@ -1,63 +1,76 @@
-var WorldCup = require('../models/WorldCup');
+var Team = require('../models/Team');
+var Player = require('../models/Player');
+var Match = require('../models/Match');
+var Stage = require('../models/Stage');
+var Account = require('../models/Account');
+
+var teams = require('../misc/Teams.json');
+var players = require('../misc/Players.json');
+var matches = require('../misc/Matches.json');
+var stages = require('../misc/Stages.json');
+var account = require('../misc/Account.json');
+
+var TeamsController = require('../controllers/team');
+var teamsController = new TeamsController();
+
+var PlayersController = require('../controllers/player');
+var playersController = new PlayersController();
+
+var MatchController = require('../controllers/match');
+var matchController = new MatchController();
+
+var StageController = require('../controllers/stage');
+var stageController = new StageController();
+
+var AccountController = require('../controllers/account');
+var accountController = new AccountController();
 
 module.exports = function(){
 
-	this.getAll = function(callback){
+	this.clear = function(callback){
+		
+		Stage.remove({}, function(err, doc){
 
-		WorldCup.find(function(err, worldCups){
-			if(err) console.log(err);
+			if(err) callback(err);
+			Match.remove({}, function(err, doc){
 
-			callback(worldCups);
+				if(err) callback(err);
+				Player.remove({}, function(err, doc){
 
-		}).
-		populate('stages.matches.homeTeam').
-		populate('stages.matches.visitorTeam').
-		populate('stages.matches.winner').
-		populate('stages.matches.goals.player').
-		populate('stages.matches.goals.team');
+					if(err) callback(err);
+					Team.remove({}, function(err, doc){
+						if(err) callback(err);
+						
+						Account.remove({}, function(err, doc){
+							if(err) callback(err);
+						
+							callback(true);
+						});
+					});
 
-	};
+				});
 
-	this.delete = function(wcId, callback){
-
-		WorldCup.findByIdAndRemove(wcId, function(err){
-			if(err) console.log(err);
-			callback(true);
+			});
 		});
 		
 	};
 
-	this.update = function(wcId, wcJson, callback){
+	this.seed = function(callback){
+		teamsController.save(teams, function(doc){
 
-		var wc = WorldCup({
-			_id: wcJson._id
+			playersController.save(players, function(doc){
+
+				matchController.save(matches, function(doc){
+
+					stageController.saveAll(stages, function(doc){
+
+						accountController.update(account._id, account, function(doc){
+
+							callback(doc);
+						});
+					});
+				});
+			});
 		});
-
-		for(var index in wcJson.stages){
-			wc.stages.push(wcJson.stages[index]);
-		}
-
-		WorldCup.replaceOne({_id: wcId}, wc, function(err, doc){
-			if(err) console.log(err);
-			callback(doc);
-		});
-	
 	};
-
-	this.create = function(wcJson, callback){
-
-		var wc = new WorldCup({
-			_id: wcJson._id
-		});
-
-		for(var index in wcJson.stages){
-			wc.stages.push(wcJson.stages[index]);
-		}
-
-		wc.save(function(err, doc){
-			if(err) console.log(err);
-			callback(doc);
-		});
-	
-	}
 };

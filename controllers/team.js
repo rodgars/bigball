@@ -25,8 +25,6 @@ module.exports = function(){
 			return new Team(team);
 		});
 
-		console.log(teams);
-
 		Team.insertMany(teams, function(err, docs){
 			if(err) console.log(err);
 
