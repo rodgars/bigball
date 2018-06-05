@@ -5,7 +5,7 @@ var { Schema } = mongoose;
 var worldCupSchema = new Schema({
 	_id: String,
 	lastUpdate:  Date,
-	stages: [stageSchema]
+	stages: [{type: String, ref: 'Stage'}]
 }, { versionKey: false });
 
 module.exports = mongoose.model('WorldCup', worldCupSchema);

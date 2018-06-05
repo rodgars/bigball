@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var goalSchema = require('./Goal');
 var { Schema } = mongoose;
 
 var matchSchema = new Schema({

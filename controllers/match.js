@@ -25,8 +25,6 @@ module.exports = function(){
 			return new Match(match);
 		});
 
-		console.log(matchs);
-
 		Match.insertMany(matchs, function(err, docs){
 			if(err) console.log(err);
 
