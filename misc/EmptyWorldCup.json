@@ -1,92 +1,24 @@
 {
-	"_id": "officialResult",
+	"_id": "russia2018",
 	"stages": [{
 		"_id": "groupStage",
 		"deadline": "2018-06-12",
-		"matches": [{ "_id":  1, "group": "A", "date": "2018-06-14", "homeTeam": "ru", "visitorTeam": "sa"},
-			{ "_id":  2, "group": "A", "date": "2018-06-15", "homeTeam": "eg", "visitorTeam": "uy"},
-			{ "_id":  3, "group": "A", "date": "2018-06-19", "homeTeam": "ru", "visitorTeam": "eg"},
-			{ "_id":  4, "group": "A", "date": "2018-06-20", "homeTeam": "uy", "visitorTeam": "sa"},
-			{ "_id":  5, "group": "A", "date": "2018-06-25", "homeTeam": "uy", "visitorTeam": "ru"},
-			{ "_id":  6, "group": "A", "date": "2018-06-25", "homeTeam": "sa", "visitorTeam": "eg"},
-			{ "_id":  7, "group": "B", "date": "2018-06-15", "homeTeam": "ma", "visitorTeam": "ir"},
-			{ "_id":  8, "group": "B", "date": "2018-06-15", "homeTeam": "pt", "visitorTeam": "es"},
-			{ "_id":  9, "group": "B", "date": "2018-06-20", "homeTeam": "pt", "visitorTeam": "ma"},
-			{ "_id":  10, "group": "B", "date": "2018-06-20", "homeTeam": "ir", "visitorTeam": "es"},
-			{ "_id":  11, "group": "B", "date": "2018-06-25", "homeTeam": "ir", "visitorTeam": "pt"},
-			{ "_id":  12, "group": "B", "date": "2018-06-25", "homeTeam": "es", "visitorTeam": "ma"},
-			{ "_id":  13, "group": "C", "date": "2018-06-16", "homeTeam": "fr", "visitorTeam": "au"},
-			{ "_id":  14, "group": "C", "date": "2018-06-16", "homeTeam": "pe", "visitorTeam": "dk"},
-			{ "_id":  15, "group": "C", "date": "2018-06-21", "homeTeam": "dk", "visitorTeam": "au"},
-			{ "_id":  16, "group": "C", "date": "2018-06-21", "homeTeam": "fr", "visitorTeam": "pe"},
-			{ "_id":  17, "group": "C", "date": "2018-06-26", "homeTeam": "dk", "visitorTeam": "fr"},
-			{ "_id":  18, "group": "C", "date": "2018-06-26", "homeTeam": "au", "visitorTeam": "pe"},
-			{ "_id":  19, "group": "D", "date": "2018-06-16", "homeTeam": "ar", "visitorTeam": "is"},
-			{ "_id":  20, "group": "D", "date": "2018-06-16", "homeTeam": "hr", "visitorTeam": "ng"},
-			{ "_id":  21, "group": "D", "date": "2018-06-21", "homeTeam": "ar", "visitorTeam": "hr"},
-			{ "_id":  22, "group": "D", "date": "2018-06-22", "homeTeam": "ng", "visitorTeam": "is"},
-			{ "_id":  23, "group": "D", "date": "2018-06-26", "homeTeam": "ng", "visitorTeam": "ar"},
-			{ "_id":  24, "group": "D", "date": "2018-06-26", "homeTeam": "is", "visitorTeam": "hr"},
-			{ "_id":  25, "group": "E", "date": "2018-06-17", "homeTeam": "cr", "visitorTeam": "rs"},
-			{ "_id":  26, "group": "E", "date": "2018-06-17", "homeTeam": "br", "visitorTeam": "ch"},
-			{ "_id":  27, "group": "E", "date": "2018-06-22", "homeTeam": "br", "visitorTeam": "cr"},
-			{ "_id":  28, "group": "E", "date": "2018-06-22", "homeTeam": "rs", "visitorTeam": "ch"},
-			{ "_id":  29, "group": "E", "date": "2018-06-27", "homeTeam": "rs", "visitorTeam": "br"},
-			{ "_id":  30, "group": "E", "date": "2018-06-27", "homeTeam": "ch", "visitorTeam": "cr"},
-			{ "_id":  31, "group": "F", "date": "2018-06-17", "homeTeam": "de", "visitorTeam": "mx"},
-			{ "_id":  32, "group": "F", "date": "2018-06-18", "homeTeam": "se", "visitorTeam": "kr"},
-			{ "_id":  33, "group": "F", "date": "2018-06-23", "homeTeam": "kr", "visitorTeam": "mx"},
-			{ "_id":  34, "group": "F", "date": "2018-06-23", "homeTeam": "de", "visitorTeam": "se"},
-			{ "_id":  35, "group": "F", "date": "2018-06-23", "homeTeam": "mx", "visitorTeam": "se"},
-			{ "_id":  36, "group": "F", "date": "2018-06-27", "homeTeam": "kr", "visitorTeam": "de"},
-			{ "_id":  37, "group": "G", "date": "2018-06-18", "homeTeam": "be", "visitorTeam": "pa"},
-			{ "_id":  38, "group": "G", "date": "2018-06-18", "homeTeam": "tn", "visitorTeam": "gb"},
-			{ "_id":  39, "group": "G", "date": "2018-06-23", "homeTeam": "be", "visitorTeam": "tn"},
-			{ "_id":  40, "group": "G", "date": "2018-06-24", "homeTeam": "gb", "visitorTeam": "pa"},
-			{ "_id":  41, "group": "G", "date": "2018-06-28", "homeTeam": "gb", "visitorTeam": "be"},
-			{ "_id":  42, "group": "G", "date": "2018-06-28", "homeTeam": "pa", "visitorTeam": "tn"},
-			{ "_id":  43, "group": "H", "date": "2018-06-19", "homeTeam": "co", "visitorTeam": "jp"},
-			{ "_id":  44, "group": "H", "date": "2018-06-19", "homeTeam": "pl", "visitorTeam": "sn"},
-			{ "_id":  45, "group": "H", "date": "2018-06-24", "homeTeam": "jp", "visitorTeam": "sn"},
-			{ "_id":  46, "group": "H", "date": "2018-06-24", "homeTeam": "pl", "visitorTeam": "co"},
-			{ "_id":  47, "group": "H", "date": "2018-06-28", "homeTeam": "sn", "visitorTeam": "co"},
-			{ "_id":  48, "group": "H", "date": "2018-06-28", "homeTeam": "jp", "visitorTeam": "pl"}
-		]
+		"matches": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]
 	},{
 		"_id": "eighthFinals",
 		"deadline": "2018-06-12",
-		"matches": [
-			{ "_id": 49, "group": "8THF", "date": "2018-06-14"},
-			{ "_id": 50, "group": "8THF", "date": "2018-06-14"},
-			{ "_id": 51, "group": "8THF", "date": "2018-06-14"},
-			{ "_id": 52, "group": "8THF", "date": "2018-06-14"},
-			{ "_id": 53, "group": "8THF", "date": "2018-06-14"},
-			{ "_id": 54, "group": "8THF", "date": "2018-06-14"},
-			{ "_id": 55, "group": "8THF", "date": "2018-06-14"},
-			{ "_id": 56, "group": "8THF", "date": "2018-06-14"}
-		]
+		"matches": [49,50,51,52,53,54,55,56]
 	},{
 		"_id": "quarterFinals",
 		"deadline": "2018-06-12",
-		"matches": [
-			{ "_id": 57, "group": "4THF", "date": "2018-06-14"},
-			{ "_id": 58, "group": "4THF", "date": "2018-06-14"},
-			{ "_id": 59, "group": "4THF", "date": "2018-06-14"},
-			{ "_id": 60, "group": "4THF", "date": "2018-06-14"}
-		]
+		"matches": [57,5,59,60]
 	},{
 		"_id": "semiFinals",
 		"deadline": "2018-06-12",
-		"matches": [
-			{ "_id": 61, "group": "2THF", "date": "2018-06-14"},
-			{ "_id": 62, "group": "2THF", "date": "2018-06-14"}
-		]
+		"matches": [61,62]
 	},{
 		"_id": "finals",
 		"deadline": "2018-06-12",
-		"matches": [
-			{ "_id": 63, "group": "Final", "date": "2018-06-14"},
-			{ "_id": 64, "group": "2nd3rdDefinition", "date": "2018-06-14"}
-		]
+		"matches": [63,64]
 	}]
 }

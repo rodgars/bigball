@@ -1,4 +1,5 @@
 var WorldCup = require('../models/WorldCup');
+var Match = require('../models/Match');
 
 module.exports = function(){
 
@@ -11,10 +12,6 @@ module.exports = function(){
 
 		}).
 		populate('stages.matches');
-		/*populate('stages.matches.visitorTeam').
-		populate('stages.matches.winner').
-		populate('stages.matches.goals.player').
-		populate('stages.matches.goals.team');*/
 
 	};
 
@@ -34,10 +31,21 @@ module.exports = function(){
 		});
 
 		for(var index in wcJson.stages){
+
+			var matches = wcJson.stages[index].matches;
+
+			for(var mIndex in matches){
+
+				var match = matches[mIndex];
+
+				Match.update({_id: match._id}, match).exec();
+			}
+
 			wc.stages.push(wcJson.stages[index]);
+			
 		}
 
-		WorldCup.replaceOne({_id: wcId}, wc, function(err, doc){
+		WorldCup.update({_id: wcId}, wc, function(err, doc){
 			if(err) console.log(err);
 			callback(doc);
 		});
@@ -51,7 +59,18 @@ module.exports = function(){
 		});
 
 		for(var index in wcJson.stages){
+
+			var matches = wcJson.stages[index].matches;
+
+			for(var mIndex in matches){
+
+				var match = matches[mIndex];
+
+				Match.update({_id: match._id}, match).exec();
+			}
+
 			wc.stages.push(wcJson.stages[index]);
+			
 		}
 
 		wc.save(function(err, doc){
