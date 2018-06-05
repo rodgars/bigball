@@ -10,7 +10,7 @@ module.exports = function(){
 
 			callback(docs);
 
-		});
+		}).populate('matches');
 	};
 
 	this.getAll = function(callback){
@@ -21,7 +21,7 @@ module.exports = function(){
 
 			callback(docs);
 
-		});
+		}).populate('matches');
 	};
 
 	this.update = function(id, json, callback) {	
