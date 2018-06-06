@@ -13,8 +13,8 @@
 	"deadline": "2018-06-12",
 	"matches": [49,50,51,52,53,54,55,56]
 },{
-	"_id": "Quartas de Final",
-	"label": "Fase de Grupos",
+	"_id": "quarterFinals",
+	"label": "Quartas de Final",
 	"situation": "Fase não iniciada",
 	"locked": false,
 	"deadline": "2018-06-12",

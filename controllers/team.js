@@ -2,42 +2,43 @@ var Team = require('../models/Team');
 
 module.exports = function(){
 
-	this.getAll = function(callback){
+	this.get = function(filter, callback){
 
-		Team.find(function(err, teams){
+		Team.find(filter, function(err, teams){
 
-			if(err) console.log(err);
+			if(err) callback(err);
 
 			callback(teams);
 
 		});
 	};
 
-	this.save = function(teamsJson, callback) {	
+	this.update = function(object, callback) {
 
-		if(!Array.isArray(teamsJson)) {
-			var temp = [];
-			temp.push(teamsJson);
-			teamsJson = temp;
-		}
+		var teams = [];
 
-		var teams = teamsJson.map(function(team){
-			return new Team(team);
+		if(Array.isArray(object)) {teams = object} else {teams.push(object)}
+
+		var promises = teams.map(function(t){
+			return new Promise(function(resolve, reject){
+
+				Team.findByIdAndUpdate(t._id, t, {upsert: true, new: true}, function(err, doc){
+					if(err) reject(err);
+					resolve(doc);
+				});
+			});
 		});
 
-		Team.insertMany(teams, function(err, docs){
-			if(err) console.log(err);
-
-			callback(docs);
-		});
+		Promise.all(promises).then(doc => callback(doc)).catch(doc => callback(doc));
 	};
 
-	this.deleteAll = function(callback){
-		Team.collection.drop(function(err){
-			if(err) console.log(err);
+	this.delete = function(filter, callback){
+
+		Team.remove(filter, function(err){
+
+			if(err) callback(err);
 
 			callback(true);
-			
 		});
 		
 	};

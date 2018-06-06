@@ -56,7 +56,7 @@ module.exports = function(){
 	};
 
 	this.seed = function(callback){
-		teamsController.save(teams, function(doc){
+		teamsController.update(teams, function(doc){
 
 			playersController.save(players, function(doc){
 

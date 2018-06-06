@@ -5,7 +5,10 @@ var router = express.Router();
 var teamsController = new TeamsController();
 
 router.get('/', (req, res) => {
-	teamsController.getAll(function(docs){
+
+	var filter = {};
+
+	teamsController.get(filter, function(docs){
 		
 		res.json(docs);
 	});
@@ -14,7 +17,9 @@ router.get('/', (req, res) => {
 
 router.delete('/', (req, res) => {
 	
-	teamsController.deleteAll(function(message){
+	var filter = {};
+
+	teamsController.deleteAll(filter, function(message){
 
 		res.json(message);
 
@@ -25,17 +30,11 @@ router.delete('/', (req, res) => {
 router.put('/', (req, res) => {
 
 	var teams = req.body;
-
-	teamsController.deleteAll(function(docs){
 		
-		teamsController.save(teams, function(docs){
-		
-			res.json(docs);
-		});
-	});
-
+	teamsController.update(teams, function(docs){
 	
+		res.json(docs);
+	});
 });
-
 
 module.exports = router;

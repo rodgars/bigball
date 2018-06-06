@@ -2,7 +2,7 @@ var Match = require('../models/Match');
 
 module.exports = function(){
 
-	this.getAll = function(callback){
+	this.get = function(callback){
 
 		Match.find(function(err, matches){
 
@@ -13,31 +13,32 @@ module.exports = function(){
 		});
 	};
 
-	this.save = function(matchesJson, callback) {	
+	this.update = function(object, callback) {
 
-		if(!Array.isArray(matchesJson)) {
-			var temp = [];
-			temp.push(matchesJson);
-			matchesJson = temp;
-		}
+		var matches = [];
 
-		var matchs = matchesJson.map(function(match){
-			return new Match(match);
+		if(Array.isArray(object)) {matches = object} else {matches.push(object)}
+
+		var promises = matches.map(function(t){
+			return new Promise(function(resolve, reject){
+
+				Match.findByIdAndUpdate(t._id, t, {upsert: true, new: true}, function(err, doc){
+					if(err) reject(err);
+					resolve(doc);
+				});
+			});
 		});
 
-		Match.insertMany(matchs, function(err, docs){
-			if(err) console.log(err);
-
-			callback(docs);
-		});
+		Promise.all(promises).then(doc => callback(doc)).catch(doc => callback(doc));
 	};
 
-	this.deleteAll = function(callback){
-		Match.collection.drop(function(err){
-			if(err) console.log(err);
+	this.delete = function(filter, callback){
+
+		Match.remove(filter, function(err){
+
+			if(err) callback(err);
 
 			callback(true);
-			
 		});
 		
 	};
