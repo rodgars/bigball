@@ -5,7 +5,7 @@ var router = express.Router();
 var playersController = new PlayersController();
 
 router.get('/', (req, res) => {
-	playersController.getAll(function(docs){
+	playersController.get(function(docs){
 		
 		res.json(docs);
 	});
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.delete('/', (req, res) => {
 	
-	playersController.deleteAll(function(message){
+	playersController.delete({}, function(message){
 
 		res.json(message);
 
@@ -23,17 +23,12 @@ router.delete('/', (req, res) => {
 
 router.put('/', (req, res) => {
 
-	var teams = req.body;
-
-	playersController.deleteAll(function(docs){
+	var players = req.body;
 		
-		playersController.save(teams, function(docs){
-		
-			res.json(docs);
-		});
-	});
-
+	playersController.update(players, function(docs){
 	
+		res.json(docs);
+	});
 });
 
 module.exports = router;

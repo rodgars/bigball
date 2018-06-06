@@ -5,7 +5,7 @@ var router = express.Router();
 var matchController = new MatchController();
 
 router.get('/', (req, res) => {
-	matchController.getAll(function(docs){
+	matchController.get(function(docs){
 		
 		res.json(docs);
 	});
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.delete('/', (req, res) => {
 	
-	matchController.deleteAll(function(message){
+	matchController.delete({}, function(message){
 
 		res.json(message);
 
@@ -25,15 +25,11 @@ router.delete('/', (req, res) => {
 router.put('/', (req, res) => {
 
 	var matches = req.body;
-
-	matchController.deleteAll(function(docs){
 		
-		matchController.save(matches, function(docs){
-		
-			res.json(docs);
-		});
+	matchController.update(matches, function(docs){
+	
+		res.json(docs);
 	});
-
 	
 });
 

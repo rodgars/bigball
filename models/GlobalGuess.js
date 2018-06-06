@@ -2,6 +2,8 @@ var mongoose = require("mongoose");
 var { Schema } = mongoose;
 
 var globalGuessSchema = new Schema({
+	deadline: Date,
+	locked: Boolean,
 	firstPlace: { type: String, ref: 'Team'},
 	secondPlace: { type: String, ref: 'Team'},
 	thirdPlace: { type: String, ref: 'Team'},
@@ -12,6 +14,6 @@ var globalGuessSchema = new Schema({
 	pointsTeamGP: Number,
 	pointsTeamGC: Number,
 	pointsTopScorer: Number
-});
+}, {_id : false});
 
 module.exports = globalGuessSchema;
