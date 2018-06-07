@@ -24,6 +24,7 @@ module.exports = function(){
 			return new Promise(function(resolve, reject){
 
 				Player.findByIdAndUpdate(player._id, player, {upsert: true, new: true}, function(err, doc){
+
 					if(err) reject(err);
 					resolve(doc);
 				});

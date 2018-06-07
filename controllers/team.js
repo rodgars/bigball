@@ -24,6 +24,7 @@ module.exports = function(){
 			return new Promise(function(resolve, reject){
 
 				Team.findByIdAndUpdate(team._id, team, {upsert: true, new: true}, function(err, doc){
+
 					if(err) reject(err);
 					resolve(doc);
 				});
