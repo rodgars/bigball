@@ -1,9 +1,10 @@
 var Team = require('../models/Team');
 var Player = require('../models/Player');
+const ObjectId = require('mongodb').ObjectID;
 
 module.exports = function(){
 
-	this.getAll = function(callback){
+	this.get = function(callback){
 
 		Player.find(function(err, players){
 			if(err) console.log(err);
@@ -13,31 +14,33 @@ module.exports = function(){
 		}).populate('team');
 	};
 
-	this.save = function(playersJson, callback) {	
+	this.update = function(object, callback) {
 
-		if(!Array.isArray(playersJson)) {
-			var temp = [];
-			temp.push(playersJson);
-			playersJson = temp;
-		}
+		var players = [];
 
-		var players = playersJson.map(function(player){
-			return new Player(player);
+		if(Array.isArray(object)) {players = object} else {players.push(object)}
+
+		var promises = players.map(function(player){
+			return new Promise(function(resolve, reject){
+
+				Player.findByIdAndUpdate(player._id, player, {upsert: true, new: true}, function(err, doc){
+
+					if(err) reject(err);
+					resolve(doc);
+				});
+			});
 		});
 
-		Player.insertMany(players, function(err, docs){
-			if(err) console.log(err);
-
-			callback(docs);
-		});
+		Promise.all(promises).then(doc => callback(doc)).catch(doc => callback(doc));
 	};
 
-	this.deleteAll = function(callback){
-		Player.collection.drop(function(err){
-			if(err) console.log(err);
+	this.delete = function(filter, callback){
+
+		Match.remove(filter, function(err){
+
+			if(err) callback(err);
 
 			callback(true);
-			
 		});
 		
 	};

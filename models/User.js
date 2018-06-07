@@ -15,7 +15,7 @@ const userSchema = new Schema({
 autoIncrement.initialize(mongoose.connection);
 
 userSchema.plugin(autoIncrement.plugin, {model: 'user', field: 'userId'});
-
+/*
 userSchema.pre('save', function (next) {
 	this.wasNew = this.isNew;
 	next();
@@ -29,4 +29,5 @@ userSchema.post('save', function () {
 		});
 	}
 });
-mongoose.model('user', userSchema);
+*/
+module.exports = mongoose.model('user', userSchema);

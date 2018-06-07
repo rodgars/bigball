@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const playerSchema = new Schema({
-	_id: Schema.Types.ObjectId,
+	_id: Number,
 	name: String,
 	team: { type: String, ref: 'Team' }
 }, { versionKey: false });
