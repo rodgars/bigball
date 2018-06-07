@@ -58,9 +58,9 @@ module.exports = function(){
 	this.seed = function(callback){
 		teamsController.update(teams, function(doc){
 
-			playersController.save(players, function(doc){
+			playersController.update(players, function(doc){
 
-				matchController.save(matches, function(doc){
+				matchController.update(matches, function(doc){
 
 					stageController.saveAll(stages, function(doc){
 

@@ -1,4 +1,5 @@
 var Team = require('../models/Team');
+const ObjectId = require('mongodb').ObjectID;
 
 module.exports = function(){
 
@@ -19,10 +20,10 @@ module.exports = function(){
 
 		if(Array.isArray(object)) {teams = object} else {teams.push(object)}
 
-		var promises = teams.map(function(t){
+		var promises = teams.map(function(team){
 			return new Promise(function(resolve, reject){
 
-				Team.findByIdAndUpdate(t._id, t, {upsert: true, new: true}, function(err, doc){
+				Team.findByIdAndUpdate(team._id, team, {upsert: true, new: true}, function(err, doc){
 					if(err) reject(err);
 					resolve(doc);
 				});

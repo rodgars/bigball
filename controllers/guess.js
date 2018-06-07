@@ -71,8 +71,6 @@ module.exports = function(){
 
 				let filter = guess._id ? { _id: guess._id } : { _id: new ObjectId() };
 
-				console.log(filter);
-
 				Guess.findByIdAndUpdate(filter, guess, {upsert: true, new: true}, function(err, doc){
 					if(err) reject(err);
 					resolve(doc);
