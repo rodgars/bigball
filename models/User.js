@@ -15,19 +15,5 @@ const userSchema = new Schema({
 autoIncrement.initialize(mongoose.connection);
 
 userSchema.plugin(autoIncrement.plugin, {model: 'user', field: 'userId'});
-/*
-userSchema.pre('save', function (next) {
-	this.wasNew = this.isNew;
-	next();
-});
 
-userSchema.post('save', function () {
-	if (this.wasNew) {
-		var guess = new Guess({user: this});
-		guess.save(function(err, doc){
-			if(err) console.log(err);
-		});
-	}
-});
-*/
 module.exports = mongoose.model('user', userSchema);
