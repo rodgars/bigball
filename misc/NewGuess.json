@@ -1,7 +1,6 @@
 {
 	"position": 1,
 	"totalPoints": 0,
-	"user": "5b1428ddb6c9a940a5003e55",
 	"globalGuess": {
 		"deadline": "2018-01-01T00:00:00.000Z",
 		"locked": false,
@@ -23,53 +22,53 @@
 		"doubleMatch": null,
 		"pointsDoubleMatch": 0,
 		"matchGuesses": [
-			{"relatedMatch": 1, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 2, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 3, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 4, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 5, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 6, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 7, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 8, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 9, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 10, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 11, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 12, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 13, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 14, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 15, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 16, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 17, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 18, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 19, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 20, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 21, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 22, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 23, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 24, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 25, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 26, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 27, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 28, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 29, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 31, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 32, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 33, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 34, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 35, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 36, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 37, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 38, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 39, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 40, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 41, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 42, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 43, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 44, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 45, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 46, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 47, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 48, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}}
+			{"relatedMatch": 1, "points": 0, "guess": {}},
+			{"relatedMatch": 2, "points": 0, "guess": {}},
+			{"relatedMatch": 3, "points": 0, "guess": {}},
+			{"relatedMatch": 4, "points": 0, "guess": {}},
+			{"relatedMatch": 5, "points": 0, "guess": {}},
+			{"relatedMatch": 6, "points": 0, "guess": {}},
+			{"relatedMatch": 7, "points": 0, "guess": {}},
+			{"relatedMatch": 8, "points": 0, "guess": {}},
+			{"relatedMatch": 9, "points": 0, "guess": {}},
+			{"relatedMatch": 10, "points": 0, "guess": {}},
+			{"relatedMatch": 11, "points": 0, "guess": {}},
+			{"relatedMatch": 12, "points": 0, "guess": {}},
+			{"relatedMatch": 13, "points": 0, "guess": {}},
+			{"relatedMatch": 14, "points": 0, "guess": {}},
+			{"relatedMatch": 15, "points": 0, "guess": {}},
+			{"relatedMatch": 16, "points": 0, "guess": {}},
+			{"relatedMatch": 17, "points": 0, "guess": {}},
+			{"relatedMatch": 18, "points": 0, "guess": {}},
+			{"relatedMatch": 19, "points": 0, "guess": {}},
+			{"relatedMatch": 20, "points": 0, "guess": {}},
+			{"relatedMatch": 21, "points": 0, "guess": {}},
+			{"relatedMatch": 22, "points": 0, "guess": {}},
+			{"relatedMatch": 23, "points": 0, "guess": {}},
+			{"relatedMatch": 24, "points": 0, "guess": {}},
+			{"relatedMatch": 25, "points": 0, "guess": {}},
+			{"relatedMatch": 26, "points": 0, "guess": {}},
+			{"relatedMatch": 27, "points": 0, "guess": {}},
+			{"relatedMatch": 28, "points": 0, "guess": {}},
+			{"relatedMatch": 29, "points": 0, "guess": {}},
+			{"relatedMatch": 31, "points": 0, "guess": {}},
+			{"relatedMatch": 32, "points": 0, "guess": {}},
+			{"relatedMatch": 33, "points": 0, "guess": {}},
+			{"relatedMatch": 34, "points": 0, "guess": {}},
+			{"relatedMatch": 35, "points": 0, "guess": {}},
+			{"relatedMatch": 36, "points": 0, "guess": {}},
+			{"relatedMatch": 37, "points": 0, "guess": {}},
+			{"relatedMatch": 38, "points": 0, "guess": {}},
+			{"relatedMatch": 39, "points": 0, "guess": {}},
+			{"relatedMatch": 40, "points": 0, "guess": {}},
+			{"relatedMatch": 41, "points": 0, "guess": {}},
+			{"relatedMatch": 42, "points": 0, "guess": {}},
+			{"relatedMatch": 43, "points": 0, "guess": {}},
+			{"relatedMatch": 44, "points": 0, "guess": {}},
+			{"relatedMatch": 45, "points": 0, "guess": {}},
+			{"relatedMatch": 46, "points": 0, "guess": {}},
+			{"relatedMatch": 47, "points": 0, "guess": {}},
+			{"relatedMatch": 48, "points": 0, "guess": {}}
 		]
 		
 	},{
@@ -79,14 +78,14 @@
 		"doubleMatch": null,
 		"pointsDoubleMatch": 0,
 		"matchGuesses": [
-			{"relatedMatch": 49, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 50, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 51, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 52, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 53, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 54, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 55, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 56, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}}
+			{"relatedMatch": 49, "points": 0, "guess": {}},
+			{"relatedMatch": 50, "points": 0, "guess": {}},
+			{"relatedMatch": 51, "points": 0, "guess": {}},
+			{"relatedMatch": 52, "points": 0, "guess": {}},
+			{"relatedMatch": 53, "points": 0, "guess": {}},
+			{"relatedMatch": 54, "points": 0, "guess": {}},
+			{"relatedMatch": 55, "points": 0, "guess": {}},
+			{"relatedMatch": 56, "points": 0, "guess": {}}
 		]
 		
 	},{
@@ -96,10 +95,10 @@
 		"doubleMatch": null,
 		"pointsDoubleMatch": 0,
 		"matchGuesses": [
-			{"relatedMatch": 57, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 58, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 59, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 60, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}}
+			{"relatedMatch": 57, "points": 0, "guess": {}},
+			{"relatedMatch": 58, "points": 0, "guess": {}},
+			{"relatedMatch": 59, "points": 0, "guess": {}},
+			{"relatedMatch": 60, "points": 0, "guess": {}}
 		]
 		
 	},{
@@ -109,8 +108,8 @@
 		"doubleMatch": null,
 		"pointsDoubleMatch": 0,
 		"matchGuesses": [
-			{"relatedMatch": 61, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 62, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}}
+			{"relatedMatch": 61, "points": 0, "guess": {}},
+			{"relatedMatch": 62, "points": 0, "guess": {}}
 		]
 		
 	},{
@@ -120,8 +119,8 @@
 		"doubleMatch": null,
 		"pointsDoubleMatch": 0,
 		"matchGuesses": [
-			{"relatedMatch": 63, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}},
-			{"relatedMatch": 64, "points": 0, "guess": {"homeScore": 0, "visitorScore": 0, "winner":null}}
+			{"relatedMatch": 63, "points": 0, "guess": {}},
+			{"relatedMatch": 64, "points": 0, "guess": {}}
 		]
 		
 	}]

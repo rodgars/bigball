@@ -3,57 +3,101 @@ var Guess = require('../models/Guess');
 
 var newGuessJson = require('../misc/NewGuess.json');
 
+var transformGuesses = function(guesses){
+	guesses.forEach(function(guess){
+		guess.stageGuesses.forEach(function(stageGuess){
+			stageGuess.order = stageGuess.relatedStage.order;
+			stageGuess.relatedStage = stageGuess.relatedStage._id;
+			stageGuess.matchGuesses.forEach(function(matchGuess){
+				if(!matchGuess.guess) matchGuess.guess = {};
+				matchGuess.result = {};
+				matchGuess.date = matchGuess.relatedMatch.date;
+				matchGuess.homeTeam = matchGuess.relatedMatch.homeTeam;
+				matchGuess.visitorTeam = matchGuess.relatedMatch.visitorTeam;
+				matchGuess.group = matchGuess.relatedMatch.group;
+				if(matchGuess.relatedMatch.winner){
+					matchGuess.result.homeScore = matchGuess.relatedMatch.homeScore;
+					matchGuess.result.visitorScore = matchGuess.relatedMatch.visitorScore;
+					matchGuess.result.winner = matchGuess.relatedMatch.winner;
+				}
+
+				delete matchGuess.relatedMatch;
+			});
+		});
+	});
+
+	return guesses;
+}
+
 module.exports = function(){
 
-	this.get = function(loggedUser, callback){
+	var saveGuess = this.save;
 
+	this.get = function(userId, callback){
+		
+		console.log(1);
+
+		// recupera o guess do banco de dados
 		var promise = new Promise(function(resolve, reject){
-			Guess.find({user: loggedUser._id}, function(err, guesses){
+			Guess.find({user: userId}, function(err, guesses){
 
 				if(err) reject(err);
-
+				console.log(2);
 				resolve(guesses);
 
-			}).populate('stageGuesses.matchGuesses.relatedMatch').populate('stageGuesses.doubleMatch').populate('user');
+			}).populate('stageGuesses.relatedStage').populate('stageGuesses.matchGuesses.relatedMatch').populate('stageGuesses.doubleMatch').populate('user');
 		});
 
 		promise.then(function(guessesMongo){
 
+			// se nao existe, insere a guess padrao
 			if(guessesMongo.length == 0){
+
+				console.log(3);
+
 				guesses = [];
-				guesses.push(newGuessJson);
+				newGuessJson.user = userId;
 
+				var promise2 = new Promise(function(resolve, reject){
+					console.log(4);
 
-			} else {
+					let filter = newGuessJson._id ? { _id: newGuessJson._id } : { _id: new ObjectId() };
+
+					Guess.findByIdAndUpdate(filter, newGuessJson, {upsert: true, new: true}, function(err, doc){
+						if(err) reject(err);
+						resolve(doc);
+					}).populate('stageGuesses.relatedStage').populate('stageGuesses.matchGuesses.relatedMatch').populate('stageGuesses.doubleMatch').populate('user');
+				});
+
+				promise2.then(function(doc){
+					console.log(5);
+					guessesMongo.push(doc);
+					console.log('length: ' +guessesMongo.length);
+
+					var guesses = guessesMongo.map(function(guessMongo){
+						console.log(6);
+						return guessMongo.toObject();
+					});
+
+					guesses = transformGuesses(guesses);
+
+					callback(guesses);
+				});
+
+			}  else {
+
+				console.log('length: ' +guessesMongo.length);
 
 				var guesses = guessesMongo.map(function(guessMongo){
+					console.log(6);
 					return guessMongo.toObject();
 				});
 
-				guesses.forEach(function(guess){
-					guess.stageGuesses.forEach(function(stageGuess){
-						stageGuess.matchGuesses.forEach(function(matchGuess){
-						
-							matchGuess.result = {};
+				guesses = transformGuesses(guesses);
 
-							matchGuess.date = matchGuess.relatedMatch.date;
 
-							matchGuess.homeTeam = matchGuess.relatedMatch.homeTeam;
-
-							matchGuess.visitorTeam = matchGuess.relatedMatch.visitorTeam;
-							if(matchGuess.relatedMatch.winner){
-								matchGuess.result.homeScore = matchGuess.relatedMatch.homeScore;
-								matchGuess.result.visitorScore = matchGuess.relatedMatch.visitorScore;
-								matchGuess.result.winner = matchGuess.relatedMatch.winner;
-							}
-
-							delete matchGuess.relatedMatch;
-						});
-					});
-				});
+				callback(guesses);
 			}
-
-			callback(guesses);
 
 		}).catch(function(error){
 			callback(error);
