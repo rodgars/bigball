@@ -6,10 +6,12 @@ import MyGameProfile from './MyGameProfile';
 import * as actions from '../../actions';
 
 class MyGame extends Component{
-
     componentDidMount(){
+        const {id} = this.props.match.params;
+
         this.props.fetchTeam();
         this.props.fetchPlayer();
+        this.props.fetchGuess(id);
     }
 
     render(){
@@ -24,7 +26,7 @@ class MyGame extends Component{
                 </Row>
                 <Row className="showGrid">
                     <Col md={3} xs={12}>
-                        <MyGameProfile auth={this.props.auth} />
+                        <MyGameProfile user={this.props.guess} />
                     </Col>
                     <Col md={9} xs={12}>
                         <MyGameForm />                 
@@ -36,8 +38,8 @@ class MyGame extends Component{
     }
 }
 
-function mapStateToProps({auth}){
-    return {auth};
+function mapStateToProps({auth, guess}){
+    return {auth, guess};
 }
 
 export default connect(mapStateToProps, actions)(MyGame);

@@ -20,7 +20,6 @@ class App extends Component {
         this.props.fetchUser();
         this.props.fetchTeam();
         this.props.fetchPlayer();
-        this.props.fetchWorldCup();
     }
 
     render(){

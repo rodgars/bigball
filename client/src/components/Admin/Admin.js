@@ -1,40 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import AdminMatchs from './AdminMatchs';
+import AdminUser from './AdminUser';
+import AdminPlayers from './AdminPlayers'
 import * as actions from '../../actions';
+import {Tabs,Tab} from 'react-bootstrap';
 
 class Admin extends Component{
-
-    componentDidMount(){
-        this.props.fetchWorldCup();
-    }
-    
-    renderUsers(){
-        let arr = [];
-        for(let i=0; i< 30; i++){
-            arr.push(
-                <tr>
-                            <td>1</td>
-                            <td>Rodrigo Garcia</td>
-                            <td>20/03/2018</td>
-                            <td>
-                                <select>
-                                    <option value="">Sim</option>
-                                    <option value="">Não</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="">Sim</option>
-                                    <option value="">Não</option>
-                                </select>
-                            </td>
-                            <td><button className="ui icon blue button"><i className="save icon"></i></button></td>
-                        </tr>
-            );
-        }
-        return arr;
-    }
 
     renderGames(){
         let arr = [];
@@ -79,63 +51,18 @@ class Admin extends Component{
             <div>
             <p><i class="cog icon"></i>  <u><b>Admin</b></u></p>
             <br />
-            <div className="ui segment">
-                <p><b>Usuários</b></p>
-                <hr />
-                <table className="ui collapsing compact small table">
-                    <thead>
-                        <tr>
-                           <th>Id</th>
-                           <th>Nome</th>
-                           <th>Data cadastro</th>
-                           <th>Pagou?</th>
-                           <th>Admin?</th>
-                           <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderUsers()}
-                    </tbody>
-                </table>
-            </div>
-            <br />
-            <div className="ui segment">
-                <p><b>Artilheiros</b></p>
-                <hr />
-                <table className="ui collapsing compact small table">
-                    <thead>
-                        <tr>
-                           <th>Nome</th>
-                           <th>Gols</th>
-                           <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Leonel Messi</td>
-                            <td><input style={{width:"40px"}} type="text" /></td>
-                            <td><button className="ui icon blue button"><i className="save icon"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Cristiano Ronaldo</td>
-                            <td><input style={{width:"40px"}} type="text" /></td>
-                            <td><button className="ui icon blue button"><i className="save icon"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Neymar</td>
-                            <td><input style={{width:"40px"}} type="text" /></td>
-                            <td><button className="ui icon blue button"><i className="save icon"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Gabriel Jesus</td>
-                            <td><input style={{width:"40px"}} type="text" /></td>
-                            <td><button className="ui icon blue button"><i className="save icon"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <AdminMatchs />
-            <br /><br />
+
+            <Tabs defaultActiveKey={1} id="tabAdmin">
+                <Tab eventKey={1} title="Usuários">
+                    <AdminUser />
+                </Tab>
+                <Tab eventKey={2} title="Artilheiros">
+                    <AdminPlayers />
+                </Tab>
+                <Tab eventKey={3} title="Jogos">
+                    <AdminMatchs />
+                </Tab>
+            </Tabs>
             </div>
         );
     }

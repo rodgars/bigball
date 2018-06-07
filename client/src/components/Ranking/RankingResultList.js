@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import RankingResultItem from './RankingResultItem';
 
 const renderPlayers = () => {
@@ -25,31 +26,37 @@ const renderPlayers = () => {
     return rows;
 };
 
-const RankingResultList = (props) => {
-    return (
-        <table className="ui selectable small compact table">
-                                    <thead>
-                                        <tr className="center aligned">
-                                            <th>#</th>
-                                            <th className="left aligned">Jogador</th>
-                                            <th></th>
-                                            <th>Total</th>
-                                            <th>Grupos</th>
-                                            <th>Oitavas</th>
-                                            <th>Quartas</th>
-                                            <th>Semis</th>
-                                            <th>Finais</th>
-                                            <th>S. GP</th>
-                                            <th>S. GC</th>
-                                            <th>Art</th>
-                                            <th>Finalistas</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {renderPlayers()}
-                                    </tbody>
-                                </table>
-    );
-};
+class RankingResultList extends Component {
+    render(){
+        return (
+            <table className="ui selectable small compact table">
+                <thead>
+                    <tr className="center aligned">
+                        <th>#</th>
+                        <th className="left aligned">Jogador</th>
+                        <th></th>
+                        <th>Total</th>
+                        <th>Grupos</th>
+                        <th>Oitavas</th>
+                        <th>Quartas</th>
+                        <th>Semis</th>
+                        <th>Finais</th>
+                        <th>S. GP</th>
+                        <th>S. GC</th>
+                        <th>Art</th>
+                        <th>Finalistas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderPlayers()}
+                </tbody>
+            </table>
+        );
+    }
+}
 
-export default RankingResultList;
+function mapStateToProps({ranking}){
+    return {ranking};
+}
+
+export default connect(mapStateToProps)(RankingResultList);

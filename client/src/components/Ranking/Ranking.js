@@ -7,7 +7,6 @@ import TimeLine from '../Utils/TimeLine';
 import RankingStatistics from './RankingStatistics';
 
 class Ranking extends Component{
-    
 
     render(){
         return (

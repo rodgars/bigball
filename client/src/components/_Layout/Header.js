@@ -19,7 +19,7 @@ class Header extends Component{
                     <NavItem key="7" href="/auth/google"><i class="google icon"></i> Login with Google</NavItem>
                 ];
             default:
-                const myGameUrl = `/game/${this.props.auth.userId}`;
+                const myGameUrl = `/game/${this.props.auth._id}`;
                 return [
                     <NavItem key="1" componentClass={Link} href="/ranking" to="/ranking"><i class="trophy icon"></i> Ranking</NavItem>,
                     <NavItem key="2" componentClass={Link} href={myGameUrl} to={myGameUrl}><i class="futbol icon"></i> Meu jogo</NavItem>,
