@@ -10,6 +10,6 @@ var matchSchema = new Schema({
 	winner: { type: String, ref: 'Team' },
 	homeScore: Number,
 	visitorScore: Number
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('Match', matchSchema);
