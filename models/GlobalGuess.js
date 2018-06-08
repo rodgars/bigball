@@ -14,6 +14,6 @@ var globalGuessSchema = new Schema({
 	pointsTeamGP: Number,
 	pointsTeamGC: Number,
 	pointsTopScorer: Number
-}, {_id : false});
+}, {_id : false, versionKey: false});
 
 module.exports = globalGuessSchema;

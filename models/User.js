@@ -10,7 +10,7 @@ const userSchema = new Schema({
     name: String,
     email: String,
     isPaid: {type:Boolean, default:false}
-});
+}, { versionKey: false });
 
 autoIncrement.initialize(mongoose.connection);
 

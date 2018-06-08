@@ -9,6 +9,6 @@ var stageGuessSchema = new Schema({
 	doubleMatch: {type: Number, ref: 'Match'},
 	matchGuesses: [matchGuessSchema],
 	pointsDoubleMatch: Number
-}, {_id : false});
+}, {_id : false, versionKey: false });
 
 module.exports = stageGuessSchema;
