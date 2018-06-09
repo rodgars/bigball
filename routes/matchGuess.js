@@ -1,20 +1,79 @@
 var express = require('express');
-var GuessController = require('../controllers/guess');
+var MatchGuessController = require('../controllers/matchGuess');
 
 var router = express.Router();
-var guessController = new GuessController();
+var matchGuessController = new MatchGuessController();
+
+router.get('/', (req, res) => {
+
+	var filter = {};
+
+	matchGuessController.get(filter, function(docs){
+		
+		res.json(docs);
+	});
+});
+
+router.get(/([a-f0-9]{24})/, (req, res) => {
+
+	var filter = {_id: req.params[0]};
+
+	matchGuessController.get(filter, function(docs){
+		
+		res.json(docs[0]);
+	});
+});
+
+
+router.delete('/', (req, res) => {
+	
+	var filter = {};
+
+	matchGuessController.delete(filter, function(message){
+
+		res.json(message);
+
+	});
+
+});
 
 router.put('/', (req, res) => {
 
-	//var userId = req.user._id;
-	var userId = '5b1428ddb6c9a940a5003e55';
 	var matchGuess = req.body;
-	var stageId = matchGuess.stageId;
-	
-	console.log(userId + ' ' + stageId + ' ' + matchGuess);
 
-	guessController.saveMatchGuess(userId, stageId, matchGuess, function(docs){
+	if(!matchGuess._id) {res.json('ID nao encontrado');}
+	else {
 		
+		matchGuessController.save(matchGuess, function(docs){
+	
+			res.json(docs);
+		});
+	}
+});
+
+router.put(/([a-f0-9]{24})/, (req, res) => {
+
+	var matchGuess = req.body;
+
+	if (!matchGuess._id) {res.json('ID nao encontrado.');}
+
+	else if (matchGuess._id != req.params[0]) {res.json('ID do form diferente do ID da URL.');}
+
+	else {
+		
+		matchGuessController.save(matchGuess, function(docs){
+	
+			res.json(docs[0]);
+		});
+	}
+});
+
+router.post('/', (req, res) => {
+
+	var matchGuess = req.body;
+		
+	matchGuessController.save(matchGuess, function(docs){
+	
 		res.json(docs);
 	});
 });
