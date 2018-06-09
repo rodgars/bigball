@@ -37,7 +37,8 @@ globalGuessSchema.options.toObject.transform = function (doc, ret, options) {
 
 	if(ret.relatedStage._id) {
 		ret.status = ret.relatedStage.status;
-		ret.deadline = ret.relatedStage.deadline.toISOString().replace('T', ' ').substring(0, 19);
+		console.log(ret.relatedStage);
+		ret.deadline = ret.relatedStage.deadline;
 		ret.situation = ret.relatedStage.situation;
 		ret.relatedStage = ret.relatedStage._id;
 	}

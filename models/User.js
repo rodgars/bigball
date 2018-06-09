@@ -107,12 +107,6 @@ userSchema.post('save', function () {
 		var promises = [];
 		var guessId = guess._id;
 
-		//globalGuessJson.mainGuess = guessId;
-
-		//stageGuessesJson.forEach(function(stageGuess){
-		//	stageGuess.mainGuess = guessId;
-		//});
-
 		promises.push( new Promise(function(resolve, reject){
 			globalGuessController.save(globalGuessJson, function(doc){resolve(doc);});}) 
 		);
