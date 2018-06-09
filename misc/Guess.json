@@ -1,35 +1,5 @@
 {
-	"user": 1,
-	"globalGuess": {
-		"firstPlace": "br",
-		"secondPlace": "ru",
-		"thirdPlace": "sa",
-		"topScorer": "5b1300b8b3ff6b4f73c71cd5",
-		"teamGP": "br",
-		"teamGC": "br",
-		"pointsChampions": 0,
-		"pointsTeamGP": 0,
-		"pointsTeamGC": 0,
-		"pointsTopScorer": 0,
-		"locked": true,
-		"deadline": "2018-06-01 23:59:59"
-	},
-	"stageGuesses": [{
-		"locked": false,
-		"deadline": "2018-06-01 23:59:59",
-		"doubleMatch": 1,
-		"matchGuesses":[
-			{"match": 1, "homeTeam": "br", "visitorTeam": "ru", "points": 1, "guess":{"homeScore": 1, "visitorScore": 0, "winner": "br"}, "result": {"homeScore": 1, "visitorScore": 0, "winner": "br"} },
-			{"match": 2, "homeTeam": "br", "visitorTeam": "ru", "points": 1, "guess":{"homeScore": 1, "visitorScore": 0, "winner": "br"}, "result": {"homeScore": 1, "visitorScore": 0, "winner": "br"} }
-		]
-	},{
-		"locked": false,
-		"deadline": "2018-06-01 23:59:59",
-		"doubleMatch": 3,
-		"matchGuesses":[
-			{"match": 3, "homeTeam": "br", "visitorTeam": "ru", "points": 1, "guess":{"homeScore": 1, "visitorScore": 0, "winner": "br"}, "result": {"homeScore": 1, "visitorScore": 0, "winner": "br"} },
-			{"match": 4, "homeTeam": "br", "visitorTeam": "ru", "points": 1, "guess":{"homeScore": 1, "visitorScore": 0, "winner": "br"}, "result": {"homeScore": 1, "visitorScore": 0, "winner": "br"} }
-		]
-	}]
+	"user": null,
+	"position": 1,
+	"totalPoints": 0
 }
-

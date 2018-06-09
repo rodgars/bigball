@@ -1,0 +1,40 @@
+[{
+	"mainGuess": null,
+	"deadline": "2018-01-01T00:00:00.000Z",
+	"locked": false,
+	"relatedStage": "groupStage",
+	"doubleMatch": null,
+	"pointsDoubleMatch": 0
+	
+},{
+	"mainGuess": null,
+	"deadline": "2018-01-01T00:00:00.000Z",
+	"locked": false,
+	"relatedStage": "eighthFinals",
+	"doubleMatch": null,
+	"pointsDoubleMatch": 0
+	
+},{
+	"mainGuess": null,
+	"deadline": "2018-01-01T00:00:00.000Z",
+	"locked": false,
+	"relatedStage": "quarterFinals",
+	"doubleMatch": null,
+	"pointsDoubleMatch": 0
+	
+},{
+	"mainGuess": null,
+	"deadline": "2018-01-01T00:00:00.000Z",
+	"locked": false,
+	"relatedStage": "semiFinals",
+	"doubleMatch": null,
+	"pointsDoubleMatch": 0
+	
+},{
+	"mainGuess": null,
+	"deadline": "2018-01-01T00:00:00.000Z",
+	"locked": false,
+	"relatedStage": "finals",
+	"doubleMatch": null,
+	"pointsDoubleMatch": 0
+}]

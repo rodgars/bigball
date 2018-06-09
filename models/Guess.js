@@ -1,14 +1,12 @@
 var mongoose = require("mongoose");
-var globalGuessSchema = require('./GlobalGuess');
-var stageGuessSchema = require('./StageGuess');
+//var GlobalGuess = require('./GlobalGuess');
+//var StageGuess = require('./StageGuess');
 var ObjectId = require('mongodb').ObjectID;
 var { Schema } = mongoose;
 
 var guessSchema = new Schema({
 	_id: Schema.Types.ObjectId,
 	user: { type: Schema.Types.ObjectId, ref: 'user'},
-	globalGuess: globalGuessSchema,
-	stageGuesses: [stageGuessSchema],
 	totalPoints: Number,
 	position: Number
 }, { versionKey: false });
@@ -22,7 +20,7 @@ guessSchema.static('asyncUpsert', function (id, guess, callback) {
 		model.findByIdAndUpdate(id, guess, {upsert: true, new: true}, function(err, doc){
 			if(err) reject(err);
 			resolve(doc);
-		}).populate('stageGuesses.relatedStage').populate('stageGuesses.matchGuesses.relatedMatch').populate('stageGuesses.doubleMatch').populate('user');
+		});
 	});
 });
 
