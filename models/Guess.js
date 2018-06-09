@@ -6,7 +6,9 @@ var guessSchema = new Schema({
 	_id: Schema.Types.ObjectId,
 	user: { type: Schema.Types.ObjectId, ref: 'user'},
 	totalPoints: Number,
-	position: Number
+	position: Number,
+	globalGuess: { type: Schema.Types.ObjectId, ref: 'GlobalGuess'},
+	stageGuesses: [{ type: Schema.Types.ObjectId, ref: 'StageGuess'}]
 }, { versionKey: false });
 
 guessSchema.static('asyncUpsert', function (id, guess, callback) {

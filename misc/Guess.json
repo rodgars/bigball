@@ -1,5 +1,7 @@
 {
 	"user": null,
 	"position": 1,
-	"totalPoints": 0
+	"totalPoints": 0,
+	"stageGuesses": [],
+	"globalGuess": null
 }

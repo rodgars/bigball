@@ -28,6 +28,8 @@ stageSchema.static('asyncUpsert', function (id, stage, callback) {
 if (!stageSchema.options.toObject) stageSchema.options.toObject = {};
 stageSchema.options.toObject.transform = function (doc, ret, options) {
 
+	ret.deadline = ret.deadline.toISOString().replace('T', ' ').substring(0, 19);
+
 	return ret;
 }
 
