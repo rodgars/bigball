@@ -24,5 +24,12 @@ stageSchema.static('asyncUpsert', function (id, stage, callback) {
 	});
 });
 
+
+if (!stageSchema.options.toObject) stageSchema.options.toObject = {};
+stageSchema.options.toObject.transform = function (doc, ret, options) {
+
+	return ret;
+}
+
 module.exports = mongoose.model('Stage', stageSchema);
 

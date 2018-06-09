@@ -10,7 +10,7 @@ module.exports = function(){
 
 			callback(docs);
 
-		});
+		}).populate('matches');
 	};
 
 	this.getSituations = function(callback){
