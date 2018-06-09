@@ -7,7 +7,12 @@ var guessController = new GuessController();
 
 router.get('/', (req, res) => {
 
+	var id = req.query.id;
+	var user = req.query.user;
+
 	var filter = {};
+	if(id) filter._id = id;
+	if(user) filter.user = user;
 
 	guessController.get(filter, function(docs){
 		
