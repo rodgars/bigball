@@ -7,6 +7,7 @@ const userSchema = new Schema({
     googleID: String,
     isAdmin: {type:Boolean, default:false},
     urlImg: String,
+    registerDate: {type:Date, default: Date.now},
     name: String,
     email: String,
     isPaid: {type:Boolean, default:false}
