@@ -1,6 +1,4 @@
 var mongoose = require("mongoose");
-//var GlobalGuess = require('./GlobalGuess');
-//var StageGuess = require('./StageGuess');
 var ObjectId = require('mongodb').ObjectID;
 var { Schema } = mongoose;
 
