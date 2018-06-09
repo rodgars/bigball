@@ -141,6 +141,7 @@ class MyGameFormPhaseList extends Component {
     }
     
     render(){
+        console.log("guess",this.props.guess);
         return(
             <div>
                 {this.RenderStages()}

@@ -1,128 +1,224 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Modal} from 'react-bootstrap';
 import _ from 'lodash';
 import DropDown from '../Utils/DropDown';
+import * as utils from '../../utils/filtering';
+import * as actions from '../../actions/AdminActions';
 
-const situation = [{name:"Fase Não Liberada",val:"1"},
-        {name:"Estamos Aqui",val:"2"},
-        {name:"Fase Finalizada",val:"3"}];
+const showModal = (match) => {
+    return typeof(match._id) != 'undefined';
+};
 
-const locked = [{name:"Sim",val:true},{name:"Não",val:false}];
+const dataValues = (values) => {
+    let arr = [];
+    _.map(values, value => {
+        arr.push({val:value,name:value});
+    });
+    return arr;
+};
+
+const dataTeams = (teams) => {
+    let arr = [];
+    _.map(teams, team => {
+        arr.push({val:team.id,name:team.name});
+    });
+    return arr;
+};
 
 class AdminMatchs extends Component {
     constructor(props){
         super(props);
 
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleHide = this.handleHide.bind(this);
+        this.selectedStageId = this.selectedStageId.bind(this);
+        this.submitMatch = this.submitMatch.bind(this);
+
         this.state = {
-            games: {},
+            match: {},
         };
     }
 
-    selectedStageId(id,e){
+    componentDidMount(){
+        this.props.fetchStages();
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+
+        const data = {
+            _id: event.target[0].value, 
+            situation: event.target[1].value, 
+            status: event.target[2].value
+        };
+        this.props.saveStages(data);
+        this.props.fetchStages();
+        this.setState({ match: {} });
+    }
+
+    selectedStageId(match,e){
         e.preventDefault();
         this.setState((state) => {
-            return {games:this.props.worldCup[id]};
+            return { match: match };
+        });
+    }
+
+    submitMatch(){
+        let match = this.state.match;
+        match.visitorTeam = this.ddlVisitor.value();
+        match.homeTeam = this.ddlHome.value();
+        match.winner = this.ddlWinner.value();
+        match.visitorScore = this.txtVisitorScore.value;
+        match.homeScore = this.txtHomeScore.value;
+
+        if(match.visitorTeam == "" ||
+            match.homeTeam == "" ||
+            match.winner == "" ||
+            match.visitorScore == "" ||
+            match.homeScore == "")
+        {
+            alert("Preencha todos os campos");
+        }else{
+            this.props.saveMatch(match);
+            this.props.fetchStages();
+            this.setState({ match: {} });
+        }
+    }
+
+    handleHide() {
+        this.setState({ match: {} });
+    }
+
+    RenderGames(matches){
+        return _.map(_.orderBy(matches,["date"],["asc"]), match => {
+            let visitorTeam = utils.filterCountry(match.visitorTeam, this.props.teams)[0];
+            let homeTeam = utils.filterCountry(match.homeTeam, this.props.teams)[0];
+            let winner = utils.filterCountry(match.winner, this.props.teams)[0];
+            
+            if(typeof(visitorTeam) == 'undefined') visitorTeam = {name:"Não definido", flag:""};
+            if(typeof(homeTeam) == 'undefined') homeTeam = {name:"Não definido", flag:""};
+            if(typeof(winner) == 'undefined') winner = {name:"Não definido", flag:""};
+
+            return (    
+                <tr onClick={this.selectedStageId.bind(this, match)}>
+                    <td>{match._id}</td>
+                    <td>{match.group}</td>
+                    <td>{match.date}</td>
+                    <td><img className={visitorTeam.flag} src="./assets/flags/blank.gif" /> {visitorTeam.name} - {match.visitorScore}</td>
+                    <td><img className={homeTeam.flag} src="./assets/flags/blank.gif" /> {homeTeam.name} - {match.homeScore}</td>
+                    <td><img className={winner.flag} src="./assets/flags/blank.gif" /> {winner.name}</td>
+                </tr>
+            );
         });
     }
 
     RenderStages(){
-        return _.map(this.props.worldCup, stage => {
+        return _.map(_.orderBy(this.props.stages,["order"],["asc"]), stage => {
             return(
-            <tr key={stage._id}>
-                <td></td>
-                <td><a href="#" onClick={this.selectedStageId.bind(this, stage._id)}>{stage._id}</a></td>
-                <td>{stage.deadline}</td>
-                <td>
-                    <DropDown key={`${stage._id}_sit`} values={situation} selected={stage.situation} />
-                </td>
-                <td>
-                    <DropDown key={`${stage._id}_loc`} values={locked} selected={stage.locked} />
-                </td>
-                <td><button key={`${stage._id}_btn`} className="ui icon blue button"><i className="save icon"></i></button></td>
-            </tr>
+            <div>
+            <div className="ui segment">
+                <form id={stage._id} name={stage._id} key={stage._id} onSubmit={this.handleSubmit}>
+                <input type="hidden" id="id" name="id" value={stage._id} />
+                <div className="ui grid">
+                    <div className="three wide column">( {stage.order} ) - {stage.deadline}</div>
+                    <div className="three wide column">{stage._id}<br/>{stage.label}</div>
+                    <div className="four wide column"><DropDown id="situation" key={`${stage._id}_sit`} values={dataValues(this.props.situation)} selected={stage.situation} /></div>
+                    <div className="four wide column"><DropDown id="status" key={`${stage._id}_loc`} values={dataValues(this.props.status)} selected={stage.status} /></div>
+                    <div className="two wide column"><button key={`${stage._id}_btn`} type="submit" className="ui icon blue button"><i className="save icon"></i> Salvar</button></div>
+                </div>
+                </form>
+                <hr />
+                <table className="ui selectable table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Group</th>
+                            <th>Date</th>
+                            <th>Visitor</th>
+                            <th>Home</th>
+                            <th>Winner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.RenderGames(stage.matches)}
+                    </tbody>
+                </table>
+            </div><br/><br/>
+            </div>
             );
         });
-    }
-
-    RenderGames(){
-        if(this.state.games._id == null){
-            return (
-                <tr><td colSpan="8">Nenhuma fase selecionada</td></tr>
-            );
-        }else{
-            const teams = _.map(this.props.teams, team => {
-                return {name:team.name,val:team.id};
-            });
-
-            return _.map(_.orderBy(this.state.games.matches,["date"],["ASC"]), match => {
-                return(
-                    <tr>
-                        <td>{match._id}</td>
-                        <td>{match.group}</td>
-                        <td>{match.date}</td>
-                        <td>
-                            <DropDown key={`${match._id}_ddlHome`} values={teams} selected={match.homeTeam._id} />
-                        </td>
-                        <td></td>
-                        <td>{match.visitorTeam.name}</td>
-                        <td></td>
-                    </tr>
-                    );
-                });
-        }
     }
 
     render(){
         return (
             <div>
-            <br />
-            <div className="ui segment">
-                <p><b>Jogos</b></p>
-                <hr />
+                <br />
                 <h5>Fases:</h5>
-                <table className="ui collapsing selectable compact small table">
-                    <thead>
+                {this.RenderStages()}
+                <Modal
+                    show={showModal(this.state.match)}
+                    onHide={this.handleHide}
+                    dialogClassName="custom-modal"
+                >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-lg">
+                    <i className="futbol icon"></i> Match Official Result
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <table className="ui table">
+                        <tbody>
                         <tr>
-                            <th>Ordem</th>
-                            <th>Nome da Fase</th>
-                            <th>Deadline</th>
-                            <th>Status</th>
-                            <th>Ativa?</th>
-                            <th></th>
+                            <td><b>Visitor</b></td>
+                            <td>
+                                <div className="ui grid">
+                                    <div className="eight wide column">
+                                        <DropDown ref={ddl => this.ddlVisitor = ddl} id="situation" values={dataTeams(this.props.teams)} selected={this.state.match.visitorTeam} />
+                                    </div>
+                                    <div className="four wide column">
+                                        <input ref={input => {this.txtVisitorScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.visitorScore} className="ui input" />
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {this.RenderStages()}
-                    </tbody>
-                </table>
-                <hr />
-                <hr />
-                <h5>Jogos:</h5>
-                <table className="ui collapsing compact small table">
-                    <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Grupo</th>
-                            <th>Data</th>
-                            <th>Casa</th>
-                            <th>Gols Casa</th>
-                            <th>Visitante</th>
-                            <th>Gols Visitante</th>
-                            <th></th>
+                            <td>Home</td>
+                            <td>
+                                <div className="ui grid">
+                                    <div className="eight wide column">
+                                        <DropDown ref={ddl => this.ddlHome = ddl} id="situation" values={dataTeams(this.props.teams)} selected={this.state.match.homeTeam}  />
+                                    </div>
+                                    <div className="four wide column">
+                                        <input ref={input => {this.txtHomeScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.homeScore} className="ui input" />
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {this.RenderGames()}
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <div className="ui grid">
+                        <div className="two wide column">
+                            <b>Winner: </b>
+                        </div>
+                        <div className="eight wide column">
+                            <DropDown  ref={ddl => this.ddlWinner = ddl} id="situation" values={dataTeams(this.props.teams)} selected={this.state.match.winner} />
+                        </div>
+                        <div className="six wide column">
+                            <button className="ui blue button" onClick={this.submitMatch}><i className="icon save"></i>Save</button>
+                        </div>
+                    </div>
+                    <br/><br/>
+                </Modal.Body>
+                </Modal>
             </div>
         );
     }
 }
 
-function mapStateToProps({worldCup,auth,teams}) {
-    return {worldCup,auth,teams};
+function mapStateToProps({auth, teams, stages, status, situation}) {
+    return {auth, teams, stages, status, situation};
 }
 
-export default connect(mapStateToProps)(AdminMatchs);
+export default connect(mapStateToProps, actions)(AdminMatchs);

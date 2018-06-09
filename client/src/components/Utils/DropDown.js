@@ -1,21 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import _ from 'lodash';
 
-const RenderValues = (values) => {
-    return _.map(values, value => {
-        return(
-            <option value={value.val}>{value.name}</option>
-        );
-    });
-};
+class DropDown extends Component {
+    renderValues() {
+        return _.map(this.props.values, value => {
+            return(
+                <option key={value.val} value={value.val}>{value.name}</option>
+            );
+        });
+    }
 
-const DropDown = (props) => {
-    return (
-        <select value={props.selected}>
-            <option value="">Selecione um valor</option>
-            {RenderValues(props.values)}
-        </select>
-    );
-};
+    value(){
+        return this.ddlComponent.value;
+    }
+
+    render(){
+        return (
+            <select ref={ddl => this.ddlComponent = ddl} id={this.props.id} name={this.props.id} className="form-control" defaultValue={this.props.selected}>
+                <option value="">Selecione um valor</option>
+                {this.renderValues()}
+            </select>
+        );
+    }
+}
 
 export default DropDown;

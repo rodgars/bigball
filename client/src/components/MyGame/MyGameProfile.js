@@ -16,17 +16,17 @@ const MyGameProfile = (props) => {
                 <img src={props.user.user.urlImg.replace("sz=50","sz=250")}  />
             </div>
             <div className="content">
-                <div className="header"><Glyphicon glyph="user" /> {props.user.user.name}</div>
+                <div className="header"><Glyphicon glyph="user" /> {props.user.name}</div>
                 <div className="meta">
                     <span className="date">Primeiro acesso em XXXXX</span>
-                    <br />User Id: {props.user.user.userId}
+                    <br />User Id: {props.user.userId}
                 </div>
                 <div className="description">
                     # {props.position}º - {checkRanking(props.position)} <br />
                 </div>
             </div>
         </div><br />
-        <PaymentAlert name={props.user.user.name} isPaid={props.user.user.isPaid} /> 
+        <PaymentAlert name={props.user.name} isPaid={props.user.isPaid} /> 
         </div>
     );
 };

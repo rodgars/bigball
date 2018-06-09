@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {FETCH_USER_LIST, UPDATE_USER} from './types';
+import {FETCH_USER_LIST, UPDATE_USER, FETCH_STAGE, UPDATE_STAGE, FETCH_SITUATION, FETCH_STATUS, UPDATE_MATCH} from './types';
 
 export const fetchUserList = (query) => async dispatch => {
     const res = await axios.get(`/api/user${query}`);
@@ -9,4 +9,29 @@ export const fetchUserList = (query) => async dispatch => {
 export const saveUser = (id, values) => async dispatch => {
     const res = await axios.put(`/api/user/${id}`, values);
     dispatch({ type: UPDATE_USER, payload: res.data });
+};
+
+export const fetchStages = () => async dispatch => {
+    const res = await axios.get(`/api/stage`);
+    dispatch({ type: FETCH_STAGE, payload: res.data });
+};
+
+export const saveStages = (values) => async dispatch => {
+    const res = await axios.put(`/api/stage`, values);
+    dispatch({ type: UPDATE_STAGE, payload: res.data });
+};
+
+export const saveMatch = (values) => async dispatch => {
+    const res = await axios.put(`/api/match`, values);
+    dispatch({ type: UPDATE_MATCH, payload: res.data });
+};
+
+export const fetchSituation = () => async dispatch => {
+    const res = await axios.get(`/api/stage/situation`);
+    dispatch({ type: FETCH_SITUATION, payload: res.data });
+};
+
+export const fetchStatus = () => async dispatch => {
+    const res = await axios.get(`/api/stage/status`);
+    dispatch({ type: FETCH_STATUS, payload: res.data });
 };

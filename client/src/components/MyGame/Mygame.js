@@ -15,6 +15,7 @@ class MyGame extends Component{
     }
 
     render(){
+        console.log("guess",this.props.guess);
         return (
             <Grid>
                 <Row className="showGrid">
