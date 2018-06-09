@@ -47,7 +47,7 @@ class AdminMatchs extends Component {
     RenderGames(){
         if(this.state.games._id == null){
             return (
-                <tr><td colspan="8">Nenhuma fase selecionada</td></tr>
+                <tr><td colSpan="8">Nenhuma fase selecionada</td></tr>
             );
         }else{
             const teams = _.map(this.props.teams, team => {

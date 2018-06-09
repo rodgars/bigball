@@ -43,7 +43,7 @@ class RankingStatistic extends Component {
         return(
             <ButtonToolbar>
                 <button className="ui teal button" onClick={this.handleShow}>
-                <i class="icon chart bar"></i> Estatísticas
+                <i className="icon chart bar"></i> Estatísticas
                 </button>
 
                 <Modal
@@ -61,24 +61,24 @@ class RankingStatistic extends Component {
                 <Tabs defaultActiveKey={1} id="tabEstatistics">
                     <Tab eventKey={1} title="Geral">
                     <br/>
-                    <div class="ui statistics">
-                        <div class="statistic">
-                            <div class="value">
-                                <i class="users icon"></i> 22
+                    <div className="ui statistics">
+                        <div className="statistic">
+                            <div className="value">
+                                <i className="users icon"></i> 22
                             </div>
-                            <div class="label">Usuários</div>
+                            <div className="label">Usuários</div>
                         </div>
-                        <div class="statistic">
-                            <div class="value">
-                                <i class="dollar sign icon"></i> 250
+                        <div className="statistic">
+                            <div className="value">
+                                <i className="dollar sign icon"></i> 250
                             </div>
-                            <div class="label">Reais arrecadados</div>
+                            <div className="label">Reais arrecadados</div>
                         </div>
-                        <div class="statistic">
-                            <div class="value">
-                                <i class="thumbs down icon"></i> 8
+                        <div className="statistic">
+                            <div className="value">
+                                <i className="thumbs down icon"></i> 8
                             </div>
-                            <div class="label">Pendências<br/> pagamento</div>
+                            <div className="label">Pendências<br/> pagamento</div>
                         </div>
                     </div>
                     <div className="ui segment">

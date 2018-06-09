@@ -5,7 +5,7 @@ class Payment extends Component {
     render(){
         return (
             <div>
-            <p><i class="dollar sign icon"></i>  <u><b>Como Pagar</b></u></p>
+            <p><i className="dollar sign icon"></i>  <u><b>Como Pagar</b></u></p>
             <br />
             <div className="ui segment">
                 <p>É simples, faça uma transferência para:</p>

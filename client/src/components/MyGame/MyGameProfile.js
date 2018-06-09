@@ -17,11 +17,11 @@ const MyGameProfile = (props) => {
             </div>
             <div className="content">
                 <div className="header"><Glyphicon glyph="user" /> {props.user.user.name}</div>
-                <div class="meta">
-                    <span class="date">Primeiro acesso em XXXXX</span>
+                <div className="meta">
+                    <span className="date">Primeiro acesso em XXXXX</span>
                     <br />User Id: {props.user.user.userId}
                 </div>
-                <div class="description">
+                <div className="description">
                     # {props.position}º - {checkRanking(props.position)} <br />
                 </div>
             </div>

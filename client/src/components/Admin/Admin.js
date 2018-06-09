@@ -49,7 +49,7 @@ class Admin extends Component{
     render(){
         return (
             <div>
-            <p><i class="cog icon"></i>  <u><b>Admin</b></u></p>
+            <p><i className="cog icon"></i>  <u><b>Admin</b></u></p>
             <br />
 
             <Tabs defaultActiveKey={1} id="tabAdmin">

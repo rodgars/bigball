@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 import * as utils from '../../utils/filtering';
 import _ from 'lodash';
 import PointsLabel from '../Utils/PointsLabel';
+import Match from '../Utils/Match';
+import Score from '../Utils/Score';
 
-const checkUser = (user) => {
-    return typeof(user.name) != 'undefined';
+const showModal = (match) => {
+    return typeof(match.stageIndex) != 'undefined';
 };
 
 class MyGameFormPhaseList extends Component {
@@ -15,6 +17,7 @@ class MyGameFormPhaseList extends Component {
 
         this.handleHide = this.handleHide.bind(this);
         this.selectMatch = this.selectMatch.bind(this);
+        this.moveMatchModal = this.moveMatchModal.bind(this);
     
         this.state = {
           match: {}
@@ -23,114 +26,190 @@ class MyGameFormPhaseList extends Component {
 
     handleHide() {
         this.setState({ match: {} });
+        this.handleMatchSubmit();
     }
 
     selectMatch(id,e){
+        let stageId = id.split(";")[0];
+        let matchId = id.split(";")[1];
         e.preventDefault();
         this.setState((state) => {
-            return {match:{name:"Rodrigo Garcia",date:"20/03/2018",isAdmin:true,isPaid:false}};
+            return {
+                match: {
+                    stageIndex:stageId, 
+                    matchIndex:matchId, 
+                    guess:this.props.guess.stageGuesses[stageId].matchGuesses[matchId]
+                }
+            };
         });
         
     }
+
+    moveMatchModal(val){
+        let stageId = this.state.match.stageIndex;
+        let matchId = this.state.match.matchIndex;
+        let total = this.props.guess.stageGuesses[stageId].matchGuesses.length;
+        let newMatchId = parseInt(matchId) + parseInt(val);
+
+        if(newMatchId < 0 || newMatchId >= total) return;
+        else {
+            this.setState((state) => {
+                return {
+                    match: {
+                        stageIndex:stageId, 
+                        matchIndex:newMatchId, 
+                        guess:this.props.guess.stageGuesses[stageId].matchGuesses[newMatchId]
+                    }
+                };
+            });
+        }
+
+        this.handleMatchSubmit();
+    }
     
-    RenderResult(result, flagVisitor, flagHome, nameVisitor, nameHome){
+    RenderResult(result){
         if(result.homeScore != null){
             return(
-            <div class="ui breadcrumb">
-                <div class="section"><img src="/assets/flags/blank.gif" className={flagVisitor} /></div>
-                <div class="divider"></div>
-                <div class="section">{result.visitorScore}</div>
-                <div class="divider"> <i className="times icon"></i> </div>
-                <div class="section">{result.homeScore}</div>
-                <div class="divider"></div>
-                <div class="section"><img src="/assets/flags/blank.gif" className={flagHome} /></div>
-            </div>);
+                <Score guess={result}/>
+            );
         }else{
             return(<div>Não disponível</div>);
         }
     }
 
-    RenderMatches(stage){
-        return _.map(stage.matchGuesses, match => {
-            let flagVisitor = (typeof(match.visitorTeam) != 'undefined') ? `flag-32 flag-${match.visitorTeam}` : "";
-            let flagHome = (typeof(match.homeTeam) != 'undefined') ? `flag-32 flag-${match.homeTeam}` : "";
-            let nameVisitor = (typeof(match.visitorTeam) != 'undefined') ? utils.filterCountry(match.visitorTeam, this.props.teams)[0].name : "Indefinido";
-            let nameHome = (typeof(match.homeTeam) != 'undefined') ? utils.filterCountry(match.homeTeam, this.props.teams)[0].name : "Indefinido";
+    RenderMatches(stage, ind){
+        let children = [];
 
-            return (
-                <tr>
+        for(let i=0; i < stage.matchGuesses.length; i++){
+            let match = stage.matchGuesses[i];
+
+            children.push (
+                <tr key={i}>
                     <td width="10%" style={{textAlign:"center"}}><input type="radio" name="optionsGroups" /></td>
-                    <td onClick={this.selectMatch.bind(this, `${stage.relatedStage}`)}>
-                        <img src="/assets/flags/blank.gif" className={flagVisitor} /> {nameVisitor}<br/> vs<br/>
-                        <img src="/assets/flags/blank.gif" className={flagHome} /> {nameHome}<br/><br/>
+                    <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
+                        <Match match={match} teams={this.props.teams} />
                     </td>
-                    <td>
-                        <div class="ui label"><b>{match.guess.homeScore}-</b></div><br/><br/>
-                        <div class="ui label"><b>{match.guess.homeScore}-</b></div><br/><br/>
+                    <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
+                        <Score guess={match.guess}/>
                     </td>
-                    <td>
-                        {this.RenderResult(match.result, flagVisitor, flagHome, nameVisitor, nameHome)}
+                    <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
+                        {this.RenderResult(match.result)}
                     </td>
-                    <td>{match.group}<br/>14/06</td>
-                    <td width="10%"><PointsLabel value={match.points} /></td>
+                    <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>{match.group}<br/>14/06</td>
+                    <td onClick={this.selectMatch.bind(this, `${ind};${i}`)} width="10%"><PointsLabel value={match.points} /></td>
                 </tr>           
             );
-        });
+        }
+
+        return children;
     }
 
     RenderStages(){
-        return _.map(_.orderBy(_.filter(this.props.guess.stageGuesses, (item) => {
-            return !item.locked;
-        }),['order'],['desc']), stage => {
-            return (
-                <div className="ui segment">
+        let stages = this.props.guess.stageGuesses;
+        let stagesDom = [];
+
+        for(let i=0; i < stages.length; i++){
+            let stage = stages[i];
+
+            stagesDom.push(
+                <div key={i} className="ui segment">
                     <p className="text-danger text-right"><b>* Atenção!</b> Você não preencheu todos os jogos dessa fase</p>
-                    <h4 class="ui horizontal divider header">
-                        <i class="futbol icon"></i> {stage.relatedStage} - encerra em {stage.deadline}
+                    <h4 className="ui horizontal divider header">
+                        <i className="futbol icon"></i> {stage.relatedStage} - encerra em {stage.deadline}
                     </h4>
                     <div>
-                        <table class="ui small table">
+                        <table className="ui small selectable table">
                             <thead>
                                 <tr>
                                     <th>Dobra?</th>
-                                    <th colspan="2">Seu palpite</th>
+                                    <th colSpan="2">Seu palpite</th>
                                     <th>Resultado oficial</th>
                                     <th>Partida</th>
                                     <th>Pontos</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.RenderMatches(stage)}
+                                {this.RenderMatches(stage, i)}
                             </tbody>
                         </table> 
                     </div>
                 </div>
             );
-        });
+        }
+
+        return stagesDom;
     }
     
     render(){
-        console.log(this.props.guess);
         return(
             <div>
                 {this.RenderStages()}
+                {this.renderModal()}
+            </div>
+        );
+    }
+
+    renderModal(){
+        if(showModal(this.state.match)){
+            return(
                 <Modal
-                {...this.props}
-                show={checkUser(this.state.match)}
+                show={showModal(this.state.match)}
                 onHide={this.handleHide}
+                bsSize="small"
                 dialogClassName="custom-modal"
                 >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-lg">
-                    <i class="futbol icon"></i> Preencher jogos da fase
+                    <i className="futbol icon"></i> Preencher jogos da {this.modalStageName()}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Aqui
+                    <table className="ui collapsing table">
+                        <tbody>
+                        <tr>
+                            <td style={{verticalAlign:"middle"}}><Match match={this.state.match.guess} teams={this.props.teams} /></td>
+                            <td style={{verticalAlign:"middle"}}>
+                                <div>
+                                    <form ref={form => {this.frmMatch = form}}>
+                                    <input ref={input => {this.txtVisitScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.guess.result.visitorScore} className="ui input" /><br/><br/>
+                                    <input ref={input => {this.txtHomeScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.guess.result.visitorScore} className="ui input" /><br/><br/>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button disabled={this.disableButtonModal("pre")} className="ui button" onClick={this.moveMatchModal.bind(this, -1)}>Anterior</button>
+                    <button disabled={this.disableButtonModal("nex")} className="ui button" onClick={this.moveMatchModal.bind(this, 1)}>Proximo</button>
                 </Modal.Body>
                 </Modal>
-            </div>
-        );
+            );
+        }else{
+            return (<div></div>);
+        }
+    }
+
+    handleMatchSubmit(){
+        this.txtHomeScore.value = "";
+        this.txtVisitScore.value = "";
+    }
+
+    disableButtonModal(btn){
+        if(btn === "pre"){
+            if(this.state.match.matchIndex === 0) return true;
+            else return false;
+        }else{
+            if(this.state.match.matchIndex + 1 === this.props.guess.stageGuesses[this.state.match.stageIndex].matchGuesses.length) return true;
+            else return false;
+        }
+    }
+
+    modalStageName(){
+        if(showModal(this.state.match)){
+            let index = this.state.match.stageIndex;
+            return this.props.guess.stageGuesses[index].relatedStage;
+        }
+        return "";
     }
 }
 

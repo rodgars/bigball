@@ -15,6 +15,7 @@ export const FETCH_RANKING = 'fetch_ranking';
 
 // admin info
 export const FETCH_USER_LIST = 'fetch_user_list';
+export const UPDATE_USER = 'update_user';
 export const FETCH_SELECTED_PLAYER = 'fetch_selected_player';
 export const FETCH_STAGE = 'fetch_stage';
 export const FETCH_MATCH = 'fetch_match';

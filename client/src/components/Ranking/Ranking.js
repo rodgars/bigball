@@ -13,7 +13,7 @@ class Ranking extends Component{
                 <Grid>
                     <Row className="showGrid">
                         <Col xs={6}>
-                            <p><i class="trophy icon"></i> <u><b>Ranking</b></u></p>
+                            <p><i className="trophy icon"></i> <u><b>Ranking</b></u></p>
                             <RankingStatistics />
                             <br />
                         </Col>

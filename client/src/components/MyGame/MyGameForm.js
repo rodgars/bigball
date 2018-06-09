@@ -40,8 +40,8 @@ class MyGameForm extends Component {
                         {this.state.isEditable && <button onClick={this.toggleEdition.bind(this)} className="ui blue button"><i className="icon save"></i>Salvar Fatores</button>}
                         {this.state.isEditable && <button onClick={this.toggleEdition.bind(this)} className="ui red button"><i className="icon times"></i>Cancelar Edição</button>}
 
-                        <h4 class="ui horizontal divider header">
-                            <i class="bar chart icon"></i> Fatores - encerra em {this.props.guess.globalGuess.deadline}
+                        <h4 className="ui horizontal divider header">
+                            <i className="bar chart icon"></i> Fatores - encerra em {this.props.guess.globalGuess.deadline}
                         </h4>
                         <div>
                         <table className="ui small compact table">

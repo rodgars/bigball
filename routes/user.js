@@ -10,12 +10,14 @@ router.get('/', (req, res) => {
 	var name = req.query.name;
 	var email = req.query.email;
 	var id = req.query.id;
+	var isPaid = req.query.isPaid;
 	var filter = {};
 
 	if(googleID) filter.googleID = googleID;
 	if(name) filter.name = new RegExp(name, 'i');
 	if(email) filter.email = new RegExp(email, 'i');
 	if(id) filter._id = id;
+	if(isPaid) filter.isPaid = isPaid;
 
 	userController.getAll(filter, function(docs){
 		

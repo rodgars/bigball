@@ -6,7 +6,7 @@ import {Nav, Navbar, NavItem} from 'react-bootstrap';
 class Header extends Component{
     renderAdminLink(isAdmin){
         if(isAdmin)
-            return (<NavItem key="5" componentClass={Link} href="/admin" to="/admin"><i class="cog icon"></i> Admin</NavItem>);
+            return (<NavItem key="5" componentClass={Link} href="/admin" to="/admin"><i className="cog icon"></i> Admin</NavItem>);
     }
 
     renderContent(){
@@ -15,16 +15,16 @@ class Header extends Component{
                 return;
             case false:
                 return [
-                    <NavItem key="3" href="/rule"><i class="file icon"></i> Regras</NavItem>,
-                    <NavItem key="7" href="/auth/google"><i class="google icon"></i> Login with Google</NavItem>
+                    <NavItem key="3" href="/rule"><i className="file icon"></i> Regras</NavItem>,
+                    <NavItem key="7" href="/auth/google"><i className="google icon"></i> Login with Google</NavItem>
                 ];
             default:
                 const myGameUrl = `/game/${this.props.auth._id}`;
                 return [
-                    <NavItem key="1" componentClass={Link} href="/ranking" to="/ranking"><i class="trophy icon"></i> Ranking</NavItem>,
-                    <NavItem key="2" componentClass={Link} href={myGameUrl} to={myGameUrl}><i class="futbol icon"></i> Meu jogo</NavItem>,
-                    <NavItem key="4" componentClass={Link} href="/payment" to="/payment"><i class="dollar sign icon"></i> Como Pagar</NavItem>,
-                    <NavItem key="3" componentClass={Link} href="/rule" to="/rule"><i class="file icon"></i> Regras</NavItem>,
+                    <NavItem key="1" componentClass={Link} href="/ranking" to="/ranking"><i className="trophy icon"></i> Ranking</NavItem>,
+                    <NavItem key="2" componentClass={Link} href={myGameUrl} to={myGameUrl}><i className="futbol icon"></i> Meu jogo</NavItem>,
+                    <NavItem key="4" componentClass={Link} href="/payment" to="/payment"><i className="dollar sign icon"></i> Como Pagar</NavItem>,
+                    <NavItem key="3" componentClass={Link} href="/rule" to="/rule"><i className="file icon"></i> Regras</NavItem>,
                     this.renderAdminLink(this.props.auth.isAdmin),
                     <NavItem key="6" href="/api/logout">Logout&nbsp;&nbsp;&nbsp;<img className="ui avatar image" src={this.props.auth.urlImg}  /></NavItem>
                 ];

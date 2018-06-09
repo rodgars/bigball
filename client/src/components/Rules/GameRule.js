@@ -3,7 +3,7 @@ import React from 'react';
 const GameRule = () => {
     return (
         <div>
-        <p><i class="file icon"></i>  <u><b>Regras</b></u></p>
+        <p><i className="file icon"></i>  <u><b>Regras</b></u></p>
         <br />
 
         <div className="row">
@@ -28,7 +28,7 @@ const GameRule = () => {
                 <table className="ui table">
                     <thead>
                         <tr>
-                            <th colspan="2">Pontuação / Explicação</th>
+                            <th colSpan="2">Pontuação / Explicação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@ const GameRule = () => {
             <div className="col-xs-4">
                 <p><b>Passaporte da Alegria:</b> R$ 20,00</p>
                 <table className="ui table">
-                    <thead><tr><th colspan="2">Premiamento</th></tr></thead>
+                    <thead><tr><th colSpan="2">Premiamento</th></tr></thead>
                     <tbody>
                         <tr><td>1º colocado</td><td>60%</td></tr>
                         <tr><td>2º colocado</td><td>30%</td></tr>

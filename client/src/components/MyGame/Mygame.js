@@ -19,7 +19,7 @@ class MyGame extends Component{
             <Grid>
                 <Row className="showGrid">
                     <Col xs={6}>
-                        <p><i class="futbol icon"></i> <u><b>Meu Jogo</b></u></p>
+                        <p><i className="futbol icon"></i> <u><b>Meu Jogo</b></u></p>
                         <br />
                     </Col>
                     <Col xs={6}></Col>
