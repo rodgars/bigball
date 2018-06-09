@@ -6,7 +6,9 @@ var stageController = new StageController();
 
 router.get('/', (req, res) => {
 
-	var filter = {id: req.params.id};
+	var filter = {};
+
+	if(req.query.id) filter = {_id: req.query.id};
 
 	stageController.get(filter, function(docs){
 
