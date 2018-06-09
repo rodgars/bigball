@@ -21,6 +21,12 @@ router.get('/situation', (req, res) => {
 	});
 });
 
+router.get('/status', (req, res) => {
+	stageController.getStatus(function(docs){
+		
+		res.json(docs);
+	});
+});
 
 router.delete('/:id', (req, res) => {
 	

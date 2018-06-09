@@ -62,7 +62,7 @@ module.exports = function(){
 
 				matchController.update(matches, function(doc){
 
-					stageController.saveAll(stages, function(doc){
+					stageController.save(stages, function(doc){
 
 						accountController.update(account._id, account, function(doc){
 

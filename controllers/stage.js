@@ -18,6 +18,11 @@ module.exports = function(){
 		callback(Stage.schema.path('situation').enumValues);
 	};
 
+	this.getStatus = function(callback){
+
+		callback(Stage.schema.path('status').enumValues);
+	};
+
 	this.save = function(object, callback) {
 
 		var stages = [];
