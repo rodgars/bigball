@@ -33,7 +33,7 @@ stageGuessSchema.options.toObject.transform = function (doc, ret, options) {
 		ret.locked = ret.relatedStage.locked;
 		ret.order = ret.relatedStage.order;
 		ret.status = ret.relatedStage.status;
-		ret.deadline = ret.relatedStage.deadline.toISOString().replace('T', ' ').substring(0, 19);
+		ret.deadline = ret.relatedStage.deadline;
 
 		ret.relatedStage = ret.relatedStage._id;
 	}
