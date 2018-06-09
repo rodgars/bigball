@@ -14,6 +14,9 @@ router.get('/', (req, res) => {
 	if(id) filter._id = id;
 	if(user) filter.user = user;
 
+	//usuario logado
+	var loggedUser = '5b1b63eca98af130b89fb83c';
+
 	guessController.get(filter, function(docs){
 		
 		res.json(docs);
