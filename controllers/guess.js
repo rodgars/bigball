@@ -7,7 +7,7 @@ module.exports = function(){
 
 	this.get = function(filter, callback){
 		var response = [];
-		var query = Guess.find(filter);
+		var query = Guess.find(filter).populate("user");
 		query.then(function(docs){
 			var guesses = docs.forEach(function(gDocs){
 				var guess = gDocs.toObject();
