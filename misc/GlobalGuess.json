@@ -1,0 +1,15 @@
+{
+	"mainGuess": null,
+	"deadline": "2018-01-01T00:00:00.000Z",
+	"locked": false,
+	"firstPlace": null,
+	"secondPlace": null,
+	"thirdPlace": null,
+	"topScorer": null,
+	"teamGP": null,
+	"teamGC": null,
+	"pointsChampions": 0,
+	"pointsTeamGP": 0,
+	"pointsTeamGC": 0,
+	"pointsTopScorer": 0
+}

@@ -12,4 +12,11 @@ var matchSchema = new Schema({
 	visitorScore: Number
 }, { versionKey: false });
 
+if (!matchSchema.options.toObject) matchSchema.options.toObject = {};
+matchSchema.options.toObject.transform = function (doc, ret, options) {
+	ret.date = ret.date.toISOString().substring(0, 10);
+	return ret;
+}
+
+
 module.exports = mongoose.model('Match', matchSchema);

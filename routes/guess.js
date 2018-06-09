@@ -7,7 +7,9 @@ var guessController = new GuessController();
 
 router.get('/', (req, res) => {
 
-	guessController.get(req.user._id, function(docs){
+	var filter = {};
+
+	guessController.get(filter, function(docs){
 		
 		res.json(docs);
 	});
@@ -15,15 +17,17 @@ router.get('/', (req, res) => {
 
 router.get(/([a-f0-9]{24})/, (req, res) => {
 
-	guessController.get(req.params[0], function(docs){
+	var filter = {_id: req.params[0]};
+
+	guessController.get(filter, function(docs){
 		
-		res.json(docs);
+		res.json(docs[0]);
 	});
 });
 
 router.delete('/', (req, res) => {
 	
-	guessController.deleteAll(function(message){
+	guessController.delete({}, function(message){
 
 		res.json(message);
 
@@ -35,6 +39,20 @@ router.put('/', (req, res) => {
 
 	var guess = req.body;
 	
+	if (!guess._id) {res.json('ID nao encontrado');}
+	else {
+		
+		guessController.save(guess, function(docs){
+	
+			res.json(docs);
+		});
+	}
+});
+
+router.post('/', (req, res) => {
+
+	var guess = req.body;
+		
 	guessController.save(guess, function(docs){
 	
 		res.json(docs);

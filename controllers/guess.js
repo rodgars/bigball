@@ -1,100 +1,72 @@
-const ObjectId = require('mongodb').ObjectID;
-var Guess = require('../models/Guess');
-
-var emptyGuessJson = require('../misc/NewGuess.json');
+const Guess = require('../models/Guess');
+const GlobalGuess = require('../models/GlobalGuess');
+const StageGuess = require('../models/StageGuess');
+const MatchGuess = require('../models/MatchGuess');
 
 module.exports = function(){
 
-	var saveGuess = this.save;
+	this.get = function(filter, callback){
+		var response = [];
+		var query = Guess.find(filter);
+		query.then(function(docs){
+			var guesses = docs.forEach(function(gDocs){
+				var guess = gDocs.toObject();
+				let ggFilter = {mainGuess: guess._id};
+				response.push(guess);
+				let ggQuery = GlobalGuess.find(ggFilter);
+				ggQuery.then(function(ggDocs){
 
-	this.get = function(userId, callback){
-		
-		// recupera o guess do banco de dados
-		var findPromise = new Promise(function(resolve, reject){
-			Guess.find({user: userId}, function(err, guesses){
+						let gGuess;
+						
+						gGuess = ggDocs[0].toObject();
 
-				if(err) reject(err);
-				resolve(guesses);
+						guess.globalGuess = gGuess;
 
-			}).populate('stageGuesses.relatedStage').populate('stageGuesses.matchGuesses.relatedMatch').populate('stageGuesses.doubleMatch').populate('user');
-		});
 
-		findPromise.then(function(guessesMongo){
+						let sgFilter = {mainGuess: guess._id};
+						let sgQuery = StageGuess.find(sgFilter).populate('relatedStage');
+						sgQuery.then(function(sgDocs){
 
-			// se nao existe
-			if(guessesMongo.length == 0){
+								let sGuesses = sgDocs.map(sDoc => sDoc.toObject());
+								guess.stageGuesses = sGuesses;
+								mgPromises = sGuesses.map(function(sGuess){
+									return new Promise(function(resolve, reject){
+										let mgFilter = {stageGuess: sGuess._id};
+										let mgQuery = MatchGuess.find(mgFilter).populate('relatedMatch');
+										sGuess.matchGuesses = null;
+										mgQuery.then(function(mgDocs){
+											let mGuesses = mgDocs.map(mgDoc => mgDoc.toObject());
+											sGuess.matchGuesses = mGuesses;
+											resolve(true);
+										}).catch(err=>console.log(err));
+									})
+								});
+								Promise.all(mgPromises).then(function(){
+									callback(response)
+								});
 
-				guesses = [];
-				emptyGuessJson.user = userId;
+						}).catch(err=>console.log(err));
 
-				// insere a guess padrao
-				Guess.asyncUpsert(emptyGuessJson._id, emptyGuessJson).then(function(doc){
-
-					guessesMongo.push(doc);
-
-					var guesses = guessesMongo.map(function(guessMongo){
-						return Guess.transform(guessMongo);
-					});
-
-					callback(guesses);
-
-				}).catch(function(err){callback(err);});
-
-			}  else {
-
-				var guesses = guessesMongo.map(function(guessMongo){
-					return Guess.transform(guessMongo);
-				});
-
-				callback(guesses);
-			}
-
-		}).catch(function(error){
-			callback(error);
-		});
+				}).catch(err=>console.log(err));
+			});
+		}).catch(err=>console.log(err));
 	};
 
+
 	this.save = function(object, callback) {
-
 		var guesses = [];
-
 		if(Array.isArray(object)) {guesses = object} else {guesses.push(object)}
-
 		var promises = guesses.map(function(guess){
 			return Guess.asyncUpsert(guess._id, guess);
 		});
-
 		Promise.all(promises).then(doc => callback(doc)).catch(err => callback(err));
 	};
 
-	this.deleteAll = function(callback){
-		Guess.collection.drop(function(err){
+
+	this.delete = function(filter, callback){
+		Guess.deleteMany(filter, function(err){
 			if(err) console.log(err);
-
 			callback(true);
-			
 		});
-		
 	};
-
-	this.saveMatchGuess = function(userId, stageId, matchGuess, callback){
-
-		var findPromise = new Promise(function(resolve, reject){
-			Guess.find({user: userId}, function(err, guesses){
-
-				if(err) reject(err);
-				resolve(guesses);
-
-			}).populate('stageGuesses.relatedStage').populate('stageGuesses.matchGuesses.relatedMatch').populate('stageGuesses.doubleMatch').populate('user');
-		});
-
-		findPromise.then(function(doc){
-			console.log(doc);
-		}).catch(function(err){
-
-		});
-
-		callback(true);
-	};
-
 };

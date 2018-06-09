@@ -1,7 +1,9 @@
 var mongoose = require("mongoose");
+var ObjectId = require('mongodb').ObjectID;
 var { Schema } = mongoose;
 
 var globalGuessSchema = new Schema({
+	mainGuess: {type: Schema.Types.ObjectId, ref: 'Guess'},
 	deadline: Date,
 	locked: Boolean,
 	firstPlace: { type: String, ref: 'Team'},
@@ -14,6 +16,29 @@ var globalGuessSchema = new Schema({
 	pointsTeamGP: Number,
 	pointsTeamGC: Number,
 	pointsTopScorer: Number
-}, {_id : false, versionKey: false});
+}, {versionKey: false});
 
-module.exports = globalGuessSchema;
+globalGuessSchema.static('asyncUpsert', function (id, globalGuess, callback) {
+
+	var model = this;
+	return new Promise(function(resolve, reject){
+
+		if(!id) {id = new ObjectId();}
+
+		model.findByIdAndUpdate(id, globalGuess, {upsert: true, new: true}, function(err, doc){
+			if(err) reject(err);
+
+			resolve(doc);
+		});
+	});
+});
+
+if (!globalGuessSchema.options.toObject) globalGuessSchema.options.toObject = {};
+globalGuessSchema.options.toObject.transform = function (doc, ret, options) {
+
+	delete ret.mainGuess;
+
+	return ret;
+}
+
+module.exports = mongoose.model('GlobalGuess', globalGuessSchema);
