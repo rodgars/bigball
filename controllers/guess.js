@@ -7,13 +7,17 @@ module.exports = function(){
 
 	this.get = function(filter, callback){
 		var response = [];
+<<<<<<< HEAD
 		var query = Guess.find(filter).populate("user");
+=======
+		var query = Guess.find(filter).populate('user');
+>>>>>>> ba57faf333b861e6615bf43662975d5bea3f35f5
 		query.then(function(docs){
 			var guesses = docs.forEach(function(gDocs){
 				var guess = gDocs.toObject();
 				let ggFilter = {mainGuess: guess._id};
 				response.push(guess);
-				let ggQuery = GlobalGuess.find(ggFilter);
+				let ggQuery = GlobalGuess.find(ggFilter).populate('relatedStage');
 				ggQuery.then(function(ggDocs){
 
 						let gGuess;
@@ -26,7 +30,6 @@ module.exports = function(){
 						let sgFilter = {mainGuess: guess._id};
 						let sgQuery = StageGuess.find(sgFilter).populate('relatedStage');
 						sgQuery.then(function(sgDocs){
-
 								let sGuesses = sgDocs.map(sDoc => sDoc.toObject());
 								guess.stageGuesses = sGuesses;
 								mgPromises = sGuesses.map(function(sGuess){
@@ -36,7 +39,9 @@ module.exports = function(){
 										sGuess.matchGuesses = null;
 										mgQuery.then(function(mgDocs){
 											let mGuesses = mgDocs.map(mgDoc => mgDoc.toObject());
-											sGuess.matchGuesses = mGuesses;
+
+											if(sGuess.status != 'closed'){ sGuess.matchGuesses = mGuesses;}
+
 											resolve(true);
 										}).catch(err=>console.log(err));
 									})

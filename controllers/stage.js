@@ -2,20 +2,9 @@ var Stage = require('../models/Stage');
 
 module.exports = function(){
 
-	this.getById = function(id, callback){
+	this.get = function(filter, callback){
 
-		Stage.findById(id, function(err, docs){
-
-			if(err) console.log(err);
-
-			callback(docs);
-
-		}).populate('matches');
-	};
-
-	this.getAll = function(callback){
-
-		Stage.find(function(err, docs){
+		Stage.find(filter, function(err, docs){
 
 			if(err) console.log(err);
 
@@ -24,24 +13,22 @@ module.exports = function(){
 		}).populate('matches');
 	};
 
-	this.update = function(id, json, callback) {	
+	this.getSituations = function(callback){
 
-		console.log(id);
-
-		Stage.findByIdAndUpdate(id, json, {upsert: true}, function(err, docs){
-			if(err) callback(false);
-
-			callback(true);
-		});
+		callback(Stage.schema.path('situation').enumValues);
 	};
 
-	this.saveAll = function(json, callback) {
+	this.save = function(object, callback) {
 
-		Stage.insertMany(json, function(err, docs){
-			if(err) callback(false);
+		var stages = [];
 
-			callback(true);
+		if(Array.isArray(object)) {stages = object} else {stages.push(object)}
+
+		var promises = stages.map(function(stage){
+			return Stage.asyncUpsert(stage._id, stage);
 		});
+
+		Promise.all(promises).then(doc => callback(doc)).catch(err => callback(err));
 	};
 
 	this.delete = function(id, callback){

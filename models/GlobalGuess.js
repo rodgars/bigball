@@ -4,8 +4,7 @@ var { Schema } = mongoose;
 
 var globalGuessSchema = new Schema({
 	mainGuess: {type: Schema.Types.ObjectId, ref: 'Guess'},
-	deadline: Date,
-	locked: Boolean,
+	relatedStage: {type: String, ref: 'Stage'},
 	firstPlace: { type: String, ref: 'Team'},
 	secondPlace: { type: String, ref: 'Team'},
 	thirdPlace: { type: String, ref: 'Team'},
@@ -35,6 +34,13 @@ globalGuessSchema.static('asyncUpsert', function (id, globalGuess, callback) {
 
 if (!globalGuessSchema.options.toObject) globalGuessSchema.options.toObject = {};
 globalGuessSchema.options.toObject.transform = function (doc, ret, options) {
+
+	if(ret.relatedStage._id) {
+		ret.status = ret.relatedStage.status;
+		ret.deadline = ret.relatedStage.deadline.toISOString().replace('T', ' ').substring(0, 19);
+		ret.situation = ret.relatedStage.situation;
+		ret.relatedStage = ret.relatedStage._id;
+	}
 
 	delete ret.mainGuess;
 

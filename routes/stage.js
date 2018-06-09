@@ -5,17 +5,17 @@ var router = express.Router();
 var stageController = new StageController();
 
 router.get('/', (req, res) => {
-	stageController.getAll(function(docs){
-		
+
+	var filter = {id: req.params.id};
+
+	stageController.get(filter, function(docs){
+
 		res.json(docs);
 	});
 });
 
-router.get('/:id', (req, res) => {
-
-	var id = req.params.id;
-
-	stageController.getById(id, function(docs){
+router.get('/situation', (req, res) => {
+	stageController.getSituations(function(docs){
 		
 		res.json(docs);
 	});
@@ -34,38 +34,15 @@ router.delete('/:id', (req, res) => {
 
 });
 
-router.put('/:id', (req, res) => {
+router.put('/', (req, res) => {
 
-	var id = req.params.id;
 	var stage = req.body;
+	
+	stageController.save(stage, function(docs){
 
-	stageController.update(id, stage, function(doc){
-
-		res.json(doc);
-
+		res.json(docs);
 	});
-});
 
-router.post('/', (req, res) => {
-
-	var stage = req.body;
-
-	if(Array.isArray(stage)){
-		stageController.saveAll(stage, function(doc){
-
-			res.json(doc);
-
-		});
-	} else {
-
-		var id = stage._id;
-
-		stageController.update(id, stage, function(doc){
-
-			res.json(doc);
-
-		});
-	}
 });
 
 

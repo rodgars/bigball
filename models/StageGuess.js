@@ -4,8 +4,6 @@ var { Schema } = mongoose;
 
 var stageGuessSchema = new Schema({
 	mainGuess: {type: Schema.Types.ObjectId, ref: 'Guess'},
-	deadline: Date,
-	locked: Boolean,
 	relatedStage: {type: String, ref: 'Stage'},
 	doubleMatch: {type: Number, ref: 'Match'},
 	pointsDoubleMatch: Number
@@ -29,21 +27,20 @@ stageGuessSchema.static('asyncUpsert', function (id, stageGuess, callback) {
 if (!stageGuessSchema.options.toObject) stageGuessSchema.options.toObject = {};
 stageGuessSchema.options.toObject.transform = function (doc, ret, options) {
 
-	if(ret.relatedStage){
+	if(ret.relatedStage._id){
 		ret.label = ret.relatedStage.label;
 		ret.situation = ret.relatedStage.situation;
 		ret.locked = ret.relatedStage.locked;
 		ret.order = ret.relatedStage.order;
+		ret.status = ret.relatedStage.status;
+		ret.deadline = ret.relatedStage.deadline.toISOString().replace('T', ' ').substring(0, 19);
+
 		ret.relatedStage = ret.relatedStage._id;
 	}
 
-	ret.deadline = ret.deadline.toISOString().replace('T', ' ').substring(0, 19);
-
 	delete ret.mainGuess;
 
-
 	return ret;
-
 }
 
 module.exports = mongoose.model('StageGuess', stageGuessSchema);

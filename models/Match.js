@@ -14,6 +14,9 @@ var matchSchema = new Schema({
 
 if (!matchSchema.options.toObject) matchSchema.options.toObject = {};
 matchSchema.options.toObject.transform = function (doc, ret, options) {
+
+	if(!ret.winner) {ret.winner = {}}
+
 	ret.date = ret.date.toISOString().substring(0, 10);
 	return ret;
 }
