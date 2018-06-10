@@ -9,6 +9,7 @@ const checkRanking = (ranking) => {
 };
 
 const MyGameProfile = (props) => {
+    console.log("profile", props);
     return (
         <div>
         <div className="ui card">
