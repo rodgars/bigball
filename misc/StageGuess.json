@@ -2,29 +2,34 @@
 	"mainGuess": null,
 	"relatedStage": "groupStage",
 	"doubleMatch": null,
-	"pointsDoubleMatch": 0
+	"pointsDoubleMatch": 0,
+	"matchGuesses": []
 	
 },{
 	"mainGuess": null,
 	"relatedStage": "eighthFinals",
 	"doubleMatch": null,
-	"pointsDoubleMatch": 0
+	"pointsDoubleMatch": 0,
+	"matchGuesses": []
 	
 },{
 	"mainGuess": null,
 	"relatedStage": "quarterFinals",
 	"doubleMatch": null,
-	"pointsDoubleMatch": 0
+	"pointsDoubleMatch": 0,
+	"matchGuesses": []
 	
 },{
 	"mainGuess": null,
 	"relatedStage": "semiFinals",
 	"doubleMatch": null,
-	"pointsDoubleMatch": 0
+	"pointsDoubleMatch": 0,
+	"matchGuesses": []
 	
 },{
 	"mainGuess": null,
 	"relatedStage": "finals",
 	"doubleMatch": null,
-	"pointsDoubleMatch": 0
+	"pointsDoubleMatch": 0,
+	"matchGuesses": []
 }]

@@ -4,7 +4,7 @@ const StageGuess = require('../models/StageGuess');
 const MatchGuess = require('../models/MatchGuess');
 
 module.exports = function(){
-
+/*
 	this.get = function(filter, callback){
 		var response = [];
 		var query = Guess.find(filter).populate('user');
@@ -52,7 +52,62 @@ module.exports = function(){
 			});
 		}).catch(err=>console.log(err));
 	};
+*/
 
+	this.get = function(filter, loggedUser, callback){
+
+		var query = Guess.find(filter)
+			.populate('user')
+			.populate({path: 'globalGuess', populate: {path: 'relatedStage'}})
+			.populate({
+				path:'stageGuesses',
+				populate: {
+					path: 'matchGuesses', populate: {path: 'relatedMatch'}}})
+			.populate({
+				path:'stageGuesses',
+				populate: {
+					path: 'relatedStage' }});
+
+		query.then(function(guesses){
+
+			var result = [];
+
+			guesses.forEach(function(guess){
+
+				guess = guess.toObject();
+				result.push(guess);
+
+				let removeOpenStages = guess.user._id != loggedUser;
+
+				if((guess.globalGuess.status == 'closed') || (guess.globalGuess.status == 'opened' && removeOpenStages)) {
+
+					delete guess.globalGuess.firstPlace;
+					delete guess.globalGuess.secondPlace;
+					delete guess.globalGuess.thirdPlace;
+					delete guess.globalGuess.topScorer;
+					delete guess.globalGuess.teamGP;
+					delete guess.globalGuess.teamGC;
+					delete guess.globalGuess.pointsChampions;
+					delete guess.globalGuess.pointsTeamGP;
+					delete guess.globalGuess.pointsTeamGC;
+					delete guess.globalGuess.pointsTopScorer;
+
+				}
+
+				guess.stageGuesses.forEach(function(stageGuess){
+
+					if( (stageGuess.status == 'closed') || (stageGuess.status == 'opened' && removeOpenStages)) {
+						delete stageGuess.pointsDoubleMatch;
+						delete stageGuess.doubleMatch;
+						delete stageGuess.matchGuesses;
+					}
+				});
+
+			});
+
+			callback(result);
+		});
+	};
 
 	this.save = function(object, callback) {
 		var guesses = [];

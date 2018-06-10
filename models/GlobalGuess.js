@@ -35,9 +35,8 @@ globalGuessSchema.static('asyncUpsert', function (id, globalGuess, callback) {
 if (!globalGuessSchema.options.toObject) globalGuessSchema.options.toObject = {};
 globalGuessSchema.options.toObject.transform = function (doc, ret, options) {
 
-	if(ret.relatedStage._id) {
+	if(ret.relatedStage && ret.relatedStage._id) {
 		ret.status = ret.relatedStage.status;
-		console.log(ret.relatedStage);
 		ret.deadline = ret.relatedStage.deadline;
 		ret.situation = ret.relatedStage.situation;
 		ret.relatedStage = ret.relatedStage._id;

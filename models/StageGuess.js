@@ -6,7 +6,8 @@ var stageGuessSchema = new Schema({
 	mainGuess: {type: Schema.Types.ObjectId, ref: 'Guess'},
 	relatedStage: {type: String, ref: 'Stage'},
 	doubleMatch: {type: Number, ref: 'Match'},
-	pointsDoubleMatch: Number
+	pointsDoubleMatch: Number,
+	matchGuesses: [{type: Schema.Types.ObjectId, ref: 'MatchGuess'}]
 }, {versionKey: false });
 
 stageGuessSchema.static('asyncUpsert', function (id, stageGuess, callback) {
@@ -30,7 +31,6 @@ stageGuessSchema.options.toObject.transform = function (doc, ret, options) {
 	if(ret.relatedStage._id){
 		ret.label = ret.relatedStage.label;
 		ret.situation = ret.relatedStage.situation;
-		ret.locked = ret.relatedStage.locked;
 		ret.order = ret.relatedStage.order;
 		ret.status = ret.relatedStage.status;
 		ret.deadline = ret.relatedStage.deadline;
