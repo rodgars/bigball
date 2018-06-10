@@ -9,6 +9,8 @@ class MyGame extends Component{
     componentDidMount(){
         const {id} = this.props.match.params;
 
+        console.log("params", this.props.match.params);
+
         this.props.fetchTeam();
         this.props.fetchPlayer();
         this.props.fetchGuess(id);
