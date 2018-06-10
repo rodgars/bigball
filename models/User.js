@@ -111,23 +111,47 @@ userSchema.post('save', function () {
 			globalGuessController.save(globalGuessJson, function(doc){resolve(doc);});}) 
 		);
 
+		let matches = [];
+
+		stageGuessesJson.forEach(function(stageGuessJson){
+			let stageGuessId = stageGuessJson._id;
+			stageGuessJson.matchGuesses = [];
+			if(stageGuessJson.relatedStage == 'groupStage'){
+				
+				for(let i = 1; i < 49; i++){
+					let matchId = new ObjectID();
+					matches.push({_id: matchId, relatedMatch: i, points: 0, guess: {}, stageGuess: stageGuessId});
+					stageGuessJson.matchGuesses.push(matchId);
+				}
+				
+				} else if (stageGuessJson.relatedStage == 'eighthFinals') {
+					for(let j = 49; j < 57; j++){
+						let matchId = new ObjectID();
+						matches.push({_id: matchId, relatedMatch: j, points: 0, guess: {}, stageGuess: stageGuessId});
+						stageGuessJson.matchGuesses.push(matchId);
+					}
+				} else if (stageGuessJson.relatedStage == 'quarterFinals') {
+					for(let k = 57; k < 61; k++){
+						let matchId = new ObjectID();
+						matches.push({_id: matchId, relatedMatch: k, points: 0, guess: {}, stageGuess: stageGuessId});
+						stageGuessJson.matchGuesses.push(matchId);
+					}
+				} else if (stageGuessJson.relatedStage == 'semiFinals') {
+					for(let l = 61; l < 63; l++){
+						let matchId = new ObjectID();
+						matches.push({_id: matchId, relatedMatch: l, points: 0, guess: {}, stageGuess: stageGuessId});
+						stageGuessJson.matchGuesses.push(matchId);
+					}
+				} else {
+					for(let m = 63; m < 65; m++){
+						let matchId = new ObjectID();
+						matches.push({_id: matchId, relatedMatch: m, points: 0, guess: {}, stageGuess: stageGuessId});
+						stageGuessJson.matchGuesses.push(matchId);
+					}
+				}
+		});
+
 		promises.push(stageGuessesJson.map(function(stageGuessJson){return new Promise(function(resolve, reject){stageGuessController.save(stageGuessJson,function(stageGuess){
-			stageGuess = stageGuess[0];			
-			let stageGuessId = stageGuess._id;
-			let matches = [];
-
-			if(stageGuess.relatedStage == 'groupStage'){
-				for(let i = 1; i < 49; i++){matches.push({"relatedMatch": i, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else if (stageGuess.relatedStage == 'eighthFinals') {
-				for(let j = 49; j < 57; j++){matches.push({"relatedMatch": j, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else if (stageGuess.relatedStage == 'quarterFinals') {
-				for(let k = 57; k < 61; k++){matches.push({"relatedMatch": k, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else if (stageGuess.relatedStage == 'semiFinals') {
-				for(let l = 61; l < 63; l++){matches.push({"relatedMatch": l, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else {
-				for(let m = 63; m < 65; m++){matches.push({"relatedMatch": m, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			}
-
 			new Promise(function(res, rej){matchGuessController.save(matches, function(docs){res(docs)})}).then(resolve(stageGuess));
 		})})}));
 						

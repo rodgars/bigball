@@ -7,11 +7,11 @@ module.exports = function(){
 	this.get = function(filter, callback){
 		
 		GlobalGuess.find(filter, function(err, guesses){
-
+			console.log('teste');
 			if(err) callback(err);
 			callback(guesses);
 
-		});
+		}).populate('relatedStage');
 
 	};
 

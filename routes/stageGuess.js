@@ -47,15 +47,11 @@ router.put(/([a-f0-9]{24})/, (req, res) => {
 router.put('/', (req, res) => {
 
 	var stageGuess = req.body;
-
-	if (!stageGuess._id) {res.json('ID nao encontrado');}
-	else {
-		
-		stageGuessController.save(stageGuess, function(docs){
 	
-			res.json(docs);
-		});
-	}
+	stageGuessController.save(stageGuess, function(docs){
+
+		res.json(docs);
+	});
 });
 
 router.post('/', (req, res) => {

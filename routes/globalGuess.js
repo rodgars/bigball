@@ -30,32 +30,11 @@ router.delete('/', (req, res) => {
 router.put('/', (req, res) => {
 
 	var globalGuess = req.body;
-
-	if (!globalGuess._id) {res.json('ID nao encontrado');}
-	else {
-		
-		globalGuessController.save(globalGuess, function(docs){
 	
-			res.json(docs);
-		});
-	}
-});
+	globalGuessController.save(globalGuess, function(docs){
 
-router.put(/([a-f0-9]{24})/, (req, res) => {
-
-	var globalGuess = req.body;
-
-	if (!globalGuess._id) {res.json('ID nao encontrado.');}
-
-	else if (globalGuess._id != req.params[0]) {res.json('ID do form diferente do ID da URL.');}
-
-	else {
-		
-		globalGuessController.save(matchGuess, function(docs){
-	
-			res.json(docs[0]);
-		});
-	}
+		res.json(docs);
+	});
 });
 
 router.post('/', (req, res) => {

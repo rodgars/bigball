@@ -25,7 +25,7 @@ module.exports = function(){
 			return StageGuess.asyncUpsert(guess._id, guess);
 		});
 
-		Promise.all(promises).then(doc => callback(doc)).catch(err => callback(err));
+		Promise.all(promises).then(doc => callback(doc)).catch(function(err){ console.log('err=>' + err); callback(err);});
 	};
 
 	this.delete = function(filter, callback){

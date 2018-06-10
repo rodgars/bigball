@@ -32,18 +32,19 @@ matchGuessSchema.options.toObject.transform = function (doc, ret, options) {
 		ret.guess = {};
 	}
 
-	if(ret.relatedMatch){
+	if(ret.relatedMatch._id){
 		ret.homeTeam = ret.relatedMatch.homeTeam;
 		ret.visitorTeam = ret.relatedMatch.visitorTeam;
 		ret.result.winner = ret.relatedMatch.winner;
 		ret.result.homeScore = ret.relatedMatch.homeScore;
 		ret.result.visitorScore = ret.relatedMatch.visitorScore;
 		ret.date = ret.relatedMatch.date;
+		ret.group = ret.relatedMatch.group;
+
 		ret.relatedMatch = ret.relatedMatch._id;
 	}
 
 	delete	ret.stageGuess;
-
 	return ret;
 }
 
