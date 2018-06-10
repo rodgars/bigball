@@ -13,20 +13,20 @@ const MyGameProfile = (props) => {
         <div>
         <div className="ui card">
             <div className="image">
-                <img src={props.user.user.urlImg.replace("sz=50","sz=250")}  />
+                <img src={props.guess.user.urlImg.replace("sz=50","sz=250")}  />
             </div>
             <div className="content">
-                <div className="header"><Glyphicon glyph="user" /> {props.user.name}</div>
+                <div className="header"><Glyphicon glyph="user" /> {props.guess.user.name}</div>
                 <div className="meta">
-                    <span className="date">Primeiro acesso em XXXXX</span>
-                    <br />User Id: {props.user.userId}
+                    User Id: {props.guess.user.userId}<br/>
+                    <span className="date">Criado em {props.guess.user.registerDate}</span>
                 </div>
                 <div className="description">
-                    # {props.position}º - {checkRanking(props.position)} <br />
+                    # {props.guess.position}º - {checkRanking(props.guess.position)} <br />
                 </div>
             </div>
         </div><br />
-        <PaymentAlert name={props.user.name} isPaid={props.user.isPaid} /> 
+        <PaymentAlert name={props.guess.user.name} isPaid={props.guess.user.isPaid} /> 
         </div>
     );
 };

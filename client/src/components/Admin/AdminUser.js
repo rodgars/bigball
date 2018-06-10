@@ -81,7 +81,6 @@ class AdminUser extends Component {
         this.props.saveUser(id, values);
         let value = this.ddlFindPaid.value;
         if(value != "") value = "?isPaid=" + value;
-        console.log("value",value);
         
         this.props.fetchUserList(value);
         this.handleHide();

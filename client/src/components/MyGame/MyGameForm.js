@@ -64,7 +64,7 @@ class MyGameForm extends Component {
                         </div>
                     </div>
                     <hr />
-                    <MyGameFormPhaseList edit={this.state.isEditable} />
+                    <MyGameFormPhaseList id={this.props.id} edit={this.state.isEditable} />
                 </form>
             </div>
         );

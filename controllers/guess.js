@@ -77,7 +77,7 @@ module.exports = function(){
 				guess = guess.toObject();
 				result.push(guess);
 
-				let removeOpenStages = guess.user._id != loggedUser;
+				let removeOpenStages = !guess.user._id.equals(loggedUser);
 
 				if((guess.globalGuess.status == 'closed') || (guess.globalGuess.status == 'opened' && removeOpenStages)) {
 

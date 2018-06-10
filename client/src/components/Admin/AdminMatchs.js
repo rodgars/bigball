@@ -4,26 +4,11 @@ import {Modal} from 'react-bootstrap';
 import _ from 'lodash';
 import DropDown from '../Utils/DropDown';
 import * as utils from '../../utils/filtering';
+import * as drops from '../../utils/dropdown';
 import * as actions from '../../actions/AdminActions';
 
 const showModal = (match) => {
     return typeof(match._id) != 'undefined';
-};
-
-const dataValues = (values) => {
-    let arr = [];
-    _.map(values, value => {
-        arr.push({val:value,name:value});
-    });
-    return arr;
-};
-
-const dataTeams = (teams) => {
-    let arr = [];
-    _.map(teams, team => {
-        arr.push({val:team.id,name:team.name});
-    });
-    return arr;
 };
 
 class AdminMatchs extends Component {
@@ -123,8 +108,8 @@ class AdminMatchs extends Component {
                 <div className="ui grid">
                     <div className="three wide column">( {stage.order} ) - {stage.deadline}</div>
                     <div className="three wide column">{stage._id}<br/>{stage.label}</div>
-                    <div className="four wide column"><DropDown id="situation" key={`${stage._id}_sit`} values={dataValues(this.props.situation)} selected={stage.situation} /></div>
-                    <div className="four wide column"><DropDown id="status" key={`${stage._id}_loc`} values={dataValues(this.props.status)} selected={stage.status} /></div>
+                    <div className="four wide column"><DropDown id="situation" key={`${stage._id}_sit`} values={drops.dataValues(this.props.situation)} selected={stage.situation} /></div>
+                    <div className="four wide column"><DropDown id="status" key={`${stage._id}_loc`} values={drops.dataValues(this.props.status)} selected={stage.status} /></div>
                     <div className="two wide column"><button key={`${stage._id}_btn`} type="submit" className="ui icon blue button"><i className="save icon"></i> Salvar</button></div>
                 </div>
                 </form>
@@ -174,7 +159,7 @@ class AdminMatchs extends Component {
                             <td>
                                 <div className="ui grid">
                                     <div className="eight wide column">
-                                        <DropDown ref={ddl => this.ddlVisitor = ddl} id="situation" values={dataTeams(this.props.teams)} selected={this.state.match.visitorTeam} />
+                                        <DropDown ref={ddl => this.ddlVisitor = ddl} id="ddlVisitorTeam" values={drops.dataTeams(this.props.teams)} selected={this.state.match.visitorTeam} />
                                     </div>
                                     <div className="four wide column">
                                         <input ref={input => {this.txtVisitorScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.visitorScore} className="ui input" />
@@ -183,11 +168,11 @@ class AdminMatchs extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Home</td>
+                            <td><b>Home</b></td>
                             <td>
                                 <div className="ui grid">
                                     <div className="eight wide column">
-                                        <DropDown ref={ddl => this.ddlHome = ddl} id="situation" values={dataTeams(this.props.teams)} selected={this.state.match.homeTeam}  />
+                                        <DropDown ref={ddl => this.ddlHome = ddl} id="ddlHomeTeam" values={drops.dataTeams(this.props.teams)} selected={this.state.match.homeTeam}  />
                                     </div>
                                     <div className="four wide column">
                                         <input ref={input => {this.txtHomeScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.homeScore} className="ui input" />
@@ -203,7 +188,7 @@ class AdminMatchs extends Component {
                             <b>Winner: </b>
                         </div>
                         <div className="eight wide column">
-                            <DropDown  ref={ddl => this.ddlWinner = ddl} id="situation" values={dataTeams(this.props.teams)} selected={this.state.match.winner} />
+                            <DropDown  ref={ddl => this.ddlWinner = ddl} id="situation" values={drops.dataTeams(this.props.teams)} selected={this.state.match.winner} />
                         </div>
                         <div className="six wide column">
                             <button className="ui blue button" onClick={this.submitMatch}><i className="icon save"></i>Save</button>

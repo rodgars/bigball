@@ -15,7 +15,6 @@ class MyGame extends Component{
     }
 
     render(){
-        console.log("guess",this.props.guess);
         return (
             <Grid>
                 <Row className="showGrid">
@@ -27,10 +26,10 @@ class MyGame extends Component{
                 </Row>
                 <Row className="showGrid">
                     <Col md={3} xs={12}>
-                        <MyGameProfile user={this.props.guess} />
+                        <MyGameProfile guess={this.props.guess} />
                     </Col>
                     <Col md={9} xs={12}>
-                        <MyGameForm />                 
+                        <MyGameForm id={this.props.match.params} />                 
                     </Col>
                 </Row>
                 <br /><br />
