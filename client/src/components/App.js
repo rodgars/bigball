@@ -20,6 +20,7 @@ class App extends Component {
         this.props.fetchUser();
         this.props.fetchTeam();
         this.props.fetchPlayer();
+        this.props.fetchGuess(this.props.auth._id);
     }
 
     render(){
@@ -48,4 +49,8 @@ class App extends Component {
     }
 };
 
-export default connect(null, actions)(App);
+function mapStateToProps({auth}){
+    return {auth};
+}
+
+export default connect(mapStateToProps, actions)(App);
