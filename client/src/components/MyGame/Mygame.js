@@ -28,7 +28,7 @@ class MyGame extends Component{
                 </Row>
                 <Row className="showGrid">
                     <Col md={3} xs={12}>
-                        <MyGameProfile guess={this.props.guess} />
+                        <MyGameProfile />
                     </Col>
                     <Col md={9} xs={12}>
                         <MyGameForm id={this.props.match.params} />                 
