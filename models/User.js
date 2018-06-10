@@ -152,9 +152,11 @@ userSchema.post('save', function () {
 		});
 
 		promises.push(stageGuessesJson.map(function(stageGuessJson){return new Promise(function(resolve, reject){stageGuessController.save(stageGuessJson,function(stageGuess){
-			new Promise(function(res, rej){matchGuessController.save(matches, function(docs){res(docs)})}).then(resolve(stageGuess));
+			resolve(stageGuess);
 		})})}));
-						
+			
+		promises.push(new Promise(function(res, rej){matchGuessController.save(matches, function(matches){res(matches)})}));
+			
 		Promise.all(promises).then(function(){});
 	});
     }
