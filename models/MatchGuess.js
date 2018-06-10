@@ -3,7 +3,7 @@ var ObjectId = require('mongodb').ObjectID;
 var { Schema } = mongoose;
 
 var matchGuessSchema = new Schema({
-	relatedMatch: {type: Number, unique: true, ref: 'Match'},
+	relatedMatch: {type: Number, ref: 'Match'},
 	points: Number,
 	stageGuess: {type: Schema.Types.ObjectId, ref: 'StageGuess'},
 	guess: {homeScore: Number, visitorScore: Number, winner:{type: String, ref: 'Team'}}
@@ -48,5 +48,20 @@ matchGuessSchema.options.toObject.transform = function (doc, ret, options) {
 	return ret;
 }
 
+matchGuessSchema.methods.calculate = function(result) {
+	console.log(result);
+	var instance = this;
+	return new Promise(function(resolve, reject){
+		
+		if((!instance.guess.homeScore)||(!this.instance.visitorScore)){
+			
+			instance.points = 99;
+			instance.save(resolve);
+			
+		}
+	
+	});
+	
+};
 
 module.exports = mongoose.model('MatchGuess', matchGuessSchema);

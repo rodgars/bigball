@@ -29,7 +29,16 @@ module.exports = function(){
 			});
 		});
 
-		Promise.all(promises).then(doc => callback(doc)).catch(doc => callback(doc));
+		Promise.all(promises).then(function(docs){
+
+			Promise.all(docs.map(function(doc){
+				return new Promise(function(resolve, reject){
+					doc.calculate(resolve);
+				});
+				
+			})).then(callback(docs));
+
+		}).catch(doc => callback(doc));
 	};
 
 	this.delete = function(filter, callback){
