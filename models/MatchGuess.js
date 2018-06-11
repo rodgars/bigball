@@ -48,20 +48,44 @@ matchGuessSchema.options.toObject.transform = function (doc, ret, options) {
 	return ret;
 }
 
-matchGuessSchema.methods.calculate = function(result) {
-	console.log(result);
-	var instance = this;
-	return new Promise(function(resolve, reject){
-		
-		if((!instance.guess.homeScore)||(!this.instance.visitorScore)){
-			
-			instance.points = 99;
-			instance.save(resolve);
-			
-		}
+matchGuessSchema.static('calculate', function(match) {
+
+	var model = this;
 	
+	model.find({relatedMatch: match._id}).then(function(matchGuesses){
+
+		matchGuesses.map(function(matchGuess){
+		
+			return new Promise(function(resolve, reject){
+
+				if(matchGuess.guess && matchGuess.guess.homeScore){
+
+					var pontos = 0;
+
+					var guessDiff = matchGuess.guess.homeScore - matchGuess.guess.visitorScore;
+					var resultDiff = match.homeScore - match.visitorScore;
+
+					var result = 0;
+					if (resultDiff > 0) result = 1
+					else if (resultDiff < 0) result = -1;
+
+					var guess = 0
+					if (guessDiff > 0) guess = 1
+					else if (guessDiff < 0) guess = -1;
+
+					if(guessDiff == resultDiff) pontos = pontos + 2;
+					if(result == guess) pontos = pontos + 3;
+
+					matchGuess.points = pontos;
+					matchGuess.save(resolve);
+			
+				}
+	
+			});
+	
+		});
 	});
 	
-};
+});
 
 module.exports = mongoose.model('MatchGuess', matchGuessSchema);

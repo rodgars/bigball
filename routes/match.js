@@ -5,7 +5,12 @@ var router = express.Router();
 var matchController = new MatchController();
 
 router.get('/', (req, res) => {
-	matchController.get(function(docs){
+
+	var filter = {};
+
+	if (req.query.id) filter = {_id: req.query.id};
+
+	matchController.get(filter, function(docs){
 		
 		res.json(docs);
 	});
@@ -29,7 +34,7 @@ router.put('/', (req, res) => {
 	matchController.update(matches, function(docs){
 	
 		res.json(docs);
-	});
+	}, true);
 	
 });
 

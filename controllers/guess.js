@@ -106,7 +106,7 @@ module.exports = function(){
 			});
 
 			callback(result);
-		});
+		}).catch(err => console.log('controller/guess/111'));
 	};
 
 	this.save = function(object, callback) {

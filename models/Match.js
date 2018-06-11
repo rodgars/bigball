@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var MatchGuess = require('./MatchGuess');
 var { Schema } = mongoose;
 
 var matchSchema = new Schema({
@@ -21,17 +20,5 @@ matchSchema.options.toObject.transform = function (doc, ret, options) {
 	ret.date = ret.date.toISOString().substring(0, 10);
 	return ret;
 }
-
-matchSchema.methods.calculate = function(cb) {
-	var instance = this;
-	var filter = {relatedMatch: this._id};	
-	
-	MatchGuess.find(filter).then(function(docs){
-		Promise.all(docs.map(function(doc){
-			return doc.calculate({homeScore: instance.homeScore, visitorScore: instance.visitorScore, winner: instance.winner});
-		})).then(mgs => cb(mgs));
-	});
-};
-
 
 module.exports = mongoose.model('Match', matchSchema);

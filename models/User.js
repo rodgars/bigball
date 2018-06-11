@@ -3,23 +3,20 @@ const autoIncrement = require("mongoose-auto-increment");
 const Guess = require('./Guess');
 const { Schema } = mongoose;
 
-const guessJson = require('../misc/Guess.json');
 const GuessController = require('../controllers/guess');
 const guessController = new GuessController();
-
-const globalGuessJson = require('../misc/GlobalGuess.json');
 const GlobalGuessController = require('../controllers/globalGuess');
 const globalGuessController = new GlobalGuessController();
-
-const stageGuessesJson = require('../misc/StageGuess.json');
 const StageGuessController = require('../controllers/stageGuess');
 const stageGuessController = new StageGuessController();
-
-const matchGuessesJson = require('../misc/MatchGuess.json');
 const MatchGuessController = require('../controllers/matchGuess');
 const matchGuessController = new MatchGuessController();
-
 const ObjectID = require('mongodb').ObjectID;
+
+const _guessJson = require('../misc/Guess.json');
+const _globalGuessJson = require('../misc/GlobalGuess.json');
+const _stageGuessesJson = require('../misc/StageGuess.json');
+const _matchGuessesJson = require('../misc/MatchGuess.json');
 
 const userSchema = new Schema({
     googleID: String,
@@ -41,55 +38,17 @@ userSchema.pre('save', function (next) {
     next();
 });
 
-/*
 userSchema.post('save', function () {
     if (this.wasNew) {
-	
-	guessJson.user = this._id;
 
-        var insereGuess = new Promise(function(resolve, reject){guessController.save(guessJson, function(doc){resolve(doc[0]);});});
 
-	insereGuess.then(function(guess){
-		var promises = [];
-		var guessId = guess._id;
+let guessJson = JSON.parse(JSON.stringify(_guessJson));
+let globalGuessJson = JSON.parse(JSON.stringify(_globalGuessJson));
+let stageGuessesJson = JSON.parse(JSON.stringify(_stageGuessesJson));
+let matchGuessesJson = JSON.parse(JSON.stringify(_matchGuessesJson));
 
-		globalGuessJson.mainGuess = guessId;
-		stageGuessesJson.forEach(function(stageGuess){
-			stageGuess.mainGuess = guessId;});
+console.log(_stageGuessesJson);
 
-		promises.push( new Promise(function(resolve, reject){
-			globalGuessController.save(globalGuessJson, function(doc){resolve(doc);});}) 
-		);
-
-		promises.push(stageGuessesJson.map(function(stageGuessJson){return new Promise(function(resolve, reject){stageGuessController.save(stageGuessJson,function(stageGuess){
-			stageGuess = stageGuess[0];			
-			let stageGuessId = stageGuess._id;
-			let matches = [];
-
-			if(stageGuess.relatedStage == 'groupStage'){
-				for(let i = 1; i < 49; i++){matches.push({"relatedMatch": i, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else if (stageGuess.relatedStage == 'eighthFinals') {
-				for(let j = 49; j < 57; j++){matches.push({"relatedMatch": j, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else if (stageGuess.relatedStage == 'quarterFinals') {
-				for(let k = 57; k < 61; k++){matches.push({"relatedMatch": k, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else if (stageGuess.relatedStage == 'semiFinals') {
-				for(let l = 61; l < 63; l++){matches.push({"relatedMatch": l, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			} else {
-				for(let m = 63; m < 65; m++){matches.push({"relatedMatch": m, "points": 0, "guess": {}, "stageGuess": stageGuessId})}
-			}
-
-			new Promise(function(res, rej){matchGuessController.save(matches, function(docs){res(docs)})}).then(resolve(stageGuess));
-		})})}));
-						
-		Promise.all(promises).then(function(){});
-	});
-    }
-});
-*/
-
-userSchema.post('save', function () {
-    if (this.wasNew) {
-	
 	guessJson.user = this._id;
 	guessJson._id = new ObjectID();
 	globalGuessJson._id = new ObjectID();
@@ -102,6 +61,8 @@ userSchema.post('save', function () {
 	});
 
         var insereGuess = new Promise(function(resolve, reject){guessController.save(guessJson, function(doc){resolve(doc[0])})});
+
+	insereGuess.catch(err => console.log(err));
 
 	insereGuess.then(function(guess){
 		var promises = [];
@@ -154,10 +115,14 @@ userSchema.post('save', function () {
 		promises.push(stageGuessesJson.map(function(stageGuessJson){return new Promise(function(resolve, reject){stageGuessController.save(stageGuessJson,function(stageGuess){
 			resolve(stageGuess);
 		})})}));
-			
+		
 		promises.push(new Promise(function(res, rej){matchGuessController.save(matches, function(matches){res(matches)})}));
 			
-		Promise.all(promises).then(function(){});
+		Promise.all(promises).then(function(){
+
+
+
+		}).catch(err => console.log(err));
 	});
     }
 });
