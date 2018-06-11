@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Glyphicon} from 'react-bootstrap';
 import PaymentAlert from '../Utils/PaymentAlert';
-import * as actions from '../../actions';
 
 const checkRanking = (ranking) => {
     if(ranking == 1) return "Você está na liderança!";
@@ -14,11 +13,7 @@ class MyGameProfile extends Component {
     constructor(props){
         super(props);
 
-        this.state = {mygame:""};
-    }
-
-    componentDidMount(){
-        this.props.fetchGuess(this.props.id);
+        this.state = {};
     }
 
     render(){
@@ -49,4 +44,4 @@ function mapStateToProps({guess}){
     return {guess};
 }
 
-export default connect(mapStateToProps, actions)(MyGameProfile);
+export default connect(mapStateToProps)(MyGameProfile);

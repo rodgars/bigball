@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 import {Grid, Row, Col, Glyphicon} from 'react-bootstrap';
 import MyGameForm from './MyGameForm';
 import MyGameProfile from './MyGameProfile';
 
 class MyGame extends Component{
+    constructor(props){
+        super(props);
+        this.state = {};
+    }
+    
+    componentDidMount(){
+        this.props.fetchGuess(this.props.match.params.id);
+    }
+
     render(){
         return (
             <Grid>
@@ -28,4 +39,4 @@ class MyGame extends Component{
     }
 }
 
-export default MyGame;
+export default connect(null,actions)(MyGame);
