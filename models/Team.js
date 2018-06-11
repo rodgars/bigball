@@ -30,7 +30,7 @@ teamSchema.methods.calculate =  function() {
 			}
 
 			instance.gp = golsPro;
-			instance.gc = golsContra;
+			instance.gc = -golsContra;
 			instance.save(resolve);
 		});
 	});
