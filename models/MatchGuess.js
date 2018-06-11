@@ -72,9 +72,21 @@ matchGuessSchema.static('calculate', function(match) {
 					var guess = 0
 					if (guessDiff > 0) guess = 1
 					else if (guessDiff < 0) guess = -1;
+					
 
-					if(guessDiff == resultDiff) pontos = pontos + 2;
-					if(result == guess) pontos = pontos + 3;
+					// acertou o resultado
+					if(result == guess) {
+						pontos = pontos + 3;
+						// acertou o saldo
+						if(guessDiff == resultDiff) {
+							pontos = pontos + 2;
+
+							// cravou a bagaca
+							if((matchGuess.guess.homeScore == match.homeScore) && (matchGuess.guess.visitorScore == match.visitorScore)) {
+								pontos = pontos + 2;
+							}
+						}
+					}
 
 					// pontos do Winner?
 
