@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {FETCH_USER_LIST, UPDATE_USER, FETCH_STAGE, UPDATE_STAGE, FETCH_SITUATION, FETCH_STATUS, UPDATE_MATCH} from './types';
+import {FETCH_USER_LIST, UPDATE_USER, FETCH_STAGE, UPDATE_STAGE, FETCH_SITUATION, FETCH_STATUS, UPDATE_MATCH, FETCH_TOPSCORER, UPDATE_TOPSCORER} from './types';
 
 export const fetchUserList = (query) => async dispatch => {
     const res = await axios.get(`/api/user${query}`);
@@ -34,4 +34,14 @@ export const fetchSituation = () => async dispatch => {
 export const fetchStatus = () => async dispatch => {
     const res = await axios.get(`/api/stage/status`);
     dispatch({ type: FETCH_STATUS, payload: res.data });
+};
+
+export const fetchTopScorer = () => async dispatch => {
+    const res = await axios.get(`/api/topScorer`);
+    dispatch({ type: FETCH_TOPSCORER, payload: res.data });
+};
+
+export const saveTopScorer = (values) => async dispatch => {
+    const res = await axios.put(`/api/topScorer`, values);
+    dispatch({ type: UPDATE_TOPSCORER, payload: res.data });
 };

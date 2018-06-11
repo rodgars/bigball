@@ -25,3 +25,5 @@ export const FETCH_STAGE = 'fetch_stage';
 export const UPDATE_SELECTED_PLAYER = 'update_selected_player';
 export const UPDATE_STAGE = 'update_stage';
 export const UPDATE_MATCH = 'update_match';
+export const FETCH_TOPSCORER = 'fetch_topscorer';
+export const UPDATE_TOPSCORER = 'update_topscorer';

@@ -197,7 +197,7 @@ class MyGameFormPhaseList extends Component {
         return children;
     }
 
-    RenderAlertStages(stage){
+    RenderAlertStagesMatches(stage){
         let arr = _.filter(stage.matchGuesses, match => {
             return typeof(match.guess.visitorScore) == 'undefined' || typeof(match.guess.homeScore) == 'undefined'
         });
@@ -205,6 +205,15 @@ class MyGameFormPhaseList extends Component {
         if(arr.length > 0)
             return (
                 <p className="text-danger text-right"><b>* Atenção!</b> Você não preencheu todos os jogos dessa fase</p>
+            );
+        else
+            return (<br />)
+    }
+
+    RenderAlertStagesDouble(stage){
+        if(stage.doubleMatch == null || stage.doubleMatch == "")
+            return (
+                <p className="text-danger text-right"><b>* Atenção!</b> Você não selecionou a partida que vale o dobro</p>
             );
         else
             return (<br />)
@@ -220,7 +229,8 @@ class MyGameFormPhaseList extends Component {
             if(stage.matchGuesses.length > 0){
                 stagesDom.push(
                     <div key={i} className="ui segment">
-                        {this.RenderAlertStages(stage)}
+                        {this.RenderAlertStagesMatches(stage)}
+                        {this.RenderAlertStagesDouble(stage)}
                         <h4 className="ui horizontal divider header">
                             <i className="futbol icon"></i> {stage.label} - encerra em {stage.deadline}
                         </h4>
