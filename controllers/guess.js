@@ -59,6 +59,8 @@ module.exports = function(){
 		var query = Guess.find(filter)
 			.populate('user')
 			.populate({path: 'globalGuess', populate: {path: 'relatedStage'}})
+			.populate({path: 'globalGuess', populate: {path: 'teamGP'}})
+			.populate({path: 'globalGuess', populate: {path: 'teamGC'}})
 			.populate({
 				path:'stageGuesses',
 				populate: {
@@ -106,7 +108,7 @@ module.exports = function(){
 			});
 
 			callback(result);
-		});
+		}).catch(err => console.log('controller/guess/111'));
 	};
 
 	this.save = function(object, callback) {

@@ -42,6 +42,15 @@ globalGuessSchema.options.toObject.transform = function (doc, ret, options) {
 		ret.relatedStage = ret.relatedStage._id;
 	}
 
+	if (ret.teamGP && ret.teamGP.gp){
+		ret.pointsTeamGP = ret.teamGP.gp;
+		ret.teamGP = ret.teamGP._id;
+	}
+	if (ret.teamGC && ret.teamGC.gc) {
+		ret.pointsTeamGC = ret.teamGC.gc;
+		ret.teamGC = ret.teamGC._id;
+	}
+
 	delete ret.mainGuess;
 
 	return ret;

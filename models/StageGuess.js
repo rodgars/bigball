@@ -19,7 +19,6 @@ stageGuessSchema.static('asyncUpsert', function (id, stageGuess, callback) {
 
 		model.findByIdAndUpdate(id, stageGuess, {upsert: true, new: true}, function(err, doc){
 			if(err) reject(err);
-
 			resolve(doc);
 		});
 	});

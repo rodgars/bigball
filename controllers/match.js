@@ -1,10 +1,11 @@
 var Match = require('../models/Match');
+var MatchGuess = require('../models/MatchGuess');
 
 module.exports = function(){
 
-	this.get = function(callback){
+	this.get = function(filter, callback){
 
-		Match.find(function(err, matches){
+		Match.find(filter, function(err, matches){
 
 			if(err) console.log(err);
 
@@ -13,7 +14,7 @@ module.exports = function(){
 		});
 	};
 
-	this.update = function(object, callback) {
+	this.update = function(object, callback, recalculate = false) {
 
 		var matches = [];
 
@@ -25,18 +26,24 @@ module.exports = function(){
 				Match.findByIdAndUpdate(t._id, t, {upsert: true, new: true}, function(err, doc){
 					if(err) reject(err);
 					resolve(doc);
-				});
+				}).populate('homeTeam').populate('visitorTeam');
 			});
 		});
 
 		Promise.all(promises).then(function(docs){
-
-			Promise.all(docs.map(function(doc){
-				return new Promise(function(resolve, reject){
-					doc.calculate(resolve);
+			if(recalculate){
+				var promisses = [];
+	
+				docs.forEach(function(doc){
+					promisses.push(MatchGuess.calculate(doc));
+					promisses.push(doc.homeTeam.calculate());
+					promisses.push(doc.visitorTeam.calculate());
 				});
-				
-			})).then(callback(docs));
+
+				Promise.all(promisses).then(function(){
+					callback(docs)
+				});
+			} else callback(docs);
 
 		}).catch(doc => callback(doc));
 	};

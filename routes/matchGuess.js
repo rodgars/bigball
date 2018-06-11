@@ -8,6 +8,8 @@ router.get('/', (req, res) => {
 
 	var filter = {};
 
+	if (req.query.id) filter = {_id: req.query.id};
+
 	matchGuessController.get(filter, function(docs){
 		
 		res.json(docs);
