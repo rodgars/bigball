@@ -5,8 +5,18 @@ import RankingResultList from './RankingResultList';
 import PaymentAlert from '../Utils/PaymentAlert';
 import TimeLine from '../Utils/TimeLine';
 import RankingStatistics from './RankingStatistics';
+import * as actions from '../../actions';
 
 class Ranking extends Component{
+    constructor(props){
+        super(props);
+
+        this.state = {};
+    }
+
+    componentDidMount(){
+        this.props.fetchStages();
+    }
 
     render(){
         return (
@@ -23,7 +33,7 @@ class Ranking extends Component{
                     </Row>
                     <Row className="showGrid">
                         <Col xs={12} md={12}>
-                            <TimeLine />
+                            <TimeLine stages={this.props.stages} />
                             <RankingResultList />
                             <br />
                         </Col>
@@ -33,8 +43,8 @@ class Ranking extends Component{
     }
 }
 
-function mapStateToProps({auth}){
-    return {auth};
+function mapStateToProps({auth, stages}){
+    return {auth, stages};
 }
 
-export default connect(mapStateToProps)(Ranking);
+export default connect(mapStateToProps, actions)(Ranking);

@@ -1,22 +1,31 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 import {ButtonToolbar, Modal,Tabs,Tab} from 'react-bootstrap';
-import {PieChart, Pie, Sector, Cell, Legend} from 'recharts';
 
-const data = [{name: 'Pagantes', value: 18}, {name: 'Pendentes', value: 4}];
-const COLORS = ['#0088FE', '#FF0000'];
+const statistic = (users, info) => {
+    let total = _.size(users) - 1;
+    if(total == 0) total = 1;
 
-const RADIAN = Math.PI / 180; 
-
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x  = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy  + radius * Math.sin(-midAngle * RADIAN);
+    let totalPending = _.filter(users, user => {
+        !user.isPaid
+    }).length - 1;
+    if (totalPending < 0) totalPending = 0;
     
-    return (
-        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
-            {`${(percent * 100).toFixed(0)}%`}
-        </text>
-    );
+    let totalPayment = total * 20 - (totalPending * 20);
+
+    switch(info){
+        case "totalUsers":
+            return total;
+            break;
+        case "totalPayments":
+            return totalPayment;
+            break;
+        case "totalPendingUsers":
+            return totalPending;
+            break;
+    }
 };
 
 class RankingStatistic extends Component {
@@ -30,6 +39,10 @@ class RankingStatistic extends Component {
           show: false
         };
    }
+
+    componentDidMount(){
+        this.props.fetchUserList("");
+    }
 
     handleShow() {
         this.setState({ show: true });
@@ -64,46 +77,28 @@ class RankingStatistic extends Component {
                     <div className="ui statistics">
                         <div className="statistic">
                             <div className="value">
-                                <i className="users icon"></i> 22
+                                <i className="users icon"></i> {statistic(this.props.users,"totalUsers")}
                             </div>
                             <div className="label">Usuários</div>
                         </div>
                         <div className="statistic">
                             <div className="value">
-                                <i className="dollar sign icon"></i> 250
+                                <i className="dollar sign icon"></i> {statistic(this.props.users,"totalPayments")}
                             </div>
                             <div className="label">Reais arrecadados</div>
                         </div>
                         <div className="statistic">
                             <div className="value">
-                                <i className="thumbs down icon"></i> 8
+                                <i className="thumbs down icon"></i> {statistic(this.props.users,"totalPendingUsers")}
                             </div>
                             <div className="label">Pendências<br/> pagamento</div>
                         </div>
-                    </div>
-                    <div className="ui segment">
-                    <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-                        <Pie
-                        data={data} 
-                        outerRadius={80}
-                        labelLine={false}
-                        label={renderCustomizedLabel}
-                        fill="#8884d8"
-                        >
-                            {
-                                data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
-                            }
-                        </Pie>
-                        <Legend align="left" verticalAlign="middle"  height={36}/>
-                    </PieChart>
                     </div>
                     </Tab>
                     <Tab eventKey={2} title="Radar">
                     <br/>
                     <h4>Em construção</h4>
-                    <p>
-                    Radar mais votados em breve
-                    </p>
+                    <br/>
                     </Tab>
                 </Tabs>
                 </Modal.Body>
@@ -111,7 +106,10 @@ class RankingStatistic extends Component {
             </ButtonToolbar>            
         );
     }
-
 }
 
-export default RankingStatistic;
+function mapStateToProps({users}){
+    return {users};
+}
+
+export default connect(mapStateToProps, actions)(RankingStatistic);

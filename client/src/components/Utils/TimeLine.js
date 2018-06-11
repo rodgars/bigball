@@ -1,46 +1,48 @@
 import React from 'react';
+import _ from 'lodash';
+
+const renderSteps = (stages) => {
+    return _.map(stages, stage => {
+        let status = stage.status == "opened" ? "active" : "disabled";
+        let icon = "";
+        let stageName = stage.label;
+        let stageStatus = "";
+        let stageSituation = stage.situation;
+
+        switch(stage.status){
+            case "opened":
+                icon = "hand point down";
+                stageStatus = `Envio até ${stage.deadline}`;
+                break;
+            case "completed":
+                icon = "check";
+                stageStatus = "Envio encerrado";
+                break;
+            case "closed":
+                icon = "ban";
+                stageStatus = "Envio não disponível";
+                break;
+        }
+
+        return (
+            <div key={stage._id} className={`${status} step`}>
+                <i className={`${icon} icon`}></i>
+                <div className="content">
+                    <div className="title">{stageName}</div>
+                    <div className="description">{stageSituation}.<br />{stageStatus}</div>
+                </div>
+            </div>
+        );
+    });
+};
 
 const TimeLine = (props) => {
+    let stages = _.orderBy(props.stages, ["order"], ["ASC"]);
+
     return (
-
-    <div className="ui fluid steps">
-        <div className="disabled step">
-            <i className="check icon"></i>
-            <div className="content">
-            <div className="title">Fase de Grupos</div>
-            <div className="description">Fase Finalizada.<br />Envio encerrado</div>
-            </div>
+        <div className="ui fluid steps">
+            {renderSteps(stages)}   
         </div>
-        <div className="active step">
-            <i className="hand point down icon"></i>
-            <div className="content">
-            <div className="title">Oitavas</div>
-            <div className="description">Estamos aqui.<br />Envio encerrado</div>
-            </div>
-        </div>
-        <div className="disabled step">
-            <i className="ban icon"></i>
-            <div className="content">
-            <div className="title">Quartas</div>
-            <div className="description">Fase ainda liberada.<br />Envio até 30/03</div>
-            </div>
-        </div>
-        <div className="disabled step">
-            <i className="ban icon"></i>
-            <div className="content">
-            <div className="title">Semis</div>
-            <div className="description">Fase não liberada.<br />Envio não permitido</div>
-            </div>
-        </div>
-        <div className="disabled step">
-            <i className="ban icon"></i>
-            <div className="content">
-            <div className="title">Finais</div>
-            <div className="description">Fase não liberada.<br />Envio não permitido</div>
-            </div>
-        </div>
-    </div>
-
     );
 };
 

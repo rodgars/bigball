@@ -7,6 +7,7 @@ import userReducer from './userReducer';
 import stageReducer from './stageReducer';
 import statusReducer from './statusReducer';
 import situationReducer from './situationReducer';
+import accountReducer from './accountReducer';
 
 export default combineReducers(
     {
@@ -17,6 +18,7 @@ export default combineReducers(
         users: userReducer,
         stages: stageReducer,
         status: statusReducer,
-        situation: situationReducer
+        situation: situationReducer,
+        account: accountReducer
     }
 );

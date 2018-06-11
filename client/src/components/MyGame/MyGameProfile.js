@@ -22,7 +22,6 @@ class MyGameProfile extends Component {
     }
 
     render(){
-        console.log("profile", this.props.guess);
         return (
             <div>
             <div className="ui card">
