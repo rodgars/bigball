@@ -18,6 +18,10 @@ const checked = (stageDouble, currentId) => {
     return stageDouble === currentId;
 };
 
+const isEdit = (id, authId) => {
+    return id === authId;
+};
+
 class MyGameFormPhaseList extends Component {
     constructor(props, context){
         super(props, context);
@@ -53,7 +57,7 @@ class MyGameFormPhaseList extends Component {
         let stageId = id.split(";")[0];
         let matchId = id.split(";")[1];
         e.preventDefault();
-        if(this.props.guess.stageGuesses[stageId].status == "opened"){
+        if(this.props.guess.stageGuesses[stageId].status == "opened" && isEdit(this.props.id, this.props.auth._id)){
             this.setState({
                 match: {
                     stageIndex:stageId, 
@@ -172,7 +176,7 @@ class MyGameFormPhaseList extends Component {
             children.push (
                 <tr key={i}>
                     <td width="10%" style={{textAlign:"center"}}>
-                        {stage.status == "opened" && <input type="radio" onClick={this.selectedDoubleMatch.bind(this, stage._id)} name="rbDouble" value={match.relatedMatch} checked={checked(stage.doubleMatch, match.relatedMatch)} />}
+                        {isEdit(this.props.id, this.props.auth._id) && stage.status == "opened" && <input type="radio" onClick={this.selectedDoubleMatch.bind(this, stage._id)} name="rbDouble" value={match.relatedMatch} checked={checked(stage.doubleMatch, match.relatedMatch)} />}
                         {stage.status != "opened" && checked(stage.doubleMatch, match.relatedMatch) && <i className="icon arrow alternate circle right"></i>}
                     </td>
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
@@ -318,8 +322,8 @@ class MyGameFormPhaseList extends Component {
     }
 }
 
-function mapStateToProps({guess, teams}){
-    return {guess, teams};
+function mapStateToProps({guess, teams, auth}){
+    return {guess, teams, auth};
 }
 
 export default connect(mapStateToProps, actions)(MyGameFormPhaseList);

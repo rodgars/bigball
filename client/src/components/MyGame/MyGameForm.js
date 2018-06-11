@@ -5,7 +5,10 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import * as actions from '../../actions';
 
-const isLocked = (stages, current) => {
+const isLocked = (stages, current, id, authId) => {
+
+    if(id !== authId) return true;
+
     let arr = _.filter(stages, stage => {
         return stage.relatedStage === current && stage.status === "opened";
     });
@@ -40,12 +43,13 @@ class MyGameForm extends Component {
             if(gp.length > 0) global.teamGP = gp[0].id;
 
             this.props.saveGlobalGuess(global);
+            this.props.fetchGuess(this.props.id);
         }
         this.setState({ isEditable: !this.state.isEditable});
     }
 
     checkGlobalGuesses(){
-        if(isLocked(this.props.guess.stageGuesses,"groupStage")) return "";
+        if(isLocked(this.props.guess.stageGuesses,"groupStage",this.props.id,this.props.auth._id)) return "";
         else if(
             this.props.guess.globalGuess.firstPlace == null ||
             this.props.guess.globalGuess.secondPlace == null ||
@@ -74,9 +78,9 @@ class MyGameForm extends Component {
                 <form>
                     <div className="ui segment">
                         {this.checkGlobalGuesses()}
-                        {!isLocked(this.props.guess.stageGuesses, "groupStage") && !this.state.isEditable && !this.props.guess.globalGuess.locked && <button onClick={this.toggleEdition.bind(this, "edit")} className="ui blue button"><i className="icon pencil"></i>Editar Fatores</button>}
-                        {!isLocked(this.props.guess.stageGuesses, "groupStage") && this.state.isEditable && <button onClick={this.toggleEdition.bind(this, "save")} className="ui blue button"><i className="icon save"></i>Salvar Fatores</button>}
-                        {!isLocked(this.props.guess.stageGuesses, "groupStage") && this.state.isEditable && <button onClick={this.toggleEdition.bind(this, "cancel")} className="ui red button"><i className="icon times"></i>Cancelar Edição</button>}
+                        {!isLocked(this.props.guess.stageGuesses, "groupStage",this.props.id,this.props.auth._id) && !this.state.isEditable && !this.props.guess.globalGuess.locked && <button onClick={this.toggleEdition.bind(this, "edit")} className="ui blue button"><i className="icon pencil"></i>Editar Fatores</button>}
+                        {!isLocked(this.props.guess.stageGuesses, "groupStage",this.props.id,this.props.auth._id) && this.state.isEditable && <button onClick={this.toggleEdition.bind(this, "save")} className="ui blue button"><i className="icon save"></i>Salvar Fatores</button>}
+                        {!isLocked(this.props.guess.stageGuesses, "groupStage",this.props.id,this.props.auth._id) && this.state.isEditable && <button onClick={this.toggleEdition.bind(this, "cancel")} className="ui red button"><i className="icon times"></i>Cancelar Edição</button>}
 
                         <h4 className="ui horizontal divider header">
                             <i className="bar chart icon"></i> Fatores - encerra em {this.props.guess.globalGuess.deadline}
@@ -103,15 +107,15 @@ class MyGameForm extends Component {
                         </div>
                     </div>
                     <hr />
-                    <MyGameFormPhaseList id={this.props.id} edit={this.state.isEditable} />
+                    <MyGameFormPhaseList id={this.props.id} />
                 </form>
             </div>
         );
     }
 }
 
-function mapStateToProps({teams,players,guess}){
-    return {teams,players,guess};
+function mapStateToProps({teams,players,guess,auth}){
+    return {teams,players,guess,auth};
 }
 
 export default connect(mapStateToProps, actions)(MyGameForm);
