@@ -15,6 +15,11 @@ import Mygame from './MyGame/Mygame';
 
 
 class App extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {app:""};
+    }
 
     componentDidMount(){
         this.props.fetchUser();
