@@ -58,7 +58,7 @@ matchGuessSchema.static('calculate', function(match) {
 		
 			return new Promise(function(resolve, reject){
 
-				if(matchGuess.guess && matchGuess.guess.homeScore){
+				if(matchGuess.guess && matchGuess.guess.homeScore != undefined){
 
 					var pontos = 0;
 
