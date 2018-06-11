@@ -28,6 +28,7 @@ class App extends Component {
         this.props.fetchPlayer();
         this.props.fetchUserList("");
         this.props.fetchAccount();
+        this.props.fetchGuess("");
     }
 
     render(){
