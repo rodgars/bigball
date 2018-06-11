@@ -5,6 +5,7 @@ var accountSchema = new Schema({
 	_id: String,
 	account: String,
 	agency: String,
+	phone: String,
 	bank: String,
 	register: String
 }, { versionKey: false });

@@ -88,67 +88,71 @@ class AdminUser extends Component {
     }
 
     render(){
-        return (
-            <div>
-            <br /><br />
-            <b>Pagou?</b>
-            <select ref={ddl => this.ddlFindPaid = ddl} style={{width:"200px"}} className="form-control" onChange={this.findUsersByPaid}>
-                <option value="">Selecione um valor</option>
-                <option value="true">Sim</option>
-                <option value="false">Não</option>
-            </select>
-            <br /><br />
-            <table className="ui compact small table">
-                <thead>
-                    <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Data cadastro</th>
-                    <th>Pagou?</th>
-                    <th>Admin?</th>
-                    <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderUsers()}
-                </tbody>
-            </table>
-            <br /><br />
-            <Modal
-                {...this.props}
-                show={checkUser(this.state.user)}
-                onHide={this.handleHide}
-                dialogClassName="custom-modal"
-                >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-lg">
-                    <i className="icon user"></i>Atualizar usuário
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <table className="ui small compact definition table">
-                        <tbody>
-                            <tr><td>Nome</td><td>{this.state.user.name}</td></tr>
-                            <tr><td>Cadastro</td><td>{this.state.user.date}</td></tr>
-                            <tr><td>Pagou?</td><td>
-                                <select ref={ddl => this.ddlIsPaid = ddl} defaultValue={this.state.user.isPaid} className="form-control">
-                                    <option value="true">Sim</option>
-                                    <option value="false">Não</option>
-                                </select>
-                            </td></tr>
-                            <tr><td>Admin?</td><td>
-                                <select ref={ddl => this.ddlIsAdmin = ddl} defaultValue={this.state.user.isAdmin} className="form-control">
-                                    <option value="true">Sim</option>
-                                    <option value="false">Não</option>
-                                </select>
+        try{
+            return (
+                <div>
+                <br /><br />
+                <b>Pagou?</b>
+                <select ref={ddl => this.ddlFindPaid = ddl} style={{width:"200px"}} className="form-control" onChange={this.findUsersByPaid}>
+                    <option value="">Selecione um valor</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select>
+                <br /><br />
+                <table className="ui compact small table">
+                    <thead>
+                        <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Data cadastro</th>
+                        <th>Pagou?</th>
+                        <th>Admin?</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderUsers()}
+                    </tbody>
+                </table>
+                <br /><br />
+                <Modal
+                    {...this.props}
+                    show={checkUser(this.state.user)}
+                    onHide={this.handleHide}
+                    dialogClassName="custom-modal"
+                    >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-lg">
+                        <i className="icon user"></i>Atualizar usuário
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <table className="ui small compact definition table">
+                            <tbody>
+                                <tr><td>Nome</td><td>{this.state.user.name}</td></tr>
+                                <tr><td>Cadastro</td><td>{this.state.user.date}</td></tr>
+                                <tr><td>Pagou?</td><td>
+                                    <select ref={ddl => this.ddlIsPaid = ddl} defaultValue={this.state.user.isPaid} className="form-control">
+                                        <option value="true">Sim</option>
+                                        <option value="false">Não</option>
+                                    </select>
                                 </td></tr>
-                        </tbody>
-                    </table>
-                    <button className="ui blue button" onClick={this.saveUser.bind(this, this.state.user._id)}><i className="ui icon save"></i>Salvar</button>
-                </Modal.Body>
-            </Modal>
-            </div>
-        );
+                                <tr><td>Admin?</td><td>
+                                    <select ref={ddl => this.ddlIsAdmin = ddl} defaultValue={this.state.user.isAdmin} className="form-control">
+                                        <option value="true">Sim</option>
+                                        <option value="false">Não</option>
+                                    </select>
+                                    </td></tr>
+                            </tbody>
+                        </table>
+                        <button className="ui blue button" onClick={this.saveUser.bind(this, this.state.user._id)}><i className="ui icon save"></i>Salvar</button>
+                    </Modal.Body>
+                </Modal>
+                </div>
+            );
+        }catch(err){
+            return (<div> ... Aguarde, carregando conteúdo ... </div>);
+        }
     }
 }
 

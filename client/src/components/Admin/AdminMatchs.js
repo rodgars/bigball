@@ -58,18 +58,9 @@ class AdminMatchs extends Component {
         match.visitorScore = this.txtVisitorScore.value;
         match.homeScore = this.txtHomeScore.value;
 
-        if(match.visitorTeam == "" ||
-            match.homeTeam == "" ||
-            match.winner == "" ||
-            match.visitorScore == "" ||
-            match.homeScore == "")
-        {
-            alert("Preencha todos os campos");
-        }else{
-            this.props.saveMatch(match);
-            this.props.fetchStages();
-            this.setState({ match: {} });
-        }
+        this.props.saveMatch(match);
+        this.props.fetchStages();
+        this.setState({ match: {} });
     }
 
     handleHide() {

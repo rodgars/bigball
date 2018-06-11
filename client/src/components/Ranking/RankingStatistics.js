@@ -53,58 +53,62 @@ class RankingStatistic extends Component {
     }
 
     render(){
-        return(
-            <ButtonToolbar>
-                <button className="ui teal button" onClick={this.handleShow}>
-                <i className="icon chart bar"></i> Estatísticas
-                </button>
-
-                <Modal
-                {...this.props}
-                show={this.state.show}
-                onHide={this.handleHide}
-                dialogClassName="custom-modal"
-                >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-lg">
-                    <i className="icon chart bar"></i>Estatísticas do Bolão
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                <Tabs defaultActiveKey={1} id="tabEstatistics">
-                    <Tab eventKey={1} title="Geral">
-                    <br/>
-                    <div className="ui statistics">
-                        <div className="statistic">
-                            <div className="value">
-                                <i className="users icon"></i> {statistic(this.props.users,"totalUsers")}
+        try{
+            return(
+                <ButtonToolbar>
+                    <button className="ui teal button" onClick={this.handleShow}>
+                    <i className="icon chart bar"></i> Estatísticas
+                    </button>
+    
+                    <Modal
+                    {...this.props}
+                    show={this.state.show}
+                    onHide={this.handleHide}
+                    dialogClassName="custom-modal"
+                    >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-lg">
+                        <i className="icon chart bar"></i>Estatísticas do Bolão
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <Tabs defaultActiveKey={1} id="tabEstatistics">
+                        <Tab eventKey={1} title="Geral">
+                        <br/>
+                        <div className="ui statistics">
+                            <div className="statistic">
+                                <div className="value">
+                                    <i className="users icon"></i> {statistic(this.props.users,"totalUsers")}
+                                </div>
+                                <div className="label">Usuários</div>
                             </div>
-                            <div className="label">Usuários</div>
-                        </div>
-                        <div className="statistic">
-                            <div className="value">
-                                <i className="dollar sign icon"></i> {statistic(this.props.users,"totalPayments")}
+                            <div className="statistic">
+                                <div className="value">
+                                    <i className="dollar sign icon"></i> {statistic(this.props.users,"totalPayments")}
+                                </div>
+                                <div className="label">Reais arrecadados</div>
                             </div>
-                            <div className="label">Reais arrecadados</div>
-                        </div>
-                        <div className="statistic">
-                            <div className="value">
-                                <i className="thumbs down icon"></i> {statistic(this.props.users,"totalPendingUsers")}
+                            <div className="statistic">
+                                <div className="value">
+                                    <i className="thumbs down icon"></i> {statistic(this.props.users,"totalPendingUsers")}
+                                </div>
+                                <div className="label">Pendências<br/> pagamento</div>
                             </div>
-                            <div className="label">Pendências<br/> pagamento</div>
                         </div>
-                    </div>
-                    </Tab>
-                    <Tab eventKey={2} title="Radar">
-                    <br/>
-                    <h4>Em construção</h4>
-                    <br/>
-                    </Tab>
-                </Tabs>
-                </Modal.Body>
-                </Modal>
-            </ButtonToolbar>            
-        );
+                        </Tab>
+                        <Tab eventKey={2} title="Radar">
+                        <br/>
+                        <h4>Em construção</h4>
+                        <br/>
+                        </Tab>
+                    </Tabs>
+                    </Modal.Body>
+                    </Modal>
+                </ButtonToolbar>            
+            );
+        }catch(Err){
+            return (<div> ... Aguarde, carregando conteúdo ... </div>);
+        }
     }
 }
 
