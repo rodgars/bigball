@@ -27,6 +27,7 @@ class App extends Component {
         this.props.fetchTeam();
         this.props.fetchPlayer();
         this.props.fetchUserList("");
+        this.props.fetchAccount();
     }
 
     render(){
