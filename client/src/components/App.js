@@ -15,18 +15,11 @@ import Mygame from './MyGame/Mygame';
 
 
 class App extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {app:""};
-    }
 
     componentDidMount(){
         this.props.fetchUser();
         this.props.fetchTeam();
         this.props.fetchPlayer();
-        this.props.fetchGuess(this.props.auth._id);
-        console.log("id",this.props.auth._id);
     }
 
     render(){

@@ -13,6 +13,8 @@ const checkRanking = (ranking) => {
 class MyGameProfile extends Component {
     constructor(props){
         super(props);
+
+        this.state = {mygame:""};
     }
 
     componentDidMount(){
