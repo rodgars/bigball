@@ -14,6 +14,10 @@ const showModal = (match) => {
     return typeof(match.stageIndex) != 'undefined';
 };
 
+const checked = (stageDouble, currentId) => {
+    return stageDouble === currentId;
+};
+
 class MyGameFormPhaseList extends Component {
     constructor(props, context){
         super(props, context);
@@ -58,6 +62,14 @@ class MyGameFormPhaseList extends Component {
                 }
             });
         }
+    }
+
+    selectedDoubleMatch(id,e){
+        let value = {_id:id, doubleMatch: e.target.value};
+        this.props.saveDouble(value);
+        this.props.fetchGuess(this.props.id);
+        this.setState({double:e.target.value});
+        alert("Você alterou a partida que vale o dobro dos pontos!");
     }
 
     validateGuess(){
@@ -159,7 +171,10 @@ class MyGameFormPhaseList extends Component {
 
             children.push (
                 <tr key={i}>
-                    <td width="10%" style={{textAlign:"center"}}><input type="radio" name="optionsGroups" /></td>
+                    <td width="10%" style={{textAlign:"center"}}>
+                        {stage.status == "opened" && <input type="radio" onClick={this.selectedDoubleMatch.bind(this, stage._id)} name="rbDouble" value={match.relatedMatch} checked={checked(stage.doubleMatch, match.relatedMatch)} />}
+                        {stage.status != "opened" && checked(stage.doubleMatch, match.relatedMatch) && <i className="icon arrow alternate circle right"></i>}
+                    </td>
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
                         <Match match={match} teams={this.props.teams} />
                     </td>

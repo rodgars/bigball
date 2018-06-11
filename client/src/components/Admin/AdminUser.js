@@ -84,6 +84,7 @@ class AdminUser extends Component {
         
         this.props.fetchUserList(value);
         this.handleHide();
+        alert("Usuário alterado!");
     }
 
     render(){

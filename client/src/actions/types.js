@@ -10,6 +10,7 @@ export const FETCH_ACCOUNT = 'fetch_account';
 export const FETCH_GUESS = 'fetch_guess';
 export const UPDATE_GUESS = 'update_guess';
 export const UPDATE_GLOBAL_GUESS = 'update_global_guess';
+export const UPDATE_DOUBLE = 'update_double';
 
 // ranking info
 export const FETCH_RANKING = 'fetch_ranking';
