@@ -43,6 +43,7 @@ class MyGameForm extends Component {
             if(gp.length > 0) global.teamGP = gp[0].id;
 
             this.props.saveGlobalGuess(global);
+            this.props.fetchGuess(this.props.id);
         }
         this.setState({ isEditable: !this.state.isEditable});
     }
@@ -99,8 +100,8 @@ class MyGameForm extends Component {
                                 <MyGameFormFactorsItem ref={el => this.txtSecondPlace = el} pick={this.props.guess.globalGuess.secondPlace} edit={this.state.isEditable} points={0} options={this.props.teams} field="Vice-Campeão da Copa" fieldPlaceholder="Preenche o nome do vice-campeão" />
                                 <MyGameFormFactorsItem ref={el => this.txtThirdPlace = el} pick={this.props.guess.globalGuess.thirdPlace} edit={this.state.isEditable} points={0} options={this.props.teams} field="Terceiro colocado da Copa" fieldPlaceholder="Preenche o nome do terceiro colocado" />
                                 <MyGameFormFactorsItem ref={el => this.txtTopScore = el} isPlayer={true} pick={this.props.guess.globalGuess.topScorer} edit={this.state.isEditable} points={this.props.guess.globalGuess.pointsTopScorer}  optionsCountries={this.props.teams} options={this.props.players} isPlayer={true} field="Artilheiro" fieldPlaceholder="Preenche o nome do artilheiro" />
-                                <MyGameFormFactorsItem ref={el => this.txtGP = el} pick={this.props.guess.globalGuess.teamGP} edit={this.state.isEditable} points={this.props.guess.globalGuess.pointsTeamGP} options={this.props.teams} field="Seleção GP (gols pró)" fieldPlaceholder="Preenche o nome da seleção GP" />
-                                <MyGameFormFactorsItem ref={el => this.txtGC = el} pick={this.props.guess.globalGuess.teamGC} edit={this.state.isEditable} points={this.props.guess.globalGuess.pointsTeamGC} options={this.props.teams} field="Seleção GC (gols contra)" fieldPlaceholder="Preenche o nome da seleção GC" />
+                                <MyGameFormFactorsItem ref={el => this.txtGP = el} pick={this.props.guess.globalGuess.teamGP._id} edit={this.state.isEditable} points={this.props.guess.globalGuess.pointsTeamGP} options={this.props.teams} field="Seleção GP (gols pró)" fieldPlaceholder="Preenche o nome da seleção GP" />
+                                <MyGameFormFactorsItem ref={el => this.txtGC = el} pick={this.props.guess.globalGuess.teamGC._id} edit={this.state.isEditable} points={this.props.guess.globalGuess.pointsTeamGC} options={this.props.teams} field="Seleção GC (gols contra)" fieldPlaceholder="Preenche o nome da seleção GC" />
                             </tbody>
                         </table>
                         </div>
