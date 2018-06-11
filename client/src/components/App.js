@@ -16,10 +16,17 @@ import Mygame from './MyGame/Mygame';
 
 class App extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {};
+    }
+
     componentDidMount(){
         this.props.fetchUser();
         this.props.fetchTeam();
         this.props.fetchPlayer();
+        this.props.fetchUserList("");
     }
 
     render(){

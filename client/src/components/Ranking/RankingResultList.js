@@ -1,32 +1,32 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import _ from 'lodash';
 import RankingResultItem from './RankingResultItem';
 
-const renderPlayers = () => {
-    var rows = [];
-    for (var i = 1; i < 35; i++) {
-        // note: we add a key prop here to allow react to uniquely identify each
-        // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
-        rows.push(<RankingResultItem key={i}
-            position={i}
-            name="Rodrigo Garcia"
-            urlImg="https://avatars0.githubusercontent.com/u/20528688?s=40&v=4"
-            total={400}
-            grupos={8}
-            oitavas={45}
-            quartas={20}
-            semis={40}
-            finais={30}
-            sgp={42}
-            sgc={-15}
-            art={42}
-            finalistas={40}
-             />);
-    }
-    return rows;
-};
-
 class RankingResultList extends Component {
+    renderPlayers() {
+
+        return _.map(this.props.users, user => {
+            return (
+                <RankingResultItem key={user._id}
+                    position={0}
+                    name={user.name}
+                    urlImg={user.urlImg.replace("sz=50","sz=40")}
+                    total={0}
+                    grupos={0}
+                    oitavas={0}
+                    quartas={0}
+                    semis={0}
+                    finais={0}
+                    sgp={0}
+                    sgc={0}
+                    art={0}
+                    finalistas={0}
+                 />
+            );
+        });
+    }
+
     render(){
         return (
             <table className="ui selectable small compact table">
@@ -48,15 +48,15 @@ class RankingResultList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {renderPlayers()}
+                    {this.renderPlayers()}
                 </tbody>
             </table>
         );
     }
 }
 
-function mapStateToProps({ranking}){
-    return {ranking};
+function mapStateToProps({users}){
+    return {users};
 }
 
 export default connect(mapStateToProps)(RankingResultList);
