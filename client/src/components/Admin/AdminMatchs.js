@@ -40,6 +40,7 @@ class AdminMatchs extends Component {
         this.props.saveStages(data);
         this.props.fetchStages();
         this.setState({ match: {} });
+        alert("Fase alterada!");
     }
 
     selectedStageId(match,e){

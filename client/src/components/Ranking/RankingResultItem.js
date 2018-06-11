@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const TdItem = (props) => {
     const color = props.value >= 0 ? "positive" : "negative";
@@ -22,7 +23,7 @@ const RankingResultItem = (props) => {
     return (
         <tr className="center aligned">
             <td>{props.position}°</td>
-            <td className="left aligned"><img src={props.urlImg} /> {props.name}</td>
+            <td className="left aligned"><Link to={`/game/${props.id}`}><img src={props.urlImg} /> {props.name}</Link></td>
             <td>{ GetMedal(props.position) }</td>
             <td><strong>{props.total}</strong></td>
             <TdItem value={props.grupos} />

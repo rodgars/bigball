@@ -9,7 +9,7 @@ const statistic = (users, info) => {
     if(total == 0) total = 1;
 
     let totalPending = _.filter(users, user => {
-        !user.isPaid
+        return !user.isPaid
     }).length - 1;
     if (totalPending < 0) totalPending = 0;
     

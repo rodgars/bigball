@@ -10,6 +10,7 @@ class RankingResultList extends Component {
             return (
                 <RankingResultItem key={user._id}
                     position={0}
+                    id={user._id}
                     name={user.name}
                     urlImg={user.urlImg.replace("sz=50","sz=40")}
                     total={0}
