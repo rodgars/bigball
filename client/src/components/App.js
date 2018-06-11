@@ -21,6 +21,7 @@ class App extends Component {
         this.props.fetchTeam();
         this.props.fetchPlayer();
         this.props.fetchGuess(this.props.auth._id);
+        console.log("id",this.props.auth._id);
     }
 
     render(){

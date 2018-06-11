@@ -19,6 +19,7 @@ class MyGameFormPhaseList extends Component {
         super(props, context);
 
         this.handleHide = this.handleHide.bind(this);
+        this.saveAndExit = this.saveAndExit.bind(this);
         this.selectMatch = this.selectMatch.bind(this);
         this.moveMatchModal = this.moveMatchModal.bind(this);
     
@@ -31,6 +32,10 @@ class MyGameFormPhaseList extends Component {
 
     // STATE METHODS
     handleHide() {
+        this.setState({ match: {} });
+    }
+
+    saveAndExit() {
         if(this.validateGuess()){
             this.handleMatchSubmit();
             this.props.fetchGuess(this.props.id);
@@ -256,8 +261,9 @@ class MyGameFormPhaseList extends Component {
                         </tbody>
                     </table>
                     {this.renderWinner()}        
-                    <button disabled={this.disableButtonModal("pre")} className="ui button" onClick={this.moveMatchModal.bind(this, -1)}>Anterior</button>
-                    <button disabled={this.disableButtonModal("nex")} className="ui button" onClick={this.moveMatchModal.bind(this, 1)}>Proximo</button>
+                    <button disabled={this.disableButtonModal("pre")} className="ui button" onClick={this.moveMatchModal.bind(this, -1)}><i className="icon angle double left"></i> Anterior</button>
+                    <button disabled={this.disableButtonModal("nex")} className="ui button" onClick={this.moveMatchModal.bind(this, 1)}>Proximo <i className="icon angle double right"></i></button>
+                    <br/><br/><button className="ui blue button" onClick={this.saveAndExit}><i className="icon save"></i> Salvar e Sair</button>
                 </Modal.Body>
                 </Modal>
             );
@@ -270,7 +276,7 @@ class MyGameFormPhaseList extends Component {
         let visitorScore = this.state.match.guess.guess.visitorScore;
         let homeScore = this.state.match.guess.guess.homeScore;
         let winnerValue = this.state.match.guess.guess.winner;
-        console.log(this.props.guess.stageGuesses[this.state.match.stageIndex].relatedStage);
+        
         if(
             visitorScore == homeScore &&
             visitorScore != "" &&

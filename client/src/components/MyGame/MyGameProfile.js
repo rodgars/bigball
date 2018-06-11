@@ -16,7 +16,6 @@ class MyGameProfile extends Component {
     }
 
     componentDidMount(){
-        console.log("params", this.props.id);
         this.props.fetchGuess(this.props.id);
     }
 

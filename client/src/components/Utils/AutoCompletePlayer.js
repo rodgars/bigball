@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import {connect} from 'react-redux';
 import {Typeahead, Menu, MenuItem} from 'react-bootstrap-typeahead';
 import * as utils from '../../utils/filtering';
 
 class AutoCompletePlayer extends Component {
+
     constructor(props){
         super(props);
 
@@ -17,9 +17,14 @@ class AutoCompletePlayer extends Component {
             player: {
                 selectedTeam: picked.team,
                 selectedPlayer: picked.id,
-                PlayerList: utils.filterPlayerByCountry(picked.team, this.props.players)
-            }
+                PlayerList: utils.filterPlayerByCountry(picked.team, this.props.options)
+            },
+            inputValue: ""
         };
+    }
+
+    value(){
+        return this.state.inputValue;
     }
 
     filter = (select) => {
@@ -29,8 +34,9 @@ class AutoCompletePlayer extends Component {
                     player: {
                         selectedTeam: select[0].id || "",
                         selectedPlayer: this.state.player.selectedPlayer,
-                        PlayerList: utils.filterPlayerByCountry(select[0].id, this.props.players)
-                    }
+                        PlayerList: utils.filterPlayerByCountry(select[0].id, this.props.options)
+                    },
+                    inputValue: ""
                 }
             );
     }
@@ -40,9 +46,10 @@ class AutoCompletePlayer extends Component {
             return (
                 <div>
                 <p>Escolha o jogador aqui:</p>
-                <Typeahead 
+                <Typeahead
+                onChange={(selected => this.setState({inputValue:selected}))}  
                 emptyLabel="Resultado não encontrado"
-                defaultSelected={utils.filterPlayer(this.state.player.selectedPlayer,this.props.players)}
+                defaultSelected={utils.filterPlayer(this.state.player.selectedPlayer,this.props.options)}
                 placeholder={this.props.fieldPlaceholder}
                 labelKey={option => option.name}
                 renderMenu={(results, menuProps) => (
@@ -67,7 +74,7 @@ class AutoCompletePlayer extends Component {
             <p>Filtro por país:</p>
             <Typeahead 
             onChange={this.filter}
-            defaultSelected={utils.filterCountry(this.state.player.selectedTeam, this.props.teams)}
+            defaultSelected={utils.filterCountry(this.state.player.selectedTeam, this.props.optionsCountries)}
             emptyLabel="Resultado não encontrado"
             placeholder="Selecione o país para filtrar"
             labelKey={option => option.name} 
@@ -80,7 +87,7 @@ class AutoCompletePlayer extends Component {
                     ))}
                 </Menu>
             )}
-            options={this.props.teams} /><br />
+            options={this.props.optionsCountries} /><br />
             {this.renderPlayer()}            
             </div>);
         }else{
@@ -99,8 +106,4 @@ class AutoCompletePlayer extends Component {
     }    
 }
 
-function mapStateToProps({teams, players}){
-    return {teams, players};
-}
-
-export default connect(mapStateToProps)(AutoCompletePlayer);
+export default AutoCompletePlayer;
