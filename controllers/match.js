@@ -26,15 +26,21 @@ module.exports = function(){
 				Match.findByIdAndUpdate(t._id, t, {upsert: true, new: true}, function(err, doc){
 					if(err) reject(err);
 					resolve(doc);
-				});
+				}).populate('homeTeam').populate('visitorTeam');
 			});
 		});
 
 		Promise.all(promises).then(function(docs){
 			if(recalculate){
-				Promise.all(docs.map(function(doc){
-					return MatchGuess.calculate(doc);
-				})).then(function(){
+				var promisses = [];
+	
+				docs.forEach(function(doc){
+					promisses.push(MatchGuess.calculate(doc));
+					promisses.push(doc.homeTeam.calculate());
+					promisses.push(doc.visitorTeam.calculate());
+				});
+
+				Promise.all(promisses).then(function(){
 					callback(docs)
 				});
 			} else callback(docs);

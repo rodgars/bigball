@@ -54,7 +54,7 @@ matchGuessSchema.static('calculate', function(match) {
 	
 	model.find({relatedMatch: match._id}).then(function(matchGuesses){
 
-		matchGuesses.map(function(matchGuess){
+		return matchGuesses.map(function(matchGuess){
 		
 			return new Promise(function(resolve, reject){
 
@@ -75,6 +75,8 @@ matchGuessSchema.static('calculate', function(match) {
 
 					if(guessDiff == resultDiff) pontos = pontos + 2;
 					if(result == guess) pontos = pontos + 3;
+
+					// pontos do Winner?
 
 					matchGuess.points = pontos;
 					matchGuess.save(resolve);

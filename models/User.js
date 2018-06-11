@@ -124,8 +124,6 @@ userSchema.post('save', function () {
 			
 		Promise.all(promises).then(function(){
 
-
-
 		}).catch(err => console.log(err));
 	});
     }
