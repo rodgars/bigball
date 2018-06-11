@@ -38,16 +38,20 @@ userSchema.pre('save', function (next) {
     next();
 });
 
+if (!userSchema.options.toObject) userSchema.options.toObject = {};
+userSchema.options.toObject.transform = function (doc, ret, options) {
+	
+	if(ret.registerDate) ret.registerDate = ret.registerDate.toISOString().substring(0, 10);
+	return ret;
+}
+
 userSchema.post('save', function () {
     if (this.wasNew) {
 
-
-let guessJson = JSON.parse(JSON.stringify(_guessJson));
-let globalGuessJson = JSON.parse(JSON.stringify(_globalGuessJson));
-let stageGuessesJson = JSON.parse(JSON.stringify(_stageGuessesJson));
-let matchGuessesJson = JSON.parse(JSON.stringify(_matchGuessesJson));
-
-console.log(_stageGuessesJson);
+	let guessJson = JSON.parse(JSON.stringify(_guessJson));
+	let globalGuessJson = JSON.parse(JSON.stringify(_globalGuessJson));
+	let stageGuessesJson = JSON.parse(JSON.stringify(_stageGuessesJson));
+	let matchGuessesJson = JSON.parse(JSON.stringify(_matchGuessesJson));
 
 	guessJson.user = this._id;
 	guessJson._id = new ObjectID();
