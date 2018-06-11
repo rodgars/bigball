@@ -8,7 +8,9 @@ router.get('/', (req, res) => {
 
 	var filter = {};
 
-	if (req.query.id) filter = {_id: req.query.id};
+	if (req.query.id) filter._id = req.query.id;
+	if (req.query.homeTeam) filter.homeTeam = req.query.homeTeam;
+	if (req.query.visitorTeam) filter.visitorTeam = req.query.visitorTeam;
 
 	matchController.get(filter, function(docs){
 		
