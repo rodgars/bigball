@@ -5,7 +5,7 @@ import _ from 'lodash';
 import DropDown from '../Utils/DropDown';
 import * as utils from '../../utils/filtering';
 import * as drops from '../../utils/dropdown';
-import * as actions from '../../actions/AdminActions';
+import * as actions from '../../actions';
 
 const showModal = (match) => {
     return typeof(match._id) != 'undefined';
@@ -73,6 +73,13 @@ class AdminMatchs extends Component {
 
     handleHide() {
         this.setState({ match: {} });
+    }
+
+    onChangeScore(value, field){
+        let stateToChange = this.state.match;
+        if(field === "home") stateToChange.homeScore = value;
+        else stateToChange.visitorScore = value;
+        this.setState({match: stateToChange});
     }
 
     RenderGames(matches){
@@ -162,7 +169,7 @@ class AdminMatchs extends Component {
                                         <DropDown ref={ddl => this.ddlVisitor = ddl} id="ddlVisitorTeam" values={drops.dataTeams(this.props.teams)} selected={this.state.match.visitorTeam} />
                                     </div>
                                     <div className="four wide column">
-                                        <input ref={input => {this.txtVisitorScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.visitorScore} className="ui input" />
+                                        <input onInput={e => this.onChangeScore(e.target.value, "visitor")} ref={input => {this.txtVisitorScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.visitorScore} className="ui input" />
                                     </div>
                                 </div>
                             </td>
@@ -175,7 +182,7 @@ class AdminMatchs extends Component {
                                         <DropDown ref={ddl => this.ddlHome = ddl} id="ddlHomeTeam" values={drops.dataTeams(this.props.teams)} selected={this.state.match.homeTeam}  />
                                     </div>
                                     <div className="four wide column">
-                                        <input ref={input => {this.txtHomeScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.homeScore} className="ui input" />
+                                        <input onInput={e => this.onChangeScore(e.target.value, "home")} ref={input => {this.txtHomeScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.homeScore} className="ui input" />
                                     </div>
                                 </div>
                             </td>
