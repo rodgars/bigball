@@ -24,32 +24,5 @@ guessSchema.static('asyncUpsert', function (id, guess, callback) {
 	});
 });
 
-guessSchema.static('transform', function (guess, callback) {
-
-	guess = guess.toObject();
-
-	guess.stageGuesses.forEach(function(stageGuess){
-		stageGuess.order = stageGuess.relatedStage.order;
-		stageGuess.relatedStage = stageGuess.relatedStage._id;
-		stageGuess.matchGuesses.forEach(function(matchGuess){
-			if(!matchGuess.guess) matchGuess.guess = {};
-			matchGuess.result = {};
-			matchGuess.date = matchGuess.relatedMatch.date;
-			matchGuess.homeTeam = matchGuess.relatedMatch.homeTeam;
-			matchGuess.visitorTeam = matchGuess.relatedMatch.visitorTeam;
-			matchGuess.group = matchGuess.relatedMatch.group;
-			if(matchGuess.relatedMatch.winner){
-				matchGuess.result.homeScore = matchGuess.relatedMatch.homeScore;
-				matchGuess.result.visitorScore = matchGuess.relatedMatch.visitorScore;
-				matchGuess.result.winner = matchGuess.relatedMatch.winner;
-			}
-			matchGuess.relatedMatch = matchGuess.relatedMatch._id;
-		});
-	});
-
-	return guess;
-
-});
-
 module.exports = mongoose.model('Guess', guessSchema);
 

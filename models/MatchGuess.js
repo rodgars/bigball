@@ -52,7 +52,7 @@ matchGuessSchema.static('calculate', function(match) {
 
 	var model = this;
 	
-	model.find({relatedMatch: match._id}).then(function(matchGuesses){
+	model.find({relatedMatch: match._id}).populate('stageGuess').then(function(matchGuesses){
 
 		return matchGuesses.map(function(matchGuess){
 		
@@ -88,10 +88,19 @@ matchGuessSchema.static('calculate', function(match) {
 						}
 					}
 
+					// if fase = x considerar o winner
 					// pontos do Winner?
 
 					matchGuess.points = pontos;
-					matchGuess.save(resolve);
+					matchGuess.save().then(function(){
+						// salva o double match se for o caso
+						var stageGuess = matchGuess.stageGuess;
+						if(stageGuess.doubleMatch == match._id){
+							stageGuess.pointsDoubleMatch = matchGuess.points;
+							stageGuess.save().then(resolve);
+
+						}
+					});
 			
 				}
 	
