@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-auto-increment");
 const Guess = require('./Guess');
+const Ranking = require('./Ranking');
 const { Schema } = mongoose;
 
 const GuessController = require('../controllers/guess');
@@ -47,7 +48,7 @@ userSchema.options.toObject.transform = function (doc, ret, options) {
 
 userSchema.post('save', function () {
     if (this.wasNew) {
-
+	var instance = this;
 	let guessJson = JSON.parse(JSON.stringify(_guessJson));
 	let globalGuessJson = JSON.parse(JSON.stringify(_globalGuessJson));
 	let stageGuessesJson = JSON.parse(JSON.stringify(_stageGuessesJson));
@@ -121,7 +122,22 @@ userSchema.post('save', function () {
 		})})}));
 		
 		promises.push(new Promise(function(res, rej){matchGuessController.save(matches, function(matches){res(matches)})}));
-			
+		
+		var ranking = new Ranking();
+		ranking._id = instance;
+		ranking.total = 0;
+		ranking.groups = 0;
+		ranking.eighthFinals = 0;
+		ranking.quarterFinals = 0;
+		ranking.semiFinals = 0;
+		ranking.finals = 0;
+		ranking.teamGP = 0;
+		ranking.teamGC = 0;
+		ranking.topScorer = 0;
+		ranking.champions = 0;
+	
+		promises.push(new Promise(function(res, rej){ Ranking.asyncUpsert(ranking._id, ranking).then(doc => res(doc))}));
+
 		Promise.all(promises).then(function(){
 
 		}).catch(err => console.log(err));

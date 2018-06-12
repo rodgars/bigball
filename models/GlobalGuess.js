@@ -12,6 +12,8 @@ var globalGuessSchema = new Schema({
 	teamGP: { type: String, ref: 'Team'},
 	teamGC: { type: String, ref: 'Team'},
 	pointsChampions: Number,
+	pointsSecondPlace: Number,
+	pointsThirdPlace: Number,
 	pointsTeamGP: Number,
 	pointsTeamGC: Number,
 	pointsTopScorer: Number
@@ -42,13 +44,13 @@ globalGuessSchema.options.toObject.transform = function (doc, ret, options) {
 		ret.relatedStage = ret.relatedStage._id;
 	}
 
-	if (ret.teamGP && ret.teamGP.gp != undefined){
-		ret.pointsTeamGP = ret.teamGP.gp;
+	if (ret.teamGP && (ret.teamGP._id)){
 		ret.teamGP = ret.teamGP._id;
+		if(ret.teamGP.gp) ret.pointsTeamGP = ret.teamGP.gp;
 	}
-	if (ret.teamGC && ret.teamGC.gc!= undefined) {
-		ret.pointsTeamGC = ret.teamGC.gc;
+	if (ret.teamGC && (ret.teamGC._id)) {
 		ret.teamGC = ret.teamGC._id;
+		if(ret.teamGC.gc) ret.pointsTeamGC = ret.teamGC.gc;
 	}
 
 	delete ret.mainGuess;

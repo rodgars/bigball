@@ -1,5 +1,7 @@
 var Match = require('../models/Match');
 var MatchGuess = require('../models/MatchGuess');
+var StageGuess = require('../models/StageGuess');
+var Ranking = require('../models/Ranking');
 
 module.exports = function(){
 
@@ -35,13 +37,20 @@ module.exports = function(){
 				var promisses = [];
 	
 				docs.forEach(function(doc){
+					// atualiza os match guess conforme resultado do match e o double match do stage parent se for o caso
 					promisses.push(MatchGuess.calculate(doc));
+					// atualiza GP e GC do time da casa
 					promisses.push(doc.homeTeam.calculate());
+					// atualiza GP e GC do time visitante
 					promisses.push(doc.visitorTeam.calculate());
 				});
 
 				Promise.all(promisses).then(function(){
-					callback(docs)
+					// atualiza os stages com o total de pontos obtido com os jogos
+					StageGuess.updateMatchGuessPoints().then(function(){
+						// atualiza os rankings
+						Ranking.updateRanking().then(callback(docs));
+					});
 				});
 			} else callback(docs);
 

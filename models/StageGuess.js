@@ -7,7 +7,8 @@ var stageGuessSchema = new Schema({
 	relatedStage: {type: String, ref: 'Stage'},
 	doubleMatch: {type: Number, ref: 'Match'},
 	pointsDoubleMatch: Number,
-	matchGuesses: [{type: Schema.Types.ObjectId, ref: 'MatchGuess'}]
+	matchGuesses: [{type: Schema.Types.ObjectId, ref: 'MatchGuess'}],
+	pointsMatchGuesses: Number
 }, {versionKey: false });
 
 stageGuessSchema.static('asyncUpsert', function (id, stageGuess, callback) {
@@ -20,6 +21,35 @@ stageGuessSchema.static('asyncUpsert', function (id, stageGuess, callback) {
 		model.findByIdAndUpdate(id, stageGuess, {upsert: true, new: true}, function(err, doc){
 			if(err) reject(err);
 			resolve(doc);
+		});
+	});
+});
+
+stageGuessSchema.static('updateMatchGuessPoints', function (callback) {
+
+	var model = this;
+	return new Promise(function(resolve, reject){
+
+		model.find().populate('matchGuesses').then(function(docs){
+
+			var promises = docs.map(function(doc){
+				return new Promise(function(resolve, reject){
+					var matchGuessPoints = 0;
+
+					doc.matchGuesses.forEach(function(matchGuess){
+						
+						if(matchGuess.points != undefined){
+							matchGuessPoints = matchGuessPoints + matchGuess.points;
+						}
+					});
+
+					doc.pointsMatchGuesses = matchGuessPoints;
+
+					doc.save().then(resolve).catch(reject);
+				});
+			});
+
+			Promise.all(promises).then(resolve).catch(reject);
 		});
 	});
 });
