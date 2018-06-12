@@ -45,11 +45,11 @@ globalGuessSchema.options.toObject.transform = function (doc, ret, options) {
 	}
 
 	if (ret.teamGP && (ret.teamGP._id)){
-		//ret.teamGP = ret.teamGP._id;
+		ret.teamGP = ret.teamGP._id;
 		if(ret.teamGP.gp) ret.pointsTeamGP = ret.teamGP.gp;
 	}
 	if (ret.teamGC && (ret.teamGC._id)) {
-		//ret.teamGC = ret.teamGC._id;
+		ret.teamGC = ret.teamGC._id;
 		if(ret.teamGC.gc) ret.pointsTeamGC = ret.teamGC.gc;
 	}
 
