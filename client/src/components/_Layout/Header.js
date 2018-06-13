@@ -22,7 +22,7 @@ class Header extends Component{
                 const myGameUrl = `/game/${this.props.auth._id}`;
                 return [
                     <NavItem key="1" componentClass={Link} href="/ranking" to="/ranking"><i className="trophy icon"></i> Ranking</NavItem>,
-                    <NavItem key="2" componentClass={Link} href={myGameUrl} to={myGameUrl}><i className="futbol icon"></i> Meu jogo</NavItem>,
+                    <NavItem key="2" href={myGameUrl}><i className="futbol icon"></i> Meu jogo</NavItem>,
                     <NavItem key="4" componentClass={Link} href="/payment" to="/payment"><i className="dollar sign icon"></i> Como Pagar</NavItem>,
                     <NavItem key="3" componentClass={Link} href="/rule" to="/rule"><i className="file icon"></i> Regras</NavItem>,
                     this.renderAdminLink(this.props.auth.isAdmin),
