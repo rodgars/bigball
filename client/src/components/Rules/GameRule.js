@@ -40,7 +40,7 @@ const GameRule = () => {
                         <tr className="bg-info"><td><strong>2º</strong></td><td>20 pontos somados se acertar o vice-campeão</td></tr>
                         <tr className="bg-info"><td><strong>3º</strong></td><td>10 pontos somados se acertar o terceiro colocado</td></tr>
                         <tr className="bg-success"><td><strong>Fator GP</strong></td><td>2x multiplicador dos gols marcados pela seleção "Seleção GP" (soma)</td></tr>
-                        <tr className="bg-success"><td><strong>Fator GC</strong></td><td>2x multiplicador dos gols marcados pela seleção "Seleção GC" <span className="text-danger"><b>(subtrai)</b></span></td></tr>
+                        <tr className="bg-success"><td><strong>Fator GC</strong></td><td>2x multiplicador dos gols <b>tomados</b> pela seleção "Seleção GC" <span className="text-danger"><b>(subtrai)</b></span></td></tr>
                         <tr className="bg-success"><td><strong>Fator Art</strong></td><td>2x multiplicador dos gols marcados pelo jogador "Artilheiro" (soma)</td></tr>
                     </tbody>
                 </table>
