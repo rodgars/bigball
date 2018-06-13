@@ -5,24 +5,9 @@ import RankingResultItem from './RankingResultItem';
 
 class RankingResultList extends Component {
     renderPlayers() {
-        return _.map(this.props.users, user => {
+        return _.map(_.orderBy(this.props.ranking,["position"],["asc"]), rank => {
 
-            let rank = _.find(this.props.ranking, {'_id':user._id});
-            if(typeof(rank) === 'undefined'){
-                rank = {
-                    total: 0,
-                    position: 1,
-                    groups: 0,
-                    eighthFinals: 0,
-                    quarterFinals: 0,
-                    semiFinals: 0,
-                    finals: 0,
-                    teamGP: 0,
-                    teamGC: 0,
-                    topScorer: 0,
-                    champions: 0
-                };
-            }
+            let user = _.find(this.props.users, {'_id':rank._id});
 
             return (
                 <RankingResultItem key={user._id}
