@@ -5,7 +5,7 @@ module.exports = function(){
 
 	this.get = function(filter, callback){
 
-		Ranking.find().populate('user').then(function(docs){
+		Ranking.find(filter).populate('user').then(function(docs){
 
 			docs.sort(function(a, b){return b.total-a.total});
 

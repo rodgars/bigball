@@ -37,8 +37,7 @@ rankingSchema.static('updateRanking', function () {
 
 		var query = Guess.find()
 			.populate('user')
-			.populate({ path: 'globalGuess', populate: {path: 'teamGC'} })
-			.populate({ path: 'globalGuess', populate: {path: 'teamGP'} })
+			.populate('globalGuess')
 			.populate('stageGuesses');
 
 
@@ -80,14 +79,14 @@ rankingSchema.static('updateRanking', function () {
 						total += sg.pointsMatchGuesses + sg.pointsDoubleMatch;
 					});
 
-					ranking.teamGP = gg.teamGP.gp ? gg.teamGP.gp : 0;
-					total += ranking.teamGP;
+					ranking.teamGP = gg.pointsTeamGP;
+					total += gg.pointsTeamGP;
 
-					ranking.teamGC = gg.teamGC.gc ? gg.teamGC.gc : 0;
-					total += ranking.teamGC;
+					ranking.teamGC = gg.pointsTeamGC;
+					total += gg.pointsTeamGC;
 
-					ranking.topScorer = gg.pointsTopScorer ? gg.pointsTopScorer : 0;
-					total += ranking.topScorer;
+					ranking.topScorer = gg.pointsTopScorer;
+					total += gg.pointsTopScorer;
 
 					ranking.champions = gg.pointsChampions ? gg.pointsChampions : 0 + 
 						gg.pointsSecondPlace ? gg.pointsSecondPlace : 0  +

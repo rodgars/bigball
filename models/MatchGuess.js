@@ -60,7 +60,7 @@ matchGuessSchema.static('calculate', function(match) {
 
 				if(matchGuess.guess && matchGuess.guess.homeScore != undefined){
 
-					var pontos = 0;
+					var points = 0;
 
 					var guessDiff = matchGuess.guess.homeScore - matchGuess.guess.visitorScore;
 					var resultDiff = match.homeScore - match.visitorScore;
@@ -74,24 +74,15 @@ matchGuessSchema.static('calculate', function(match) {
 					else if (guessDiff < 0) guess = -1;
 					
 
-					// acertou o resultado
-					if(result == guess) {
-						pontos = pontos + 3;
-						// acertou o saldo
-						if(guessDiff == resultDiff) {
-							pontos = pontos + 2;
-
-							// cravou a bagaca
-							if((matchGuess.guess.homeScore == match.homeScore) && (matchGuess.guess.visitorScore == match.visitorScore)) {
-								pontos = pontos + 2;
-							}
-						}
-					}
+					if (matchGuess.guess.homeScore == match.homeScore) points += 1;
+					if (matchGuess.guess.visitorScore == match.visitorScore) points += 1;
+					if (result == guess) points += 2;
+					if (guessDiff == resultDiff) points += 2;
 
 					// if fase = x considerar o winner
 					// pontos do Winner?
 
-					matchGuess.points = pontos;
+					matchGuess.points = points;
 					matchGuess.save().then(function(){
 						// salva o double match se for o caso
 						var stageGuess = matchGuess.stageGuess;
