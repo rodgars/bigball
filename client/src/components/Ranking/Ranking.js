@@ -15,7 +15,7 @@ class Ranking extends Component{
     }
 
     componentDidMount(){
-        this.props.fetchStages();
+        this.props.fetchRanking();
     }
 
     render(){

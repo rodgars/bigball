@@ -5,7 +5,13 @@ import _ from 'lodash';
 import {Modal} from 'react-bootstrap';
 
 const checkPlayer = (topScorer) => {
-    return typeof(topScorer.player) != 'undefined';
+    return typeof(topScorer) != 'undefined' && typeof(topScorer.player) != 'undefined';
+};
+
+const getPlayerInfo = (id, players) => {
+    let playerFound = _.find(players, {"id":id});
+    if(typeof(playerFound) === 'undefined') playerFound = {name:""};
+    return playerFound;
 };
 
 class AdminPlayers extends Component {
@@ -15,7 +21,7 @@ class AdminPlayers extends Component {
         this.handleHide = this.handleHide.bind(this);
         this.selectTopScore= this.selectTopScore.bind(this);
 
-        this.state = {topScorer:{}};
+        this.state = {topscorer:{}};
     }
 
     componentDidMount(){
@@ -26,19 +32,19 @@ class AdminPlayers extends Component {
         e.preventDefault();
 
         const player = _.find(this.props.players, {_id:id});
-        const topScorer = _.find(this.props.topScorer, {player:player});
+        const topscorer = _.find(this.props.topscorer, {player:id});
 
-        this.setState({topScorer});
+        this.setState({topscorer});
     }
 
     handleHide() {
-        this.setState({ topScorer: {} });
+        this.setState({ topscorer: {} });
     }
 
-    saveTopScore(topScorer){
-        topScorer.goals = this.txtGoals.value;
+    saveTopScore(topscorer){
+        topscorer.goals = this.txtGoals.value;
 
-        this.props.saveTopScorer(topScorer);
+        this.props.saveTopScorer(topscorer);
         
         this.props.fetchTopScorer();
         this.handleHide();
@@ -46,19 +52,22 @@ class AdminPlayers extends Component {
     }
 
     onChangeScore(value){
-        let stateToChange = this.state.topScorer;
+        let stateToChange = this.state.topscorer;
         
         stateToChange.goals = value;
 
-        this.setState({topScorer: stateToChange});
+        this.setState({topscorer: stateToChange});
     }
 
     renderTopScorer(){
         return _.map(this.props.topscorer, player => {
+
+            let playerFound = getPlayerInfo(player.player, this.props.players);
+
             return (
-                <tr key={player.player._id}>
-                    <td>{player.player._id}</td>
-                    <td>{player.player.name}</td>
+                <tr key={player.player} onClick={this.selectTopScore.bind(this, player.player)}>
+                    <td>{player.player}</td>
+                    <td><img src="./assets/flags/blank.gif" className={playerFound.flag} /> {playerFound.name}</td>
                     <td>{player.goals}</td>
                     <td></td>
                     <td></td>
@@ -68,11 +77,12 @@ class AdminPlayers extends Component {
     }
 
     renderModal(){
-        if(checkPlayer(this.state.topScorer)){
+        if(checkPlayer(this.state.topscorer)){
+            let player = getPlayerInfo(this.state.topscorer.player, this.props.players);
             return (
                 <Modal
                     {...this.props}
-                    show={checkPlayer(this.state.topScorer)}
+                    show={checkPlayer(this.state.topscorer)}
                     onHide={this.handleHide}
                     dialogClassName="custom-modal"
                     >
@@ -84,17 +94,17 @@ class AdminPlayers extends Component {
                     <Modal.Body>
                         <table className="ui small compact definition table">
                             <tbody>
-                                <tr><td>ID</td><td>{this.state.user.name}</td></tr>
-                                <tr><td>Nome</td><td>{this.state.user.date}</td></tr>
+                                <tr><td>ID</td><td>{this.state.topscorer.player}</td></tr>
+                                <tr><td>Nome</td><td><img src="./assets/flags/blank.gif" className={player.flag} />{player.name}</td></tr>
                                 <tr>
-                                    <td>Pagou?</td>
+                                    <td>Goals</td>
                                     <td>
-                                    <input onInput={e => this.onChangeScore(e.target.value)} ref={input => {this.txtGoals = input}} style={{width:"80px"}} type="number" min={0} value={this.state.topScorer.goals} className="ui input" />
+                                    <input onInput={e => this.onChangeScore(e.target.value)} ref={input => {this.txtGoals = input}} style={{width:"80px"}} type="number" min={0} defaultValue={this.state.topscorer.goals} className="ui input" />
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button className="ui blue button" onClick={this.saveTopScore.bind(this, this.state.topScorer)}><i className="ui icon save"></i>Salvar</button>
+                        <button className="ui blue button" onClick={this.saveTopScore.bind(this, this.state.topscorer)}><i className="ui icon save"></i>Salvar</button>
                     </Modal.Body>
                 </Modal>
             );
@@ -104,27 +114,31 @@ class AdminPlayers extends Component {
     }
 
     render(){
-        return (
-            <div>
-            <br/><br/>
-            <table className="ui compact small table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Gols</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderTopScorer()}
-                </tbody>
-            </table>
-            <br/><br/>
-            {this.renderModal()}
-            </div>
-        );
+        try{
+            return (
+                <div>
+                <br/><br/>
+                <table className="ui compact small table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Gols</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderTopScorer()}
+                    </tbody>
+                </table>
+                <br/><br/>
+                {this.renderModal()}
+                </div>
+            );
+        }catch(err){
+            return(<div>{err}</div>);
+        }
     }
 }
 

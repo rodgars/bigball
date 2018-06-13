@@ -9,6 +9,7 @@ import statusReducer from './statusReducer';
 import situationReducer from './situationReducer';
 import accountReducer from './accountReducer';
 import topscorerReducer from './topscorerReducer';
+import rankingReducer from './rankingReducer';
 
 export default combineReducers(
     {
@@ -21,6 +22,7 @@ export default combineReducers(
         status: statusReducer,
         situation: situationReducer,
         account: accountReducer,
-        topscorer: topscorerReducer
+        topscorer: topscorerReducer,
+        ranking: rankingReducer
     }
 );

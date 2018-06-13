@@ -4,3 +4,4 @@ export * from  './MyGameActions';
 export * from './PlayerActions';
 export * from './TeamActions';
 export * from './UserActions';
+export * from './RankingActions';
