@@ -85,7 +85,7 @@ class AdminMatchs extends Component {
             if(typeof(winner) == 'undefined') winner = {name:"Não definido", flag:""};
 
             return (    
-                <tr onClick={this.selectedStageId.bind(this, match)}>
+                <tr key={match._id} onClick={this.selectedStageId.bind(this, match)}>
                     <td>{match._id}</td>
                     <td>{match.group}</td>
                     <td>{match.date}</td>
@@ -100,7 +100,7 @@ class AdminMatchs extends Component {
     RenderStages(){
         return _.map(_.orderBy(this.props.stages,["order"],["asc"]), stage => {
             return(
-            <div>
+            <div key={stage._id}>
             <div className="ui segment">
                 <form id={stage._id} name={stage._id} key={stage._id} onSubmit={this.handleSubmit}>
                 <input type="hidden" id="id" name="id" value={stage._id} />

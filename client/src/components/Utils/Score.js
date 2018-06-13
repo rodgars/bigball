@@ -10,6 +10,7 @@ const Score = (props) => {
 
     let color = (a, b) => {
         if(a > b) return "ui green label";
+        else if (a == b && a != "-") return "ui yellow label";
         else return "ui label";
     };
 

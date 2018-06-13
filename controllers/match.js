@@ -1,6 +1,7 @@
 var Match = require('../models/Match');
 var MatchGuess = require('../models/MatchGuess');
 var StageGuess = require('../models/StageGuess');
+var GlobalGuess = require('../models/GlobalGuess');
 var Ranking = require('../models/Ranking');
 
 module.exports = function(){
@@ -46,10 +47,13 @@ module.exports = function(){
 				});
 
 				Promise.all(promisses).then(function(){
-					// atualiza os stages com o total de pontos obtido com os jogos
-					StageGuess.updateMatchGuessPoints().then(function(){
-						// atualiza os rankings
-						Ranking.updateRanking().then(callback(docs));
+					// Calcula e atualiza a pontuacao da selacao GP, GC e topScore
+					GlobalGuess.updateMatchGuessPoints().then(function(){
+						// atualiza os stages com o total de pontos obtido com os jogos
+						StageGuess.updateMatchGuessPoints().then(function(){
+							// atualiza os rankings
+							Ranking.updateRanking().then(callback(docs));
+						});
 					});
 				});
 			} else callback(docs);

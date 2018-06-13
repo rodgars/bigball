@@ -17,6 +17,7 @@ const GameRule = () => {
                         <tr><td>Art. 3, § 17</td><td>O 3º colocado ganha um abraço do <span className="text-danger">Gracinha</span></td></tr>
                         <tr><td>Art. 21, § 10</td><td>O 4º colocado recebe 10% do montante total</td></tr>
                         <tr><td>Art. 5, § 6</td><td>O bolão será realizado em três fases e o resultado final será computado pela soma da pontuação das três fases</td></tr>
+                        <tr><td>Art. 17, § 11</td><td>Para cada fase, deve ser escolhida apenas uma partida que valerá o <span className="text-danger">dobro dos pontos</span></td></tr>
                         <tr><td>Liminar</td><td>Ninguém chamado <span className="text-danger">Fernando</span> pode ficar entre os premiados</td></tr>
                     </tbody>
                 </table>
@@ -39,7 +40,7 @@ const GameRule = () => {
                         <tr className="bg-info"><td><strong>2º</strong></td><td>20 pontos somados se acertar o vice-campeão</td></tr>
                         <tr className="bg-info"><td><strong>3º</strong></td><td>10 pontos somados se acertar o terceiro colocado</td></tr>
                         <tr className="bg-success"><td><strong>Fator GP</strong></td><td>2x multiplicador dos gols marcados pela seleção "Seleção GP" (soma)</td></tr>
-                        <tr className="bg-success"><td><strong>Fator GC</strong></td><td>2x multiplicador dos gols marcados pela seleção "Seleção GC" (subtrai)</td></tr>
+                        <tr className="bg-success"><td><strong>Fator GC</strong></td><td>2x multiplicador dos gols marcados pela seleção "Seleção GC" <span className="text-danger"><b>(subtrai)</b></span></td></tr>
                         <tr className="bg-success"><td><strong>Fator Art</strong></td><td>2x multiplicador dos gols marcados pelo jogador "Artilheiro" (soma)</td></tr>
                     </tbody>
                 </table>
