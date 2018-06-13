@@ -8,6 +8,7 @@ import PointsLabel from '../Utils/PointsLabel';
 import DropDown from '../Utils/DropDown';
 import Match from '../Utils/Match';
 import Score from '../Utils/Score';
+import ProgressMatchBar from '../Utils/ProgressMatchBar';
 import * as actions from '../../actions/MyGameActions';
 
 const showModal = (match) => {
@@ -104,6 +105,10 @@ class MyGameFormPhaseList extends Component {
                 let guess = this.props.guess.stageGuesses[stageId].matchGuesses[newMatchId];
                 if(typeof(guess.guess.homeScore) == 'undefined') guess.guess.homeScore = "";
                 if(typeof(guess.guess.visitorScore) == 'undefined') guess.guess.visitorScore = "";
+
+                this.txtVisitScore.value = guess.guess.visitorScore;
+                this.txtHomeScore.value = guess.guess.homeScore;
+
                 this.setState((state) => {
                     return {
                         match: {
@@ -151,7 +156,7 @@ class MyGameFormPhaseList extends Component {
     modalStageName(){
         if(showModal(this.state.match)){
             let index = this.state.match.stageIndex;
-            return this.props.guess.stageGuesses[index].relatedStage;
+            return this.props.guess.stageGuesses[index].label;
         }
         return "";
     }
@@ -176,7 +181,7 @@ class MyGameFormPhaseList extends Component {
             children.push (
                 <tr key={i}>
                     <td width="10%" style={{textAlign:"center"}}>
-                        {isEdit(this.props.id, this.props.auth._id) && stage.status == "opened" && <input type="radio" onClick={this.selectedDoubleMatch.bind(this, stage._id)} name="rbDouble" value={match.relatedMatch} checked={checked(stage.doubleMatch, match.relatedMatch)} />}
+                        {isEdit(this.props.id, this.props.auth._id) && stage.status == "opened" && <input type="radio" onClick={this.selectedDoubleMatch.bind(this, stage._id)} name="rbDouble" value={match.relatedMatch} defaultChecked={checked(stage.doubleMatch, match.relatedMatch)} />}
                         {stage.status != "opened" && checked(stage.doubleMatch, match.relatedMatch) && <i className="icon arrow alternate circle right"></i>}
                     </td>
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
@@ -265,15 +270,18 @@ class MyGameFormPhaseList extends Component {
                 <Modal
                 show={showModal(this.state.match)}
                 onHide={this.handleHide}
-                bsSize="small"
+                bsSize="sm"
                 dialogClassName="custom-modal"
                 >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-lg">
-                    <i className="futbol icon"></i> Preencher jogos da {this.modalStageName()}
+                    <i className="futbol icon"></i> {this.modalStageName()}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <ProgressMatchBar state={this.state.match} stages={this.props.guess.stageGuesses} />
+                    <hr/>
+                    <p>Informe seu palpite:</p>
                     <table className="ui table">
                         <tbody>
                         <tr>
@@ -281,15 +289,16 @@ class MyGameFormPhaseList extends Component {
                             <td style={{verticalAlign:"middle"}}>
                                 <div>
                                     <form ref={form => {this.frmMatch = form}}>
-                                    <input onInput={e => this.onChangeScore(e.target.value, "visitor")} ref={input => {this.txtVisitScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.guess.guess.visitorScore} className="ui input" /><br/><br/>
-                                    <input onInput={e => this.onChangeScore(e.target.value, "home")} ref={input => {this.txtHomeScore = input}} style={{width:"80px"}} type="number" min={0} value={this.state.match.guess.guess.homeScore} className="ui input" /><br/><br/>
+                                    <input onInput={e => this.onChangeScore(e.target.value, "visitor")} ref={input => {this.txtVisitScore = input}} style={{width:"80px"}} type="number" min={0} defaultValue={this.state.match.guess.guess.visitorScore} className="ui input" /><br/><br/>
+                                    <input onInput={e => this.onChangeScore(e.target.value, "home")} ref={input => {this.txtHomeScore = input}} style={{width:"80px"}} type="number" min={0} defaultValue={this.state.match.guess.guess.homeScore} className="ui input" /><br/><br/>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    {this.renderWinner()}        
+                    {this.renderWinner()}
+                    <hr/>        
                     <button disabled={this.disableButtonModal("pre")} className="ui button" onClick={this.moveMatchModal.bind(this, -1)}><i className="icon angle double left"></i> Anterior</button>
                     <button disabled={this.disableButtonModal("nex")} className="ui button" onClick={this.moveMatchModal.bind(this, 1)}>Proximo <i className="icon angle double right"></i></button>
                     <br/><br/><button className="ui blue button" onClick={this.saveAndExit}><i className="icon save"></i> Salvar e Sair</button>
