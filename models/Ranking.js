@@ -94,6 +94,7 @@ rankingSchema.static('updateRanking', function () {
 					total += ranking.champions;
 
 					ranking.total = total;
+					//ranking.user = ranking._id;
 
 					model.asyncUpsert(ranking._id, ranking).then(resolve(ranking));
 				});
