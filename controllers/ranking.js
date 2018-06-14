@@ -9,23 +9,22 @@ module.exports = function(){
 
 			docs.sort(function(a, b){return b.total-a.total});
 
-			var result = [];
+			docs = docs.map(function(doc){return doc.toObject();});
 
-			docs.reduce(function(state, _next){
-				var next = _next.toObject();
+			
+			var pos = 1;
+			var maxPoints = docs[0].total;
+			docs.forEach(function(item, index){
 
-				if(state.points > next.total){
-					next.position = ++state.position;
-					state.points = next.points;
+				if(maxPoints > item.total) {
+					item.position = ++pos;
+					maxPoints = item.total;
 				} else {
-					next.position = state.position;
+					item.position = pos;
 				}
-				result.push(next);
+			});
 
-				return state;
-			}, {position: 1, points: docs[0].total});
-
-			callback(result);
+			callback(docs);
 		});
 	};
 };
