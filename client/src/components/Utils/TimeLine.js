@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import * as dates from '../../utils/date';
 
 const renderSteps = (stages) => {
     return _.map(stages, stage => {
@@ -9,10 +10,12 @@ const renderSteps = (stages) => {
         let stageStatus = "";
         let stageSituation = stage.situation;
 
+        let date = dates.getDateTime(stage.deadline);
+
         switch(stage.status){
             case "opened":
                 icon = "hand point down";
-                stageStatus = `Envio até ${stage.deadline}`;
+                stageStatus = `Envio até ${date}`;
                 break;
             case "completed":
                 icon = "check";

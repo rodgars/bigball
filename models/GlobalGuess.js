@@ -39,15 +39,15 @@ globalGuessSchema.static('updateMatchGuessPoints', function () {
 	var model = this;
 	return new Promise(function(resolve, reject){
 
-		model.find().populate('teamGP').populate('teamGC').then(function(docs){
+		model.find().populate('teamGP').populate('teamGC').populate('topScorer').then(function(docs){
 
 			var promises = docs.map(function(doc){
 				return new Promise(function(resolve, reject){
 
-					doc.pointsTeamGP = 2 * (doc.teamGP.gp ? doc.teamGP.gp : 0);
-					doc.pointsTeamGC = 2 * (doc.teamGC.gc ? doc.teamGC.gc : 0);
+					doc.pointsTeamGP = (doc.teamGP && doc.teamGP.gp) ? 2 * doc.teamGP.gp : 0;
+					doc.pointsTeamGC = (doc.teamGC && doc.teamGC.gc) ? 2 * doc.teamGC.gc : 0;
 
-					doc.pointsTopScorer = 0; // TODO!!!!
+					doc.pointsTopScorer = (doc.topScorer && doc.topScorer.goals) ? 2 * doc.topScorer.goals : 0;
 
 					doc.save().then(resolve).catch(reject);
 				});

@@ -59,7 +59,7 @@ module.exports = function(){
 			});
 
 			callback(result);
-		}).catch(err => console.log('controller/guess/111'));
+		}).catch(err => console.log(err));
 	};
 
 	this.save = function(object, callback) {

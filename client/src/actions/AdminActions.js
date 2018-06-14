@@ -37,11 +37,11 @@ export const fetchStatus = () => async dispatch => {
 };
 
 export const fetchTopScorer = () => async dispatch => {
-    const res = await axios.get(`/api/topScorer`);
+    const res = await axios.get(`/api/player/topScorer`);
     dispatch({ type: FETCH_TOPSCORER, payload: res.data });
 };
 
-export const saveTopScorer = (values) => async dispatch => {
-    const res = await axios.put(`/api/topScorer`, values);
+export const savePlayer = (values) => async dispatch => {
+    const res = await axios.put(`/api/player`, values);
     dispatch({ type: UPDATE_TOPSCORER, payload: res.data });
 };

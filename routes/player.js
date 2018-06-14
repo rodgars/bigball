@@ -11,6 +11,13 @@ router.get('/', (req, res) => {
 	});
 });
 
+router.get('/topScorer', (req, res) => {
+	playersController.getTopScorer(function(docs){
+		
+		res.json(docs);
+	});
+});
+
 router.delete('/', (req, res) => {
 	
 	playersController.delete({}, function(message){

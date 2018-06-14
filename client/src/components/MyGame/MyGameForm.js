@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MyGameFormFactorsItem from './MyGameFormFactorsItem';
 import MyGameFormPhaseList from './MyGameFormPhaseList';
 import {connect} from 'react-redux';
+import * as dates from '../../utils/date';
 import _ from 'lodash';
 import * as actions from '../../actions';
 
@@ -84,7 +85,7 @@ class MyGameForm extends Component {
                             {!isLocked(this.props.guess.stageGuesses, "groupStage",this.props.id,this.props.auth._id) && this.state.isEditable && <button onClick={this.toggleEdition.bind(this, "cancel")} className="ui red button"><i className="icon times"></i>Cancelar Edição</button>}
     
                             <h4 className="ui horizontal divider header">
-                                <i className="bar chart icon"></i> Fatores - encerra em {this.props.guess.globalGuess.deadline}
+                                <i className="bar chart icon"></i> Fatores - encerra em {dates.getDateTime(this.props.guess.globalGuess.deadline)}
                             </h4>
                             <br/>
                             <div>

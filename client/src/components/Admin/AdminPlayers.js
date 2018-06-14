@@ -5,13 +5,7 @@ import _ from 'lodash';
 import {Modal} from 'react-bootstrap';
 
 const checkPlayer = (topScorer) => {
-    return typeof(topScorer) != 'undefined' && typeof(topScorer.player) != 'undefined';
-};
-
-const getPlayerInfo = (id, players) => {
-    let playerFound = _.find(players, {"id":id});
-    if(typeof(playerFound) === 'undefined') playerFound = {name:""};
-    return playerFound;
+    return typeof(topScorer) != 'undefined' && typeof(topScorer._id) != 'undefined';
 };
 
 class AdminPlayers extends Component {
@@ -28,11 +22,9 @@ class AdminPlayers extends Component {
         this.props.fetchTopScorer();
     }
 
-    selectTopScore(id,e){
+    selectTopScore(player,e){
         e.preventDefault();
-
-        const player = _.find(this.props.players, {_id:id});
-        const topscorer = _.find(this.props.topscorer, {player:id});
+        const topscorer = player;
 
         this.setState({topscorer});
     }
@@ -44,7 +36,7 @@ class AdminPlayers extends Component {
     saveTopScore(topscorer){
         topscorer.goals = this.txtGoals.value;
 
-        this.props.saveTopScorer(topscorer);
+        this.props.savePlayer(topscorer);
         
         this.props.fetchTopScorer();
         this.handleHide();
@@ -62,12 +54,10 @@ class AdminPlayers extends Component {
     renderTopScorer(){
         return _.map(this.props.topscorer, player => {
 
-            let playerFound = getPlayerInfo(player.player, this.props.players);
-
             return (
-                <tr key={player.player} onClick={this.selectTopScore.bind(this, player.player)}>
-                    <td>{player.player}</td>
-                    <td><img src="./assets/flags/blank.gif" className={playerFound.flag} /> {playerFound.name}</td>
+                <tr key={player._id} onClick={this.selectTopScore.bind(this, player)}>
+                    <td>{player._id}</td>
+                    <td>{player.name}</td>
                     <td>{player.goals}</td>
                     <td></td>
                     <td></td>
@@ -78,7 +68,6 @@ class AdminPlayers extends Component {
 
     renderModal(){
         if(checkPlayer(this.state.topscorer)){
-            let player = getPlayerInfo(this.state.topscorer.player, this.props.players);
             return (
                 <Modal
                     {...this.props}
@@ -94,8 +83,8 @@ class AdminPlayers extends Component {
                     <Modal.Body>
                         <table className="ui small compact definition table">
                             <tbody>
-                                <tr><td>ID</td><td>{this.state.topscorer.player}</td></tr>
-                                <tr><td>Nome</td><td><img src="./assets/flags/blank.gif" className={player.flag} />{player.name}</td></tr>
+                                <tr><td>ID</td><td>{this.state.topscorer._id}</td></tr>
+                                <tr><td>Nome</td><td>{this.state.topscorer.name}</td></tr>
                                 <tr>
                                     <td>Goals</td>
                                     <td>
