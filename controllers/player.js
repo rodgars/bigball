@@ -14,6 +14,23 @@ module.exports = function(){
 		}).populate('team');
 	};
 
+	this.getTopScorer = function(callback){
+		Player.find({goals: {$exists: true}}, function(err, players){
+			if(err) console.log(err);
+
+			var response = [];
+			response = players.map(function(player){
+
+				return player.toObject();
+			});
+
+			response.sort(function(item1, item2){return item2-item1});
+
+			callback(response);
+
+		}).populate('team');
+	}
+
 	this.update = function(object, callback) {
 
 		var players = [];

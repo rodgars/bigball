@@ -10,7 +10,6 @@ var userRoutes = require('./user');
 var matchGuessRoutes = require('./matchGuess');
 var stageGuessRoutes = require('./stageGuess');
 var globalGuessRoutes = require('./globalGuess');
-var topScorerRoutes = require('./topScorer');
 var rankingRoutes = require('./ranking');
 var requireLogin = require('../middlewares/requireLogin');
 
@@ -37,8 +36,6 @@ module.exports = function(app) {
 	app.use('/api/stageGuess', stageGuessRoutes);
 
 	app.use('/api/globalGuess', globalGuessRoutes);
-
-	app.use('/api/topScorer', topScorerRoutes);
 
 	app.use('/api/ranking', rankingRoutes);
 }
