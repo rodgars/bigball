@@ -11,14 +11,21 @@ module.exports = function(){
 
 			var result = [];
 
-			result = docs.map(function(doc, index){
-				doc = doc.toObject(index);
-				doc.position = index + 1;
-				return doc;
-			});
+			docs.reduce(function(state, _next){
+				var next = _next.toObject();
 
-			callback(result)
+				if(state.points > next.total){
+					next.position = ++state.position;
+					state.points = next.points;
+				} else {
+					next.position = state.position;
+				}
+				result.push(next);
 
+				return state;
+			}, {position: 1, points: docs[0].total});
+
+			callback(result);
 		});
 	};
 };
