@@ -4,7 +4,7 @@ import * as dates from '../../utils/date';
 
 const renderSteps = (stages) => {
     return _.map(stages, stage => {
-        let status = stage.status == "opened" ? "active" : "disabled";
+        let status = "";
         let icon = "";
         let stageName = stage.label;
         let stageStatus = "";
@@ -12,17 +12,29 @@ const renderSteps = (stages) => {
 
         let date = dates.getDateTime(stage.deadline);
 
+        switch(stageSituation){
+            case "Estamos aqui":
+                icon = "hand point down";
+                status = "active";
+                break;
+            case "Fase finalizada":
+                icon = "check";
+                status = "disabled";
+                break;
+            case "Fase não iniciada":
+                icon = "ban";
+                status = "disabled";
+                break;
+        }
+
         switch(stage.status){
             case "opened":
-                icon = "hand point down";
                 stageStatus = `Envio até ${date}`;
                 break;
             case "completed":
-                icon = "check";
                 stageStatus = "Envio encerrado";
                 break;
             case "closed":
-                icon = "ban";
                 stageStatus = "Envio não disponível";
                 break;
         }
