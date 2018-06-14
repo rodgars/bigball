@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Modal} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as utils from '../../utils/filtering';
+import * as dates from '../../utils/date';
 import _ from 'lodash';
 import * as drops from '../../utils/dropdown';
 import PointsLabel from '../Utils/PointsLabel';
@@ -193,7 +194,7 @@ class MyGameFormPhaseList extends Component {
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
                         {this.RenderResult(match.result)}
                     </td>
-                    <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>{match.group}<br/>{match.date}</td>
+                    <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>{match.group}<br/>{dates.getDate(match.date)}</td>
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)} width="10%"><PointsLabel value={match.points} /></td>
                 </tr>           
             );
@@ -216,12 +217,23 @@ class MyGameFormPhaseList extends Component {
     }
 
     RenderAlertStagesDouble(stage){
-        if(stage.doubleMatch == null || stage.doubleMatch == "")
+        if(stage.doubleMatch == null || stage.doubleMatch == ""){
             return (
                 <p className="text-danger text-right"><b>* Atenção!</b> Você não selecionou a partida que vale o dobro</p>
             );
+        }
         else
-            return (<br />)
+        {
+            let match = _.find(stage.matchGuesses, {"relatedMatch":stage.doubleMatch});
+            let visitor = utils.filterCountry(match.visitorTeam, this.props.teams)[0];
+            let home = utils.filterCountry(match.homeTeam, this.props.teams)[0];
+
+            return (
+                <div>
+                    <p className="text-right"><b>Jogo dobra:</b> <img src="/assets/flags/blank.gif" className={visitor.flag} /> {visitor.name} vs <img src="/assets/flags/blank.gif" className={home.flag} /> {home.name} (grupo {match.group}, {dates.getDate(match.date)}) - <PointsLabel value={stage.pointsDoubleMatch} /></p>
+                </div>
+            );
+        }
     }
 
     RenderStages(){
@@ -233,28 +245,31 @@ class MyGameFormPhaseList extends Component {
 
             if(stage.matchGuesses.length > 0){
                 stagesDom.push(
-                    <div key={i} className="ui segment">
-                        {this.RenderAlertStagesMatches(stage)}
-                        {this.RenderAlertStagesDouble(stage)}
-                        <h4 className="ui horizontal divider header">
-                            <i className="futbol icon"></i> {stage.label} - encerra em {stage.deadline}
-                        </h4>
-                        <br/>
-                        <div>
-                            <table className="ui small selectable table">
-                                <thead>
-                                    <tr>
-                                        <th>Dobra?</th>
-                                        <th colSpan="2">Seu palpite</th>
-                                        <th>Resultado oficial</th>
-                                        <th>Partida</th>
-                                        <th>Pontos</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.RenderMatches(stage, i)}
-                                </tbody>
-                            </table> 
+                    <div key={i}>
+                        <div className="ui segment">
+                            {this.RenderAlertStagesMatches(stage)}
+                            <h4 className="ui horizontal divider header">
+                                <i className="futbol icon"></i> {stage.label} - encerra em {dates.getDateTime(stage.deadline)}
+                            </h4>
+                            <br/>
+                            {this.RenderAlertStagesDouble(stage)}
+                            <br/>
+                            <div>
+                                <table className="ui small selectable table">
+                                    <thead>
+                                        <tr>
+                                            <th>Dobra?</th>
+                                            <th colSpan="2">Seu palpite</th>
+                                            <th>Resultado oficial</th>
+                                            <th>Partida</th>
+                                            <th>Pontos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.RenderMatches(stage, i)}
+                                    </tbody>
+                                </table> 
+                            </div>
                         </div>
                     </div>
                 );
@@ -322,7 +337,7 @@ class MyGameFormPhaseList extends Component {
         ){
             return (
                 <div className="ui segment">
-                    <b>Vencedor (penalts / empate):</b> <DropDown ref={ddl => this.ddlWinner = ddl} id="ddlWinner" values={drops.dataWinner(this.props.teams, this.state.match.guess)} selected={winnerValue}  />
+                    <b>Vencedor (penalty / empate):</b> <DropDown ref={ddl => this.ddlWinner = ddl} id="ddlWinner" values={drops.dataWinner(this.props.teams, this.state.match.guess)} selected={winnerValue}  />
                     <br/>
                 </div>
             );

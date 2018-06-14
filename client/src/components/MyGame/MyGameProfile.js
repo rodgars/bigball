@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
+import * as dates from '../../utils/date';
 import _ from 'lodash';
 import {Glyphicon} from 'react-bootstrap';
 import PaymentAlert from '../Utils/PaymentAlert';
@@ -38,7 +39,7 @@ class MyGameProfile extends Component {
                         <div className="header"><Glyphicon glyph="user" /> {this.props.guess.user.name}</div>
                         <div className="meta">
                             User Id: {this.props.guess.user.userId}<br/>
-                            <span className="date">Criado em {this.props.guess.user.registerDate}</span>
+                            <span className="date">Criado em {dates.getDate(this.props.guess.user.registerDate)}</span>
                         </div>
                         <div className="description">
                             # {position}º - {checkRanking(position)} <br />
