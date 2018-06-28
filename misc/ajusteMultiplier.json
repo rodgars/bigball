@@ -1,0 +1,31 @@
+PUT na STAGE
+http://localhost:3000/api/stage
+
+{
+	"_id": "groupStage",
+	"multiplier": 1
+}
+
+
+{
+	"_id": "semiFinals",
+	"multiplier": 2
+}
+
+
+{
+	"_id": "quarterFinals",
+	"multiplier": 2
+}
+
+
+{
+	"_id": "finals",
+	"multiplier": 2
+}
+
+
+{
+	"_id": "eighthFinals",
+	"multiplier": 2
+}
