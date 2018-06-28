@@ -52,7 +52,7 @@ matchGuessSchema.static('calculate', function(match) {
 
 	var model = this;
 	
-	model.find({relatedMatch: match._id}).populate('stageGuess').then(function(matchGuesses){
+	model.find({relatedMatch: match._id}).populate({path: 'stageGuess', populate:{path: 'relatedStage'}}).then(function(matchGuesses){
 
 		return matchGuesses.map(function(matchGuess){
 		
@@ -76,13 +76,28 @@ matchGuessSchema.static('calculate', function(match) {
 
 					if (matchGuess.guess.homeScore == match.homeScore) points += 1;
 					if (matchGuess.guess.visitorScore == match.visitorScore) points += 1;
-					if (result == guess) points += 2;
 					if (guessDiff == resultDiff) points += 2;
 
-					// if fase = x considerar o winner
-					// pontos do Winner?
+					if(matchGuess.stageGuess.relatedStage._id == 'groupStage'){
+						if (result == guess) points += 2;
+					} else {
+						if (matchGuess.guess.winner == match.winner) {
+							points += 2;
+						}
+					}					
 
-					matchGuess.points = points;
+					var multiplier = 1;
+
+					if(typeof matchGuess.stageGuess.relatedStage.multiplier === "undefined") {
+						multiplier = 1;
+					} else {
+						console.log(matchGuess.stageGuess.relatedStage.multiplier);
+						multiplier = matchGuess.stageGuess.relatedStage.multiplier;
+					}
+
+					matchGuess.points = points * multiplier;
+
+
 					matchGuess.save().then(function(){
 						// salva o double match se for o caso
 						var stageGuess = matchGuess.stageGuess;
