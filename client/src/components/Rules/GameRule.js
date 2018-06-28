@@ -18,6 +18,7 @@ const GameRule = () => {
                         <tr><td>Art. 21, § 10</td><td>O 4º colocado recebe 10% do montante total</td></tr>
                         <tr><td>Art. 5, § 6</td><td>O bolão será realizado em três fases e o resultado final será computado pela soma da pontuação das três fases</td></tr>
                         <tr><td>Art. 17, § 11</td><td>Para cada fase, deve ser escolhida apenas uma partida que valerá o <span className="text-danger">dobro dos pontos</span></td></tr>
+                        <tr><td>Art. 22, § 3</td><td>As fases eliminatórias valem 3x vezes os pontos da fase de grupos. Fatores continuam a valer o mesmo.</td></tr>
                         <tr><td>Liminar</td><td>Ninguém chamado <span className="text-danger">Fernando</span> pode ficar entre os premiados</td></tr>
                     </tbody>
                 </table>

@@ -29,7 +29,7 @@ const Score = (props) => {
 
 const renderWinner = (match, winner, team, scoreVisitor, scoreHome) => {
     if(scoreHome == scoreVisitor && scoreHome != "-" && team == winner && winner != ""){
-        return (<b> * V</b>);
+        return (<i className="ui icon trophy"></i>);
     }else{
         return "";
     }

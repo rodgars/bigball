@@ -54,9 +54,12 @@ class AdminMatchs extends Component {
         let match = this.state.match;
         match.visitorTeam = this.ddlVisitor.value();
         match.homeTeam = this.ddlHome.value();
-        match.winner = this.ddlWinner.value();
         match.visitorScore = this.txtVisitorScore.value;
         match.homeScore = this.txtHomeScore.value;
+
+        if(match.visitorScore > match.homeScore) match.winner = match.visitorTeam;
+        else if(match.visitorScore < match.homeScore) match.winner = match.homeTeam;
+        else match.winner = this.ddlWinner.value();
 
         this.props.saveMatch(match);
         this.props.fetchStages();
