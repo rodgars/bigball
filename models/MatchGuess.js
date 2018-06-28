@@ -91,7 +91,6 @@ matchGuessSchema.static('calculate', function(match) {
 					if(typeof matchGuess.stageGuess.relatedStage.multiplier === "undefined") {
 						multiplier = 1;
 					} else {
-						console.log(matchGuess.stageGuess.relatedStage.multiplier);
 						multiplier = matchGuess.stageGuess.relatedStage.multiplier;
 					}
 
