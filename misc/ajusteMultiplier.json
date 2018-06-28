@@ -1,0 +1,41 @@
+PUT na STAGE
+http://localhost:3000/api/stage
+
+{
+	"_id": "groupStage",
+	"multiplier": 1
+}
+
+
+{
+	"_id": "semiFinals",
+	"multiplier": 3
+}
+
+
+{
+	"_id": "quarterFinals",
+	"multiplier": 3
+}
+
+
+{
+	"_id": "finals",
+	"multiplier": 3
+}
+
+
+{
+    "_id": "eighthFinals",
+    "deadline": "2018-06-30T10:00:00Z",
+    "multiplier": 3
+}
+
+[{ "_id": 49, "group": "8THF", "date": "2018-06-30", "homeTeam": "fr", "visitorTeam": "ar"},
+{ "_id": 50, "group": "8THF", "date": "2018-06-30", "homeTeam": "uy", "visitorTeam": "pt"},
+{ "_id": 51, "group": "8THF", "date": "2018-07-01", "homeTeam": "es", "visitorTeam": "ru"},
+{ "_id": 52, "group": "8THF", "date": "2018-07-01", "homeTeam": "hr", "visitorTeam": "dk"},
+{ "_id": 53, "group": "8THF", "date": "2018-07-02", "homeTeam": "br", "visitorTeam": "mx"},
+{ "_id": 54, "group": "8THF", "date": "2018-07-02", "homeTeam": null, "visitorTeam": null},
+{ "_id": 55, "group": "8THF", "date": "2018-07-03", "homeTeam": "se", "visitorTeam": "ch"},
+{ "_id": 56, "group": "8THF", "date": "2018-07-03", "homeTeam": null, "visitorTeam": null}]

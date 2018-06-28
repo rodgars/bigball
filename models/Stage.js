@@ -8,6 +8,7 @@ var stageSchema = new Schema({
 	situation: {type: String, enum: ['Estamos aqui', 'Fase finalizada', 'Fase não iniciada']},
 	status :{type: String, enum: ['completed', 'opened', 'closed']},
 	order: Number,
+	multiplier: Number,
 	matches: [{type: Number, ref: 'Match'}]
 }, { versionKey: false });
 

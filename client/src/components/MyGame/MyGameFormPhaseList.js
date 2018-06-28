@@ -163,10 +163,10 @@ class MyGameFormPhaseList extends Component {
     }
     
     // RENDER METHODS
-    RenderResult(result){
-        if(result.homeScore != null){
+    RenderResult(match){
+        if(match.result.homeScore != null){
             return(
-                <Score guess={result}/>
+                <Score guess={match.result} teams={match}/>
             );
         }else{
             return(<div>Não disponível</div>);
@@ -192,7 +192,7 @@ class MyGameFormPhaseList extends Component {
                         <Score teams={match} guess={match.guess}/>
                     </td>
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>
-                        {this.RenderResult(match.result)}
+                        {this.RenderResult(match)}
                     </td>
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)}>{match.group}<br/>{dates.getDate(match.date)}</td>
                     <td onClick={this.selectMatch.bind(this, `${ind};${i}`)} width="10%"><PointsLabel value={match.points} /></td>
